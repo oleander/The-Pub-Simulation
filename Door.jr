@@ -13,7 +13,7 @@ public class Door {
   public op ArrayList<Person> lock(cap void() returnOkCap);
   public op void leave(Person p);
   
-
+ 
   public Door(List<Integer> list) {
     entrants = new ArrayList<Person>();
     isLocked = false;    
@@ -22,32 +22,32 @@ public class Door {
   private process doorProcess {
     while(true)
       {
-	inni ArrayList<Person> lock(cap void() returnOkCap)
-	{
-	  isLocked = true;
-	  this.returnOkCap = returnOkCap;
-	  return entrants.clone();
+        inni ArrayList<Person> lock(cap void() returnOkCap)
+        {
+          isLocked = true;
+          this.returnOkCap = returnOkCap;
+          return entrants.clone();
       
-	}
-	[] boolean add(Person p)
-	  {
-	    if(isLocked)
-	      {
-		return false;
-	      }
-	    entrants.add(p);
-	    return true;
-	
-	  }
-	[] void leave(Person p)
-	  {
-	    entrants.remove(p);
-	    if(isLocked && entrants.size() == 1)
-	      {
-		send returnOkCap();
-		break;
-	      }
-	  }
+        }
+        [] boolean add(Person p)
+          {
+            if(isLocked)
+              {
+        	return false;
+              }
+            entrants.add(p);
+            return true;
+        
+          }
+        [] void leave(Person p)
+          {
+            entrants.remove(p);
+            if(isLocked && entrants.size() == 1)
+              {
+                send returnOkCap();
+        	break;
+              }
+          }
       }
     System.out.println("Door process exits ...");
   }
