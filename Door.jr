@@ -2,6 +2,7 @@ import edu.ucdavis.jr.*;
 import java.util.*;
 import java.util.ArrayList;
 
+
 public class Door {
 
   private ArrayList<Person> entrants;
@@ -14,9 +15,11 @@ public class Door {
   public op void leave(Person p);
   
  
-  public Door(List<Integer> list) {
+  public Door() {
     entrants = new ArrayList<Person>();
-    isLocked = false;    
+    isLocked = false;
+    Global.door = this;
+    
   }  
 
   private process doorProcess {
@@ -26,8 +29,8 @@ public class Door {
         {
           isLocked = true;
           this.returnOkCap = returnOkCap;
-          return entrants.clone();
-      
+          return new ArrayList<Person>(entrants);
+          
         }
         [] boolean add(Person p)
           {
@@ -51,4 +54,57 @@ public class Door {
       }
     System.out.println("Door process exits ...");
   }
+
+
+  public static void main(String[] args) {
+    allDoorTests();
+    
+    
+    
+  }
+
+  public static void allDoorTests()
+  {
+    testOnePeopleEnters();
+    testOneLeaving();
+  }
+
+  public static void testOneLeaving()
+  {
+    Door d = new Door();
+    Person p = new Person();
+    
+    JR.nap(10);
+
+    p.leaveBar();
+
+    JR.nap(10);
+    
+    
+    asserts(d.entrants.size() == 0, "Everyone should have exited.");
+  }
+
+  public static void testOnePeopleEnters()
+  {
+    Door d = new Door();
+    asserts(d.entrants.size() == 0, "Door should start empty");    
+    Person p = new Person();
+    
+    JR.nap(10);
+
+    asserts(d.entrants.get(0) == p, "Person p should be in list");    
+    asserts(d.entrants.size() == 1, "Should only be 1 person in list");    
+    
+  }
+  
+  public static void asserts(boolean b, String s)
+  {
+    if(!b)
+      {
+        System.out.println("s = " + s);
+        System.exit(1);
+      }
+  }
+  
+
 }

@@ -3,4 +3,36 @@ import java.util.*;
 
 public class Person {
 
+  private static int startId = 0;  
+  private int id;
+  private Door door;
+  private boolean alive;
+
+  
+  @Override
+  public String toString()
+  {
+    return "" + id;
+  }
+
+  public Person()
+  {
+    id = startId++;
+    enterDoor();    
+  }
+
+  private void enterDoor()
+  {
+    alive = Global.door.add(this);    
+  }
+  
+  public void leaveBar()
+  {
+    call Global.door.leave(this);
+    alive = false;
+    
+  }
+
+  
+  
 }
