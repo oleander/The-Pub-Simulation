@@ -6,7 +6,7 @@ public class Door {
 
   private ArrayList<Person> entrants;
   private boolean isLocked;
-  private cap void() returnOkCap:
+  private cap void() returnOkCap;
   
 
   public op boolean add(Person p);
