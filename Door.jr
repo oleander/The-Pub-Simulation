@@ -1,0 +1,54 @@
+import edu.ucdavis.jr.*;
+import java.util.*;
+import java.util.ArrayList;
+
+public class Door {
+
+  private ArrayList<Person> entrants;
+  private boolean isLocked;
+  private cap void() returnOkCap:
+  
+
+  public op boolean add(Person p);
+  public op ArrayList<Person> lock(cap void() returnOkCap);
+  public op void leave(Person p);
+  
+
+  public Door(List<Integer> list) {
+    entrants = new ArrayList<Person>();
+    isLocked = false;    
+  }  
+
+  private process doorProcess {
+    while(true)
+      {
+	inni ArrayList<Person> lock(cap void() returnOkCap)
+	{
+	  isLocked = true;
+	  this.returnOkCap = returnOkCap;
+	  return entrants.clone();
+      
+	}
+	[] boolean add(Person p)
+	  {
+	    if(isLocked)
+	      {
+		return false;
+	      }
+	    entrants.add(p);
+	    return true;
+	
+	  }
+	[] void leave(Person p)
+	  {
+	    entrants.remove(p);
+	    if(isLocked && entrants.size() == 1)
+	      {
+		send returnOkCap();
+		break;
+	      }
+	  }
+      }
+    System.out.println("Door process exits ...");
+  }
+}
