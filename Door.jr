@@ -20,7 +20,7 @@ public class Door {
   }  
 
   private process doorProcess {
-    while(true)
+      while(true)
       {
 	inni ArrayList<Person> lock(cap void() returnOkCap)
 	{
