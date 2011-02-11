@@ -11,9 +11,9 @@ public class Table {
   private int id;
   
 
-  public op boolean add(Person p);
-  public op ArrayList<Person> lock(cap void() returnOkCap);
-  public op void leave(Person p);
+  public op void addSmall(BeverageWare bw);
+  public op void addLarge(BeverageWare bw);
+  public op ArrayList<BeverageWare> clearTable();
   
  
   public Table() {
@@ -50,12 +50,15 @@ public class Table {
     beverages.add(bw); // This darn command adds stupid warning   
   }
   
+  private int unitsRemaining()
+  {
+    int taken = 0;
+    for (BeverageWare bw: beverages) {
+      taken += bw.getSpaceUnits();
+    }
 
-
-
-
-
-
+    return capacity - taken;
+  }
 
 
 
