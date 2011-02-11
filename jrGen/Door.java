@@ -584,6 +584,8 @@ JRrrecv0.fretOp.send(jrvm.getTimestamp(), JRrrecv0.handler, (java.lang.Object []
         testOnePersonLeaving();
         // Begin Expr2
         testDoor();
+        // Begin Expr2
+        System.out.println("Door tests passed.");
     }
     
     public static void testOnePersonEnters() {

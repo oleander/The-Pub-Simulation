@@ -91,21 +91,6 @@ public class Door {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   /***************************************************
      TESTING CODE BELOW
 
@@ -119,7 +104,7 @@ public class Door {
     testOnePersonEnters();
     testOnePersonLeaving();
     testDoor();
-    
+    System.out.println("Door tests passed.");    
   }
 
   // This test is starting other threads
