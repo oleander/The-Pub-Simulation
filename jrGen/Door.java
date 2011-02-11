@@ -496,6 +496,8 @@ JRrrecv0.fretOp.send(jrvm.getTimestamp(), JRrrecv0.handler, (java.lang.Object []
                                                 removePersonFromList(p);
                                                 if (isLocked && entrants.size() == 1) {
                                                     returnOkCap.send(jrvm.getTimestamp(), (edu.ucdavis.jr.RemoteHandler) null, (java.lang.Object[]) null);
+                                                }
+                                                if (isLocked && entrants.size() == 0) {
                                                     { if (JRrrecv0.retOp != null)
                                                         JRrrecv0.retOp.send(jrvm.getTimestamp(), (java.lang.Object []) null);
                                                     break JRLoop0;}

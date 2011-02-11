@@ -81,7 +81,7 @@ public class Table {
     testCapacityCounting();  
     testOverflowTable();    
     testClear();
-    
+    System.out.println("Table tests passed.");
   }
 
   // This test just tests that glasses and mugs get counted appropriately

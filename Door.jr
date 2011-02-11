@@ -58,9 +58,14 @@ public class Door {
             removePersonFromList(p);            
             if(isLocked && entrants.size() == 1)
               {
+                // Ok, only landlord should be left, lets notift him
                 send returnOkCap();
-        	break;
               }
+            if(isLocked && entrants.size() == 0)
+              {
+                // Ok, now even landlord left, lets exit gracfully
+                break;                
+              }            
           }
       }
   }
