@@ -16,16 +16,17 @@ public class Person extends java.lang.Object {
     private int id;
     private Door door;
     private boolean alive;
+    private String name;
     
     @Override()
     public String toString() {
         // Return
-        return ("" + id);
+        return (name);
         // End Return
 
     }
     
-    public Person(boolean autoEnterDoor) {
+    public Person(String name, boolean autoEnterDoor) {
         // Begin Expr2
         super();
         // Begin Expr2
@@ -34,6 +35,18 @@ public class Person extends java.lang.Object {
             // Begin Expr2
             enterDoor();
         }
+        JRprocess();
+    }
+    
+    public Person(boolean autoEnterDoor) {
+        // Begin Expr2
+        this("Person " + startId, autoEnterDoor);
+        JRprocess();
+    }
+    
+    public Person(String name) {
+        // Begin Expr2
+        this(name, true);
         JRprocess();
     }
     
@@ -49,6 +62,9 @@ public class Person extends java.lang.Object {
         
         // Begin Expr2
         alive = false;
+    }
+    
+    public static void main(String[] args) {
     }
     protected boolean JRcalled = false;
     protected JRPerson jrresref;
