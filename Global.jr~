@@ -26,9 +26,9 @@ public class Global {
   
 
   // Beverages
-  public static Beverage beer      = new Beverage("Beer",      BEER_DRINKING_TIME,      2 );
-  public static Beverage cappucino = new Beverage("Cappucino", CAPPUCINO_DRINKING_TIME, 1 );
-  public static Beverage choclate  = new Beverage("Choclate",  CHOCLATE_DRINKING_TIME,  1 );
+  public static BeverageWare beer      = new BeverageWare("Beer",      BEER_DRINKING_TIME,      2 );
+  public static BeverageWare cappucino = new BeverageWare("Cappucino", CAPPUCINO_DRINKING_TIME, 1 );
+  public static BeverageWare choclate  = new BeverageWare("Choclate",  CHOCLATE_DRINKING_TIME,  1 );
   
   
 }

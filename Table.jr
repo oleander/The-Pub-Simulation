@@ -5,19 +5,19 @@ import java.util.ArrayList;
 
 public class Table {
 
-  private ArrayList<BeverageWare> beverages;
+  private ArrayList<Beverage> beverages;
   private int capacity;
   private static int startId = 0;  
   private int id;
   
 
-  public op void addSmall(BeverageWare bw);
-  public op void addLarge(BeverageWare bw);
-  public op ArrayList<BeverageWare> clearTable();
+  public op void addSmall(Beverage bw);
+  public op void addLarge(Beverage bw);
+  public op ArrayList<Beverage> clearTable();
   
  
   public Table() {
-    beverages = new ArrayList<BeverageWare>();
+    beverages = new ArrayList<Beverage>();
     id = startId++;
     capacity = Global.tableCapacities;    
   }  
@@ -45,7 +45,7 @@ public class Table {
   
 
   @SuppressWarnings("unchecked")   
-  private void addBeverageWare(BeverageWare bw)
+  private void addBeverage(Beverage bw)
   {
     beverages.add(bw); // This darn command adds stupid warning   
   }
@@ -53,7 +53,7 @@ public class Table {
   private int unitsRemaining()
   {
     int taken = 0;
-    for (BeverageWare bw: beverages) {
+    for (Beverage bw: beverages) {
       taken += bw.getSpaceUnits();
     }
 
