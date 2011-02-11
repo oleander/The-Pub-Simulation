@@ -15,10 +15,15 @@ public class Person {
     return "" + id;
   }
 
-  public Person()
+
+  public Person(boolean autoEnterDoor)
   {
     id = startId++;
-    enterDoor();    
+    if(autoEnterDoor)
+      {        
+        enterDoor();    
+      }
+    
   }
 
   private void enterDoor()

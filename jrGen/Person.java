@@ -25,13 +25,15 @@ public class Person extends java.lang.Object {
 
     }
     
-    public Person() {
+    public Person(boolean autoEnterDoor) {
         // Begin Expr2
         super();
         // Begin Expr2
         id = startId++;
-        // Begin Expr2
-        enterDoor();
+        if (autoEnterDoor) {
+            // Begin Expr2
+            enterDoor();
+        }
         JRprocess();
     }
     

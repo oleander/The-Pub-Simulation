@@ -579,14 +579,29 @@ JRrrecv0.fretOp.send(jrvm.getTimestamp(), JRrrecv0.handler, (java.lang.Object []
     
     public static void allDoorTests() {
         // Begin Expr2
-        testOnePeopleEnters();
+        testOnePersonEnters();
         // Begin Expr2
-        testOneLeaving();
+        testOnePersonLeaving();
+        // Begin Expr2
+        testDoor();
     }
     
-    public static void testOneLeaving() {
+    public static void testOnePersonEnters() {
         Door d = new Door();
-        Person p = new Person();
+        // Begin Expr2
+        asserts(d.entrants.size() == 0, "Door should start empty");
+        Person p = new Person(true);
+        // Begin Expr2
+        JR.nap(10);
+        // Begin Expr2
+        asserts(d.entrants.get(0) == p, "Person p should be in list");
+        // Begin Expr2
+        asserts(d.entrants.size() == 1, "Should only be 1 person in list");
+    }
+    
+    public static void testOnePersonLeaving() {
+        Door d = new Door();
+        Person p = new Person(true);
         // Begin Expr2
         JR.nap(10);
         // Begin Expr2
@@ -597,23 +612,285 @@ JRrrecv0.fretOp.send(jrvm.getTimestamp(), JRrrecv0.handler, (java.lang.Object []
         asserts(d.entrants.size() == 0, "Everyone should have exited.");
     }
     
-    public static void testOnePeopleEnters() {
+    public static void testDoor() {
+        InStatObj JRInstmt2 = new InStatObj(1, false);
+        InStatObj JRInstmt1 = new InStatObj(1, false);
         Door d = new Door();
+        Person p1 = new Person(false);
         // Begin Expr2
-        asserts(d.entrants.size() == 0, "Door should start empty");
-        Person p = new Person();
-        // Begin Expr2
-        JR.nap(10);
-        // Begin Expr2
-        asserts(d.entrants.get(0) == p, "Person p should be in list");
+        asserts(((Boolean) (new Cap_ext_(d.JRget_op_add_PersonToboolean(), "boolean")).call(jrvm.getTimestamp(), new java.lang.Object [] {p1})), "Door should start open");
         // Begin Expr2
         asserts(d.entrants.size() == 1, "Should only be 1 person in list");
+        Person p2 = new Person(false);
+        // Begin Expr2
+        (new Cap_ext_(d.JRget_op_add_PersonToboolean(), "boolean")).call(jrvm.getTimestamp(), new java.lang.Object [] {p2});
+        // Begin Expr2
+        asserts(d.entrants.size() == 2, "Two should \'ve entered");
+        // Begin Expr2
+        asserts(d.entrants.contains(p1), "p1 should be in list");
+        // Begin Expr2
+        asserts(d.entrants.contains(p2), "p2 should be in list");
+        Person landlord = new Person(true);
+        Op_ext.JRProxyOp op_returnCap_voidTovoid = null;
+        try{
+            op_returnCap_voidTovoid = new Op_ext_.JRProxyOp(new InOp_ext_impl());
+        } catch (Exception e) { throw new jrRuntimeError("Cannot initialize op"); }
+        
+        
+        ArrayList list = ((java.util.ArrayList) (new Cap_ext_(d.JRget_op_lock_Cap_voidTovoidTojavadotutildotArrayList(), "java.util.ArrayList")).call(jrvm.getTimestamp(), new java.lang.Object [] {new Cap_ext_(op_returnCap_voidTovoid)}));
+        // Begin Expr2
+        asserts(list != d.entrants, "Should not be reference to entrants!");
+        // Begin Expr2
+        asserts(list.equals(d.entrants), "Should however be equal to entrants!");
+        Person p3 = new Person(false);
+        // Begin Expr2
+        asserts(!((Boolean) (new Cap_ext_(d.JRget_op_add_PersonToboolean(), "boolean")).call(jrvm.getTimestamp(), new java.lang.Object [] {p3})), "Door is locked, p3 should be rejected");
+        // Begin Expr2
+        asserts(d.entrants.size() == 3, "Nobody should\'ve entered yet since it was locked (2persons + landlord is in)");
+        // Begin Expr2
+        (new Cap_ext_(d.JRget_op_leave_PersonTovoid(), "void")).call(jrvm.getTimestamp(), new java.lang.Object [] {p1});
+        // Begin Expr2
+        asserts(d.entrants.size() == 2, "only 1 + landlord should be left");
+        // Begin Expr2
+        asserts(d.entrants.contains(p2), "p2 should be left");
+        // Begin Expr2
+        JR.nap(10);
+        {
+            // Inni Statement without quantifier
+            JRInstmt1.armArray[0] = new QuantRec(new Cap_ext_(op_returnCap_voidTovoid, "void"), 0, 0);
+            JRInstmt1.lock();
+            // Equivalence Class has been created and locked
+            JRInstmt1.serviced = false;
+            _label_JRInstmt1: do
+            {
+                Invocation JRfinalInvoc1 = null;
+                // find THE invocation and service it
+                JRInstmt1.gatherAndSortTimes();
+                for (JRInstmt1.i = 0;
+                    (JRInstmt1.i < JRInstmt1.N) && !JRInstmt1.serviced;
+                     JRInstmt1.i++)
+                {
+                    JRInstmt1.byStrt = true;
+                    JRInstmt1.releaseIter();
+                    // if the op is empty
+                    if (JRInstmt1.timesArray[JRInstmt1.i].time < 0) continue;
+                    switch (JRInstmt1.timesArray[JRInstmt1.i].opNum)
+                    {
+                        case 0:
+                        {
+                            JRInstmt1.j = 0;
+                            // Inni Arm
+                            QuantRec JRquantRec1 = (QuantRec)JRInstmt1.armArray[JRInstmt1.timesArray[JRInstmt1.i].armArrayIndex];
+                            Recv_ext JRrrecv1 = null, JRtmprecv1;
+                            for (JRInstmt1.iter = JRInstmt1.armArray[JRInstmt1.timesArray[JRInstmt1.i].armArrayIndex].theCap.elements();
+                                 JRInstmt1.iter.hasNext();)
+                            {
+                                JRtmprecv1 = (Recv_ext)JRInstmt1.iter.next();
+                                JRInstmt1.JRinit.setInvoc(JRInstmt1.j++);
+                                JRtmprecv1.setInvocation(JRInstmt1.JRinit);
+                                // extract values
+                                JRrrecv1 = JRtmprecv1;
+                                break;  // get first one
+                            }
+                            // Start of servicing
+                            if (JRrrecv1 != null)
+                            {
+                                JRInstmt1.j = (int)JRrrecv1.getInvoc();
+                                JRInstmt1.serviced = true;
+                                JRInstmt1.iter.remove(JRInstmt1.j);
+                                JRInstmt1.releaseIter();
+                                JRInstmt1.unlock();
+                                {
+                                    try {
+                                        {
+                                            // Begin Expr2
+                                            asserts(false, "The closing signal is sent too early!");
+                                        }
+                                    } catch (Exception JRe) {
+                                        if (JRrrecv1.retOp != null && JRrrecv1.fretOp == null)
+                                        {
+                                            // forward of cocall
+                                            if ((JRrrecv1.handler != null) && !(JRe instanceof java.rmi.RemoteException))
+                                                JRrrecv1.handler.JRhandler(JRe);
+                                            else {
+                                                // give preference to propagation through the call stack
+                                                JRrrecv1.retOp.send(jrvm.getTimestamp(), JRe);
+                                                JRrrecv1.retOp = null;
+                                            }
+                                        }
+                                        else if ((JRrrecv1.retOp != null) && (JRrrecv1.fretOp != null) && !(JRe instanceof java.rmi.RemoteException))
+                                        {
+                                            // for cocall exception handling in operation invocation
+                                            if (JRrrecv1.handler != null)
+                                                JRrrecv1.handler.JRhandler(JRe);
+                                                else {
+                                                    // catch all
+                                                    throw new jrRuntimeError("Unhandled exception: " + JRe.toString()+ " at " + jrRuntimeError.where(JRe));
+                                                }
+JRrrecv1.fretOp.send(jrvm.getTimestamp(), JRrrecv1.handler, (java.lang.Object []) null);
+                                            JRrrecv1.fretOp = null;
+                                        }
+                                        else if ((JRrrecv1.handler != null) && !(JRe instanceof java.rmi.RemoteException))
+                                        {
+                                            // this should only be a send
+                                            JRrrecv1.handler.JRhandler(JRe);
+                                        }
+    else {
+                                                // catch all
+                                                throw new jrRuntimeError("Unhandled exception: " + JRe.toString()+ " at " + jrRuntimeError.where(JRe));
+                                            }
+                                    }
+                                }
+                                { if (JRrrecv1.retOp != null)
+                                    JRrrecv1.retOp.send(jrvm.getTimestamp(), (java.lang.Object []) null); }
+                            }
+                            else
+                                JRInstmt1.releaseIter();
+                            // End of servicing
+                            // End InniArm
+                            break;
+                        }
+                        
+                    }
+                }
+                if (!JRInstmt1.serviced)
+                {
+                    JRInstmt1.unlock();
+                    JRInstmt1.serviced = true;
+                    {
+                    }
+                }
+            } while (!JRInstmt1.serviced);
+        }
+        // End Inni
+        
+        // Begin Expr2
+        (new Cap_ext_(d.JRget_op_leave_PersonTovoid(), "void")).call(jrvm.getTimestamp(), new java.lang.Object [] {p2});
+        // Begin Expr2
+        asserts(d.entrants.size() == 1, "Only landlord should be in!");
+        // Begin Expr2
+        asserts(d.entrants.contains(landlord), "Only landlord should be in");
+        // Begin Expr2
+        JR.nap(10);
+        {
+            // Inni Statement without quantifier
+            JRInstmt2.armArray[0] = new QuantRec(new Cap_ext_(op_returnCap_voidTovoid, "void"), 0, 0);
+            JRInstmt2.lock();
+            // Equivalence Class has been created and locked
+            JRInstmt2.serviced = false;
+            _label_JRInstmt2: do
+            {
+                Invocation JRfinalInvoc2 = null;
+                // find THE invocation and service it
+                JRInstmt2.gatherAndSortTimes();
+                for (JRInstmt2.i = 0;
+                    (JRInstmt2.i < JRInstmt2.N) && !JRInstmt2.serviced;
+                     JRInstmt2.i++)
+                {
+                    JRInstmt2.byStrt = true;
+                    JRInstmt2.releaseIter();
+                    // if the op is empty
+                    if (JRInstmt2.timesArray[JRInstmt2.i].time < 0) continue;
+                    switch (JRInstmt2.timesArray[JRInstmt2.i].opNum)
+                    {
+                        case 0:
+                        {
+                            JRInstmt2.j = 0;
+                            // Inni Arm
+                            QuantRec JRquantRec2 = (QuantRec)JRInstmt2.armArray[JRInstmt2.timesArray[JRInstmt2.i].armArrayIndex];
+                            Recv_ext JRrrecv2 = null, JRtmprecv2;
+                            for (JRInstmt2.iter = JRInstmt2.armArray[JRInstmt2.timesArray[JRInstmt2.i].armArrayIndex].theCap.elements();
+                                 JRInstmt2.iter.hasNext();)
+                            {
+                                JRtmprecv2 = (Recv_ext)JRInstmt2.iter.next();
+                                JRInstmt2.JRinit.setInvoc(JRInstmt2.j++);
+                                JRtmprecv2.setInvocation(JRInstmt2.JRinit);
+                                // extract values
+                                JRrrecv2 = JRtmprecv2;
+                                break;  // get first one
+                            }
+                            // Start of servicing
+                            if (JRrrecv2 != null)
+                            {
+                                JRInstmt2.j = (int)JRrrecv2.getInvoc();
+                                JRInstmt2.serviced = true;
+                                JRInstmt2.iter.remove(JRInstmt2.j);
+                                JRInstmt2.releaseIter();
+                                JRInstmt2.unlock();
+                                {
+                                    try {
+                                        {
+                                        }
+                                    } catch (Exception JRe) {
+                                        if (JRrrecv2.retOp != null && JRrrecv2.fretOp == null)
+                                        {
+                                            // forward of cocall
+                                            if ((JRrrecv2.handler != null) && !(JRe instanceof java.rmi.RemoteException))
+                                                JRrrecv2.handler.JRhandler(JRe);
+                                            else {
+                                                // give preference to propagation through the call stack
+                                                JRrrecv2.retOp.send(jrvm.getTimestamp(), JRe);
+                                                JRrrecv2.retOp = null;
+                                            }
+                                        }
+                                        else if ((JRrrecv2.retOp != null) && (JRrrecv2.fretOp != null) && !(JRe instanceof java.rmi.RemoteException))
+                                        {
+                                            // for cocall exception handling in operation invocation
+                                            if (JRrrecv2.handler != null)
+                                                JRrrecv2.handler.JRhandler(JRe);
+                                                else {
+                                                    // catch all
+                                                    throw new jrRuntimeError("Unhandled exception: " + JRe.toString()+ " at " + jrRuntimeError.where(JRe));
+                                                }
+JRrrecv2.fretOp.send(jrvm.getTimestamp(), JRrrecv2.handler, (java.lang.Object []) null);
+                                            JRrrecv2.fretOp = null;
+                                        }
+                                        else if ((JRrrecv2.handler != null) && !(JRe instanceof java.rmi.RemoteException))
+                                        {
+                                            // this should only be a send
+                                            JRrrecv2.handler.JRhandler(JRe);
+                                        }
+    else {
+                                                // catch all
+                                                throw new jrRuntimeError("Unhandled exception: " + JRe.toString()+ " at " + jrRuntimeError.where(JRe));
+                                            }
+                                    }
+                                }
+                                { if (JRrrecv2.retOp != null)
+                                    JRrrecv2.retOp.send(jrvm.getTimestamp(), (java.lang.Object []) null); }
+                            }
+                            else
+                                JRInstmt2.releaseIter();
+                            // End of servicing
+                            // End InniArm
+                            break;
+                        }
+                        
+                    }
+                }
+                if (!JRInstmt2.serviced)
+                {
+                    JRInstmt2.unlock();
+                    JRInstmt2.serviced = true;
+                    {
+                        // Begin Expr2
+                        asserts(false, "The closing signal was not sent!");
+                    }
+                }
+            } while (!JRInstmt2.serviced);
+        }
+        // End Inni
+        
+        // Begin Expr2
+        (new Cap_ext_(d.JRget_op_leave_PersonTovoid(), "void")).call(jrvm.getTimestamp(), new java.lang.Object [] {landlord});
+        // Begin Expr2
+        asserts(d.entrants.isEmpty(), "Everyone should\'ve leaved");
     }
     
     public static void asserts(boolean b, String s) {
         if (!b) {
             // Begin Expr2
-            System.out.println("s = " + s);
+            System.out.println("DoorAssert failed: " + s);
             // Begin Expr2
             System.exit(1);
         }
