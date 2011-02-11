@@ -1,0 +1,23 @@
+import edu.ucdavis.jr.*;
+import java.util.*;
+
+public class BeverageWare extends Item {
+
+  private final int spaceUnits;  
+  
+  public Beverage(String name, int spaceUnits) {
+    super(name);    
+    this.spaceUnits = spaceUnits;
+  }
+  
+ 
+  public int getSpaceUnits() {
+    return spaceUnits;
+  }
+  
+  
+
+  public static void main(String[] args) {
+     
+  }  
+}
