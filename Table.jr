@@ -80,6 +80,8 @@ public class Table {
   {
     testCapacityCounting();  
     testOverflowTable();    
+    testClear();
+    
   }
 
   // This test just tests that glasses and mugs get counted appropriately
@@ -119,9 +121,31 @@ public class Table {
     send t.addSmall(Global.cup); JR.nap(10);
     asserts(t.unitsRemaining() == 0, "A 1-unit-remaining table should be able to take a cup!");
 
+    send t.addSmall(Global.cup); JR.nap(10);
+    asserts(t.unitsRemaining() == 0, "A full table should not be able to take in cups");
+
   }  
 
-
+  public static void testClear()
+  {
+    Table t = new Table();
+    t.capacity = 6;    
+    
+    send t.addLarge(Global.glass); JR.nap(10);    
+    send t.addSmall(Global.cup); JR.nap(10);    
+    send t.addLarge(Global.glass); JR.nap(10);    
+    
+    ArrayList<BeverageWare> list = t.clearTable(); JR.nap(10);    
+    asserts(t.unitsRemaining() == 6, "A cleared table should be clear.");
+    
+    asserts(list != t.beveragewares, "Should not return reference list on clearing.");
+    asserts(list.size() == 3, "Should retrieved all 3 beveragewares");
+    asserts(list.get(0) == Global.glass, "should be glass AND refernce");
+    asserts(list.get(1) == Global.cup, "cup");
+    asserts(list.get(0) == Global.glass, "glass");
+    
+  }
+  
 
   
   public static void asserts(boolean b, String s)
