@@ -4,6 +4,9 @@ import java.util.*;
 public class Beverage {
 
   private final String name;
+  private final int drinkingTime;
+  private final BeverageWare bw;
+  private final Item[] ingredients;
   
   @Override
   public String toString()
@@ -12,18 +15,26 @@ public class Beverage {
   }
 
 
-  private final int drinkingTime;
   
-  public Beverage(String name, int drinkingTime) {
+  public Beverage(String name, int drinkingTime, BeverageWare bw, Item[] ingredients) {
     this.name = name;    
     this.drinkingTime = drinkingTime;
+    this.bw = bw;
+    this.ingredients = ingredients;
   }
   
   
   public int getDrinkingTime() {
     return drinkingTime;
   }
-  
+
+  public BeverageWare getBeverageWare() {
+    return bw;
+  }
+
+  public Item[] getIngredients() {
+    return ingredients;
+  }    
 
   public static void main(String[] args) {
      

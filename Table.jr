@@ -53,8 +53,8 @@ public class Table {
   private int unitsRemaining()
   {
     int taken = 0;
-    for (Beverage bw: beverages) {
-      taken += bw.getSpaceUnits();
+    for (Beverage beverage: beverages) {
+      taken += beverage.getBeverageWare().getSpaceUnits();
     }
 
     return capacity - taken;

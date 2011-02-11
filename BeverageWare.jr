@@ -5,7 +5,7 @@ public class BeverageWare extends Item {
 
   private final int spaceUnits;  
   
-  public Beverage(String name, int spaceUnits) {
+  public BeverageWare(String name, int spaceUnits) {
     super(name);    
     this.spaceUnits = spaceUnits;
   }
