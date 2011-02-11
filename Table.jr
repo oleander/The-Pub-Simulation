@@ -78,7 +78,8 @@ public class Table {
 
   public static void allTableTests()
   {
-    testCapacityCounting();    
+    testCapacityCounting();  
+    testOverflowTable();    
   }
 
   // This test just tests that glasses and mugs get counted appropriately
@@ -89,23 +90,36 @@ public class Table {
     t.capacity = 10;    
     asserts(t.unitsRemaining() == 10, "Table should start empty");
     
-    send t.addSmall(Global.glass); JR.nap(10);    
+    send t.addLarge(Global.glass); JR.nap(10);    
     asserts(t.unitsRemaining() == 8, "8");
     
-    send t.addSmall(Global.glass); JR.nap(10);
+    send t.addLarge(Global.glass); JR.nap(10);
     asserts(t.unitsRemaining() == 8, "8");
 
-    send t.addSmall(Global.glass); JR.nap(10);
+    send t.addLarge(Global.glass); JR.nap(10);
     asserts(t.unitsRemaining() == 6, "6");
 
     send t.addSmall(Global.cup); JR.nap(10);
     asserts(t.unitsRemaining() == 5, "5");
 
-    send t.addSmall(Global.glass); JR.nap(10);
+    send t.addLarge(Global.glass); JR.nap(10);
     asserts(t.unitsRemaining() == 3, "3");
   }  
 
+  public static void testOverflowTable()
+  {
+    Table t = new Table();
+    t.capacity = 3;    
+    
+    send t.addLarge(Global.glass); JR.nap(10);    
+    
+    send t.addLarge(Global.glass); JR.nap(10);
+    asserts(t.unitsRemaining() == 1, "A 1-unit-remaining table should not take in another glass!");
 
+    send t.addSmall(Global.cup); JR.nap(10);
+    asserts(t.unitsRemaining() == 0, "A 1-unit-remaining table should be able to take a cup!");
+
+  }  
 
 
 
