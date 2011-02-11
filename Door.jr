@@ -94,22 +94,21 @@ public class Door {
     testOneLeaving();
   }
 
-  public static void testOneLeaving()
+  // This test is starting other threads
+  public static void testPersonLeaving()
   {
     Door d = new Door();
     Person p = new Person();
     
     JR.nap(10);
-
     p.leaveBar();
-
-    JR.nap(10);
-    
+    JR.nap(10);    
     
     asserts(d.entrants.size() == 0, "Everyone should have exited.");
   }
 
-  public static void testOnePeopleEnters()
+  // This test is starting other threads
+  public static void testOnePersonEnters()
   {
     Door d = new Door();
     asserts(d.entrants.size() == 0, "Door should start empty");    
