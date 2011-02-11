@@ -141,11 +141,13 @@ public class Table {
     
     asserts(list != t.beveragewares, "Should not return reference list on clearing.");
     asserts(list.size() == 3, "Should retrieved all 3 beveragewares");
+
+    // The 3 asserts below are not senseful as they should test multi-setproperties, but oh well ...
     asserts(list.get(0) == Global.glass, "should be glass AND refernce");
     asserts(list.get(1) == Global.cup, "cup");
     asserts(list.get(0) == Global.glass, "glass");
 
-    // Now lets sutt if old sent glass got recieved
+    // Now lets check if old sent glass got recieved
     asserts(t.unitsRemaining() == 4, "Glass probably didn't get back on table");
     
     
