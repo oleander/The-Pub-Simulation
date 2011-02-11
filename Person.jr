@@ -20,6 +20,7 @@ public class Person {
 
   public Person(String name, boolean autoEnterDoor)
   {
+    this.name = name;    
     id = startId++;
     if(autoEnterDoor)
       {        
@@ -51,7 +52,7 @@ public class Person {
   }
   
   public static void main(String[] args) {
-        
+     
   }
   
 }

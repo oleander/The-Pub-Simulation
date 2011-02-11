@@ -30,6 +30,8 @@ public class Person extends java.lang.Object {
         // Begin Expr2
         super();
         // Begin Expr2
+        this.name = name;
+        // Begin Expr2
         id = startId++;
         if (autoEnterDoor) {
             // Begin Expr2
