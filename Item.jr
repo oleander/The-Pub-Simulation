@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Item {
 
-  private String name;
+  private final String name;
   
   @Override
   public String toString()

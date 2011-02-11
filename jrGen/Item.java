@@ -12,7 +12,7 @@ import java.util.*;
 
 public class Item extends java.lang.Object {
     { JRinit(); }
-    private String name;
+    private final String name;
     
     @Override()
     public String toString() {
