@@ -23,13 +23,24 @@ public class Door {
   }  
 
   private process doorProcess {
+    startLoop();    
+    System.out.println("Door process exits ...");
+  }
+
+
+
+  // I added this as a seperate method to be able to override stupid warnings
+  @SuppressWarnings("unchecked")   
+  private void startLoop()
+  {
     while(true)
       {
         inni ArrayList<Person> lock(cap void() returnOkCap)
         {
           isLocked = true;
           this.returnOkCap = returnOkCap;
-          return new ArrayList<Person>(entrants);
+          
+          return new ArrayList<Person>(entrants); // This adds stupid warning
           
         }
         [] boolean add(Person p)
@@ -38,13 +49,13 @@ public class Door {
               {
         	return false;
               }
-            entrants.add(p);
+            addPersonToList(p);            
             return true;
         
           }
         [] void leave(Person p)
           {
-            entrants.remove(p);
+            removePersonFromList(p);            
             if(isLocked && entrants.size() == 1)
               {
                 send returnOkCap();
@@ -52,8 +63,22 @@ public class Door {
               }
           }
       }
-    System.out.println("Door process exits ...");
   }
+  
+
+  @SuppressWarnings("unchecked")   
+  private void addPersonToList(Person p)
+  {
+    entrants.add(p); // This darn command adds stupid warning   
+  }
+  
+
+  @SuppressWarnings("unchecked")   
+  private void removePersonFromList(Person p)
+  {
+    entrants.remove(p); // This darn command adds stupid warning   
+  }
+
 
 
   public static void main(String[] args) {
@@ -105,6 +130,5 @@ public class Door {
         System.exit(1);
       }
   }
-  
 
 }
