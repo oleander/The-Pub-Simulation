@@ -1,0 +1,109 @@
+import edu.ucdavis.jr.*;
+import java.util.*;
+import java.util.ArrayList;
+
+
+public class Table {
+
+  private ArrayList<BeverageWare> beverages;
+  private int capacity;
+  private static int startId = 0;  
+  private int id;
+  
+
+  public op boolean add(Person p);
+  public op ArrayList<Person> lock(cap void() returnOkCap);
+  public op void leave(Person p);
+  
+ 
+  public Table() {
+    beverages = new ArrayList<BeverageWare>();
+    id = startId++;
+    capacity = Global.tableCapacities;    
+  }  
+
+
+  @Override
+  public String toString() {
+    return "Table " + id;    
+  }  
+
+  private process tableProcess {
+    startLoop();    
+    System.out.println("Table process exits ...");
+  }
+
+
+
+  //@SuppressWarnings("unchecked")   
+  private void startLoop()
+  {
+    while(true)
+      {
+      }
+  }
+  
+
+  @SuppressWarnings("unchecked")   
+  private void addBeverageWare(BeverageWare bw)
+  {
+    beverages.add(bw); // This darn command adds stupid warning   
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /***************************************************
+     TESTING CODE BELOW
+
+  ***************************************************/
+  public static void main(String[] args) {
+    allDoorTests();
+  }
+
+  public static void allDoorTests()
+  {
+    testOnePersonEnters();
+    testOnePersonLeaving();
+    testDoor();
+    
+  }
+
+  // This test is starting other threads
+  public static void testOnePersonEnters()
+  {
+  }  
+
+  public static void testOnePersonLeaving()
+  {
+  }
+
+
+  public static void testDoor()
+  {
+
+  }
+
+
+
+  
+  public static void asserts(boolean b, String s)
+  {
+    if(!b)
+      {
+        System.out.println("TableAssert failed: " + s);
+        System.exit(1);
+      }
+  }
+}

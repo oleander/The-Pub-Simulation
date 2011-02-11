@@ -19,6 +19,7 @@ public class Global extends java.lang.Object {
         JRprocess();
     }
     public static Door door;
+    public static int tableCapacities = 10;
     protected boolean JRcalled = false;
     protected JRGlobal jrresref;
     public Object JRgetjrresref()
