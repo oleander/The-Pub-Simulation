@@ -237,61 +237,61 @@ return null;
     
     @SuppressWarnings(value = "unchecked")
     private void startLoop() {
-        InStatObj JRInstmt0 = new InStatObj(3, false);
-        JRLoop0: while (true) {
+        InStatObj JRInstmt1 = new InStatObj(3, false);
+        JRLoop1: while (true) {
             {
                 // Inni Statement without quantifier
-                JRInstmt0.armArray[0] = new QuantRec(new Cap_ext_(op_lock_Cap_voidTovoidTojavadotutildotArrayList, "java.util.ArrayList<Person>"), 0, 0);
-                JRInstmt0.armArray[1] = new QuantRec(new Cap_ext_(op_add_PersonToboolean, "boolean"), 1, 1);
-                JRInstmt0.armArray[2] = new QuantRec(new Cap_ext_(op_leave_PersonTovoid, "void"), 2, 2);
-                JRInstmt0.lock();
+                JRInstmt1.armArray[0] = new QuantRec(new Cap_ext_(op_lock_Cap_voidTovoidTojavadotutildotArrayList, "java.util.ArrayList<Person>"), 0, 0);
+                JRInstmt1.armArray[1] = new QuantRec(new Cap_ext_(op_add_PersonToboolean, "boolean"), 1, 1);
+                JRInstmt1.armArray[2] = new QuantRec(new Cap_ext_(op_leave_PersonTovoid, "void"), 2, 2);
+                JRInstmt1.lock();
                 // Equivalence Class has been created and locked
-                JRInstmt0.serviced = false;
-                _label_JRInstmt0: do
+                JRInstmt1.serviced = false;
+                _label_JRInstmt1: do
                 {
-                    Invocation JRfinalInvoc0 = null;
+                    Invocation JRfinalInvoc1 = null;
                     // find THE invocation and service it
-                    JRInstmt0.gatherAndSortTimes();
-                    for (JRInstmt0.i = 0;
-                        (JRInstmt0.i < JRInstmt0.N) && !JRInstmt0.serviced;
-                         JRInstmt0.i++)
+                    JRInstmt1.gatherAndSortTimes();
+                    for (JRInstmt1.i = 0;
+                        (JRInstmt1.i < JRInstmt1.N) && !JRInstmt1.serviced;
+                         JRInstmt1.i++)
                     {
-                        JRInstmt0.byStrt = true;
-                        JRInstmt0.releaseIter();
+                        JRInstmt1.byStrt = true;
+                        JRInstmt1.releaseIter();
                         // if the op is empty
-                        if (JRInstmt0.timesArray[JRInstmt0.i].time < 0) continue;
-                        switch (JRInstmt0.timesArray[JRInstmt0.i].opNum)
+                        if (JRInstmt1.timesArray[JRInstmt1.i].time < 0) continue;
+                        switch (JRInstmt1.timesArray[JRInstmt1.i].opNum)
                         {
                             case 0:
                             {
-                                JRInstmt0.j = 0;
+                                JRInstmt1.j = 0;
                                 // Inni Arm
-                                QuantRec JRquantRec0 = (QuantRec)JRInstmt0.armArray[JRInstmt0.timesArray[JRInstmt0.i].armArrayIndex];
-                                Recv_ext JRrrecv0 = null, JRtmprecv0;
+                                QuantRec JRquantRec1 = (QuantRec)JRInstmt1.armArray[JRInstmt1.timesArray[JRInstmt1.i].armArrayIndex];
+                                Recv_ext JRrrecv1 = null, JRtmprecv1;
                                 // not artificial
                                 // NUMBER 3
                                 Cap_ext_ returnOkCap = null;
-                                for (JRInstmt0.iter = JRInstmt0.armArray[JRInstmt0.timesArray[JRInstmt0.i].armArrayIndex].theCap.elements();
-                                     JRInstmt0.iter.hasNext();)
+                                for (JRInstmt1.iter = JRInstmt1.armArray[JRInstmt1.timesArray[JRInstmt1.i].armArrayIndex].theCap.elements();
+                                     JRInstmt1.iter.hasNext();)
                                 {
-                                    JRtmprecv0 = (Recv_ext)JRInstmt0.iter.next();
-                                    JRInstmt0.JRinit.setInvoc(JRInstmt0.j++);
-                                    JRtmprecv0.setInvocation(JRInstmt0.JRinit);
+                                    JRtmprecv1 = (Recv_ext)JRInstmt1.iter.next();
+                                    JRInstmt1.JRinit.setInvoc(JRInstmt1.j++);
+                                    JRtmprecv1.setInvocation(JRInstmt1.JRinit);
                                     // extract values
                                     returnOkCap = (// not artificial
                                     // NUMBER 3
-                                    Cap_ext_)JRtmprecv0.JRargs[0];
-                                    JRrrecv0 = JRtmprecv0;
+                                    Cap_ext_)JRtmprecv1.JRargs[0];
+                                    JRrrecv1 = JRtmprecv1;
                                     break;  // get first one
                                 }
                                 // Start of servicing
-                                if (JRrrecv0 != null)
+                                if (JRrrecv1 != null)
                                 {
-                                    JRInstmt0.j = (int)JRrrecv0.getInvoc();
-                                    JRInstmt0.serviced = true;
-                                    JRInstmt0.iter.remove(JRInstmt0.j);
-                                    JRInstmt0.releaseIter();
-                                    JRInstmt0.unlock();
+                                    JRInstmt1.j = (int)JRrrecv1.getInvoc();
+                                    JRInstmt1.serviced = true;
+                                    JRInstmt1.iter.remove(JRInstmt1.j);
+                                    JRInstmt1.releaseIter();
+                                    JRInstmt1.unlock();
                                     {
                                         try {
                                             {
@@ -302,45 +302,45 @@ return null;
                                                 // Return
                                                 {
                                                     if (true)
-                                                        { if (JRrrecv0.retOp != null)
-                                                            JRrrecv0.retOp.send(jrvm.getTimestamp(), (edu.ucdavis.jr.RemoteHandler) null, new java.lang.Object [] {(new ArrayList(entrants))});
+                                                        { if (JRrrecv1.retOp != null)
+                                                            JRrrecv1.retOp.send(jrvm.getTimestamp(), (edu.ucdavis.jr.RemoteHandler) null, new java.lang.Object [] {(new ArrayList(entrants))});
                                                         else {
                                                             java.util.ArrayList JRevaltmp = new ArrayList(entrants);
                                                             
                                                         }
-                                                        break _label_JRInstmt0; }}
+                                                        break _label_JRInstmt1; }}
                                                 
                                                 // End Return
 
                                             }
                                         } catch (Exception JRe) {
-                                            if (JRrrecv0.retOp != null && JRrrecv0.fretOp == null)
+                                            if (JRrrecv1.retOp != null && JRrrecv1.fretOp == null)
                                             {
                                                 // forward of cocall
-                                                if ((JRrrecv0.handler != null) && !(JRe instanceof java.rmi.RemoteException))
-                                                    JRrrecv0.handler.JRhandler(JRe);
+                                                if ((JRrrecv1.handler != null) && !(JRe instanceof java.rmi.RemoteException))
+                                                    JRrrecv1.handler.JRhandler(JRe);
                                                 else {
                                                     // give preference to propagation through the call stack
-                                                    JRrrecv0.retOp.send(jrvm.getTimestamp(), JRe);
-                                                    JRrrecv0.retOp = null;
+                                                    JRrrecv1.retOp.send(jrvm.getTimestamp(), JRe);
+                                                    JRrrecv1.retOp = null;
                                                 }
                                             }
-                                            else if ((JRrrecv0.retOp != null) && (JRrrecv0.fretOp != null) && !(JRe instanceof java.rmi.RemoteException))
+                                            else if ((JRrrecv1.retOp != null) && (JRrrecv1.fretOp != null) && !(JRe instanceof java.rmi.RemoteException))
                                             {
                                                 // for cocall exception handling in operation invocation
-                                                if (JRrrecv0.handler != null)
-                                                    JRrrecv0.handler.JRhandler(JRe);
+                                                if (JRrrecv1.handler != null)
+                                                    JRrrecv1.handler.JRhandler(JRe);
                                                     else {
                                                         // catch all
                                                         throw new jrRuntimeError("Unhandled exception: " + JRe.toString()+ " at " + jrRuntimeError.where(JRe));
                                                     }
-JRrrecv0.fretOp.send(jrvm.getTimestamp(), JRrrecv0.handler, (java.lang.Object []) null);
-                                                JRrrecv0.fretOp = null;
+JRrrecv1.fretOp.send(jrvm.getTimestamp(), JRrrecv1.handler, (java.lang.Object []) null);
+                                                JRrrecv1.fretOp = null;
                                             }
-                                            else if ((JRrrecv0.handler != null) && !(JRe instanceof java.rmi.RemoteException))
+                                            else if ((JRrrecv1.handler != null) && !(JRe instanceof java.rmi.RemoteException))
                                             {
                                                 // this should only be a send
-                                                JRrrecv0.handler.JRhandler(JRe);
+                                                JRrrecv1.handler.JRhandler(JRe);
                                             }
     else {
                                                     // catch all
@@ -351,39 +351,39 @@ JRrrecv0.fretOp.send(jrvm.getTimestamp(), JRrrecv0.handler, (java.lang.Object []
                                     
                                 }
                                 else
-                                    JRInstmt0.releaseIter();
+                                    JRInstmt1.releaseIter();
                                 // End of servicing
                                 // End InniArm
                                 break;
                             }
                             case 1:
                             {
-                                JRInstmt0.j = 0;
+                                JRInstmt1.j = 0;
                                 // Inni Arm
-                                QuantRec JRquantRec0 = (QuantRec)JRInstmt0.armArray[JRInstmt0.timesArray[JRInstmt0.i].armArrayIndex];
-                                Recv_ext JRrrecv0 = null, JRtmprecv0;
+                                QuantRec JRquantRec1 = (QuantRec)JRInstmt1.armArray[JRInstmt1.timesArray[JRInstmt1.i].armArrayIndex];
+                                Recv_ext JRrrecv1 = null, JRtmprecv1;
                                 // not artificial
                                 Person p = null;
-                                for (JRInstmt0.iter = JRInstmt0.armArray[JRInstmt0.timesArray[JRInstmt0.i].armArrayIndex].theCap.elements();
-                                     JRInstmt0.iter.hasNext();)
+                                for (JRInstmt1.iter = JRInstmt1.armArray[JRInstmt1.timesArray[JRInstmt1.i].armArrayIndex].theCap.elements();
+                                     JRInstmt1.iter.hasNext();)
                                 {
-                                    JRtmprecv0 = (Recv_ext)JRInstmt0.iter.next();
-                                    JRInstmt0.JRinit.setInvoc(JRInstmt0.j++);
-                                    JRtmprecv0.setInvocation(JRInstmt0.JRinit);
+                                    JRtmprecv1 = (Recv_ext)JRInstmt1.iter.next();
+                                    JRInstmt1.JRinit.setInvoc(JRInstmt1.j++);
+                                    JRtmprecv1.setInvocation(JRInstmt1.JRinit);
                                     // extract values
                                     p = (// not artificial
-                                    Person)JRtmprecv0.JRargs[0];
-                                    JRrrecv0 = JRtmprecv0;
+                                    Person)JRtmprecv1.JRargs[0];
+                                    JRrrecv1 = JRtmprecv1;
                                     break;  // get first one
                                 }
                                 // Start of servicing
-                                if (JRrrecv0 != null)
+                                if (JRrrecv1 != null)
                                 {
-                                    JRInstmt0.j = (int)JRrrecv0.getInvoc();
-                                    JRInstmt0.serviced = true;
-                                    JRInstmt0.iter.remove(JRInstmt0.j);
-                                    JRInstmt0.releaseIter();
-                                    JRInstmt0.unlock();
+                                    JRInstmt1.j = (int)JRrrecv1.getInvoc();
+                                    JRInstmt1.serviced = true;
+                                    JRInstmt1.iter.remove(JRInstmt1.j);
+                                    JRInstmt1.releaseIter();
+                                    JRInstmt1.unlock();
                                     {
                                         try {
                                             {
@@ -391,13 +391,13 @@ JRrrecv0.fretOp.send(jrvm.getTimestamp(), JRrrecv0.handler, (java.lang.Object []
                                                     // Return
                                                     {
                                                         if (true)
-                                                            { if (JRrrecv0.retOp != null)
-                                                                JRrrecv0.retOp.send(jrvm.getTimestamp(), (edu.ucdavis.jr.RemoteHandler) null, new java.lang.Object [] {(boolean)(false)});
+                                                            { if (JRrrecv1.retOp != null)
+                                                                JRrrecv1.retOp.send(jrvm.getTimestamp(), (edu.ucdavis.jr.RemoteHandler) null, new java.lang.Object [] {(boolean)(false)});
                                                             else {
                                                                 boolean JRevaltmp = false;
                                                                 
                                                             }
-                                                            break _label_JRInstmt0; }}
+                                                            break _label_JRInstmt1; }}
                                                     
                                                     // End Return
 
@@ -407,45 +407,45 @@ JRrrecv0.fretOp.send(jrvm.getTimestamp(), JRrrecv0.handler, (java.lang.Object []
                                                 // Return
                                                 {
                                                     if (true)
-                                                        { if (JRrrecv0.retOp != null)
-                                                            JRrrecv0.retOp.send(jrvm.getTimestamp(), (edu.ucdavis.jr.RemoteHandler) null, new java.lang.Object [] {(boolean)(true)});
+                                                        { if (JRrrecv1.retOp != null)
+                                                            JRrrecv1.retOp.send(jrvm.getTimestamp(), (edu.ucdavis.jr.RemoteHandler) null, new java.lang.Object [] {(boolean)(true)});
                                                         else {
                                                             boolean JRevaltmp = true;
                                                             
                                                         }
-                                                        break _label_JRInstmt0; }}
+                                                        break _label_JRInstmt1; }}
                                                 
                                                 // End Return
 
                                             }
                                         } catch (Exception JRe) {
-                                            if (JRrrecv0.retOp != null && JRrrecv0.fretOp == null)
+                                            if (JRrrecv1.retOp != null && JRrrecv1.fretOp == null)
                                             {
                                                 // forward of cocall
-                                                if ((JRrrecv0.handler != null) && !(JRe instanceof java.rmi.RemoteException))
-                                                    JRrrecv0.handler.JRhandler(JRe);
+                                                if ((JRrrecv1.handler != null) && !(JRe instanceof java.rmi.RemoteException))
+                                                    JRrrecv1.handler.JRhandler(JRe);
                                                 else {
                                                     // give preference to propagation through the call stack
-                                                    JRrrecv0.retOp.send(jrvm.getTimestamp(), JRe);
-                                                    JRrrecv0.retOp = null;
+                                                    JRrrecv1.retOp.send(jrvm.getTimestamp(), JRe);
+                                                    JRrrecv1.retOp = null;
                                                 }
                                             }
-                                            else if ((JRrrecv0.retOp != null) && (JRrrecv0.fretOp != null) && !(JRe instanceof java.rmi.RemoteException))
+                                            else if ((JRrrecv1.retOp != null) && (JRrrecv1.fretOp != null) && !(JRe instanceof java.rmi.RemoteException))
                                             {
                                                 // for cocall exception handling in operation invocation
-                                                if (JRrrecv0.handler != null)
-                                                    JRrrecv0.handler.JRhandler(JRe);
+                                                if (JRrrecv1.handler != null)
+                                                    JRrrecv1.handler.JRhandler(JRe);
                                                     else {
                                                         // catch all
                                                         throw new jrRuntimeError("Unhandled exception: " + JRe.toString()+ " at " + jrRuntimeError.where(JRe));
                                                     }
-JRrrecv0.fretOp.send(jrvm.getTimestamp(), JRrrecv0.handler, (java.lang.Object []) null);
-                                                JRrrecv0.fretOp = null;
+JRrrecv1.fretOp.send(jrvm.getTimestamp(), JRrrecv1.handler, (java.lang.Object []) null);
+                                                JRrrecv1.fretOp = null;
                                             }
-                                            else if ((JRrrecv0.handler != null) && !(JRe instanceof java.rmi.RemoteException))
+                                            else if ((JRrrecv1.handler != null) && !(JRe instanceof java.rmi.RemoteException))
                                             {
                                                 // this should only be a send
-                                                JRrrecv0.handler.JRhandler(JRe);
+                                                JRrrecv1.handler.JRhandler(JRe);
                                             }
     else {
                                                     // catch all
@@ -456,39 +456,39 @@ JRrrecv0.fretOp.send(jrvm.getTimestamp(), JRrrecv0.handler, (java.lang.Object []
                                     
                                 }
                                 else
-                                    JRInstmt0.releaseIter();
+                                    JRInstmt1.releaseIter();
                                 // End of servicing
                                 // End InniArm
                                 break;
                             }
                             case 2:
                             {
-                                JRInstmt0.j = 0;
+                                JRInstmt1.j = 0;
                                 // Inni Arm
-                                QuantRec JRquantRec0 = (QuantRec)JRInstmt0.armArray[JRInstmt0.timesArray[JRInstmt0.i].armArrayIndex];
-                                Recv_ext JRrrecv0 = null, JRtmprecv0;
+                                QuantRec JRquantRec1 = (QuantRec)JRInstmt1.armArray[JRInstmt1.timesArray[JRInstmt1.i].armArrayIndex];
+                                Recv_ext JRrrecv1 = null, JRtmprecv1;
                                 // not artificial
                                 Person p = null;
-                                for (JRInstmt0.iter = JRInstmt0.armArray[JRInstmt0.timesArray[JRInstmt0.i].armArrayIndex].theCap.elements();
-                                     JRInstmt0.iter.hasNext();)
+                                for (JRInstmt1.iter = JRInstmt1.armArray[JRInstmt1.timesArray[JRInstmt1.i].armArrayIndex].theCap.elements();
+                                     JRInstmt1.iter.hasNext();)
                                 {
-                                    JRtmprecv0 = (Recv_ext)JRInstmt0.iter.next();
-                                    JRInstmt0.JRinit.setInvoc(JRInstmt0.j++);
-                                    JRtmprecv0.setInvocation(JRInstmt0.JRinit);
+                                    JRtmprecv1 = (Recv_ext)JRInstmt1.iter.next();
+                                    JRInstmt1.JRinit.setInvoc(JRInstmt1.j++);
+                                    JRtmprecv1.setInvocation(JRInstmt1.JRinit);
                                     // extract values
                                     p = (// not artificial
-                                    Person)JRtmprecv0.JRargs[0];
-                                    JRrrecv0 = JRtmprecv0;
+                                    Person)JRtmprecv1.JRargs[0];
+                                    JRrrecv1 = JRtmprecv1;
                                     break;  // get first one
                                 }
                                 // Start of servicing
-                                if (JRrrecv0 != null)
+                                if (JRrrecv1 != null)
                                 {
-                                    JRInstmt0.j = (int)JRrrecv0.getInvoc();
-                                    JRInstmt0.serviced = true;
-                                    JRInstmt0.iter.remove(JRInstmt0.j);
-                                    JRInstmt0.releaseIter();
-                                    JRInstmt0.unlock();
+                                    JRInstmt1.j = (int)JRrrecv1.getInvoc();
+                                    JRInstmt1.serviced = true;
+                                    JRInstmt1.iter.remove(JRInstmt1.j);
+                                    JRInstmt1.releaseIter();
+                                    JRInstmt1.unlock();
                                     {
                                         try {
                                             {
@@ -498,39 +498,39 @@ JRrrecv0.fretOp.send(jrvm.getTimestamp(), JRrrecv0.handler, (java.lang.Object []
                                                     returnOkCap.send(jrvm.getTimestamp(), (edu.ucdavis.jr.RemoteHandler) null, (java.lang.Object[]) null);
                                                 }
                                                 if (isLocked && entrants.size() == 0) {
-                                                    { if (JRrrecv0.retOp != null)
-                                                        JRrrecv0.retOp.send(jrvm.getTimestamp(), (java.lang.Object []) null);
-                                                    break JRLoop0;}
+                                                    { if (JRrrecv1.retOp != null)
+                                                        JRrrecv1.retOp.send(jrvm.getTimestamp(), (java.lang.Object []) null);
+                                                    break JRLoop1;}
                                                 }
                                             }
                                         } catch (Exception JRe) {
-                                            if (JRrrecv0.retOp != null && JRrrecv0.fretOp == null)
+                                            if (JRrrecv1.retOp != null && JRrrecv1.fretOp == null)
                                             {
                                                 // forward of cocall
-                                                if ((JRrrecv0.handler != null) && !(JRe instanceof java.rmi.RemoteException))
-                                                    JRrrecv0.handler.JRhandler(JRe);
+                                                if ((JRrrecv1.handler != null) && !(JRe instanceof java.rmi.RemoteException))
+                                                    JRrrecv1.handler.JRhandler(JRe);
                                                 else {
                                                     // give preference to propagation through the call stack
-                                                    JRrrecv0.retOp.send(jrvm.getTimestamp(), JRe);
-                                                    JRrrecv0.retOp = null;
+                                                    JRrrecv1.retOp.send(jrvm.getTimestamp(), JRe);
+                                                    JRrrecv1.retOp = null;
                                                 }
                                             }
-                                            else if ((JRrrecv0.retOp != null) && (JRrrecv0.fretOp != null) && !(JRe instanceof java.rmi.RemoteException))
+                                            else if ((JRrrecv1.retOp != null) && (JRrrecv1.fretOp != null) && !(JRe instanceof java.rmi.RemoteException))
                                             {
                                                 // for cocall exception handling in operation invocation
-                                                if (JRrrecv0.handler != null)
-                                                    JRrrecv0.handler.JRhandler(JRe);
+                                                if (JRrrecv1.handler != null)
+                                                    JRrrecv1.handler.JRhandler(JRe);
                                                     else {
                                                         // catch all
                                                         throw new jrRuntimeError("Unhandled exception: " + JRe.toString()+ " at " + jrRuntimeError.where(JRe));
                                                     }
-JRrrecv0.fretOp.send(jrvm.getTimestamp(), JRrrecv0.handler, (java.lang.Object []) null);
-                                                JRrrecv0.fretOp = null;
+JRrrecv1.fretOp.send(jrvm.getTimestamp(), JRrrecv1.handler, (java.lang.Object []) null);
+                                                JRrrecv1.fretOp = null;
                                             }
-                                            else if ((JRrrecv0.handler != null) && !(JRe instanceof java.rmi.RemoteException))
+                                            else if ((JRrrecv1.handler != null) && !(JRe instanceof java.rmi.RemoteException))
                                             {
                                                 // this should only be a send
-                                                JRrrecv0.handler.JRhandler(JRe);
+                                                JRrrecv1.handler.JRhandler(JRe);
                                             }
     else {
                                                     // catch all
@@ -538,11 +538,11 @@ JRrrecv0.fretOp.send(jrvm.getTimestamp(), JRrrecv0.handler, (java.lang.Object []
                                                 }
                                         }
                                     }
-                                    { if (JRrrecv0.retOp != null)
-                                        JRrrecv0.retOp.send(jrvm.getTimestamp(), (java.lang.Object []) null); }
+                                    { if (JRrrecv1.retOp != null)
+                                        JRrrecv1.retOp.send(jrvm.getTimestamp(), (java.lang.Object []) null); }
                                 }
                                 else
-                                    JRInstmt0.releaseIter();
+                                    JRInstmt1.releaseIter();
                                 // End of servicing
                                 // End InniArm
                                 break;
@@ -550,12 +550,12 @@ JRrrecv0.fretOp.send(jrvm.getTimestamp(), JRrrecv0.handler, (java.lang.Object []
                             
                         }
                     }
-                    if (!JRInstmt0.serviced)
+                    if (!JRInstmt1.serviced)
                     {
                         // must block and loop
-                        JRInstmt0.waitOnLock();
+                        JRInstmt1.waitOnLock();
                     }
-                } while (!JRInstmt0.serviced);
+                } while (!JRInstmt1.serviced);
             }
             // End Inni
             
@@ -617,8 +617,8 @@ JRrrecv0.fretOp.send(jrvm.getTimestamp(), JRrrecv0.handler, (java.lang.Object []
     }
     
     public static void testDoor() {
+        InStatObj JRInstmt3 = new InStatObj(1, false);
         InStatObj JRInstmt2 = new InStatObj(1, false);
-        InStatObj JRInstmt1 = new InStatObj(1, false);
         Door d = new Door();
         Person p1 = new Person(false);
         // Begin Expr2
@@ -657,123 +657,6 @@ JRrrecv0.fretOp.send(jrvm.getTimestamp(), JRrrecv0.handler, (java.lang.Object []
         asserts(d.entrants.size() == 2, "only 1 + landlord should be left");
         // Begin Expr2
         asserts(d.entrants.contains(p2), "p2 should be left");
-        // Begin Expr2
-        JR.nap(10);
-        {
-            // Inni Statement without quantifier
-            JRInstmt1.armArray[0] = new QuantRec(new Cap_ext_(op_returnCap_voidTovoid, "void"), 0, 0);
-            JRInstmt1.lock();
-            // Equivalence Class has been created and locked
-            JRInstmt1.serviced = false;
-            _label_JRInstmt1: do
-            {
-                Invocation JRfinalInvoc1 = null;
-                // find THE invocation and service it
-                JRInstmt1.gatherAndSortTimes();
-                for (JRInstmt1.i = 0;
-                    (JRInstmt1.i < JRInstmt1.N) && !JRInstmt1.serviced;
-                     JRInstmt1.i++)
-                {
-                    JRInstmt1.byStrt = true;
-                    JRInstmt1.releaseIter();
-                    // if the op is empty
-                    if (JRInstmt1.timesArray[JRInstmt1.i].time < 0) continue;
-                    switch (JRInstmt1.timesArray[JRInstmt1.i].opNum)
-                    {
-                        case 0:
-                        {
-                            JRInstmt1.j = 0;
-                            // Inni Arm
-                            QuantRec JRquantRec1 = (QuantRec)JRInstmt1.armArray[JRInstmt1.timesArray[JRInstmt1.i].armArrayIndex];
-                            Recv_ext JRrrecv1 = null, JRtmprecv1;
-                            for (JRInstmt1.iter = JRInstmt1.armArray[JRInstmt1.timesArray[JRInstmt1.i].armArrayIndex].theCap.elements();
-                                 JRInstmt1.iter.hasNext();)
-                            {
-                                JRtmprecv1 = (Recv_ext)JRInstmt1.iter.next();
-                                JRInstmt1.JRinit.setInvoc(JRInstmt1.j++);
-                                JRtmprecv1.setInvocation(JRInstmt1.JRinit);
-                                // extract values
-                                JRrrecv1 = JRtmprecv1;
-                                break;  // get first one
-                            }
-                            // Start of servicing
-                            if (JRrrecv1 != null)
-                            {
-                                JRInstmt1.j = (int)JRrrecv1.getInvoc();
-                                JRInstmt1.serviced = true;
-                                JRInstmt1.iter.remove(JRInstmt1.j);
-                                JRInstmt1.releaseIter();
-                                JRInstmt1.unlock();
-                                {
-                                    try {
-                                        {
-                                            // Begin Expr2
-                                            asserts(false, "The closing signal is sent too early!");
-                                        }
-                                    } catch (Exception JRe) {
-                                        if (JRrrecv1.retOp != null && JRrrecv1.fretOp == null)
-                                        {
-                                            // forward of cocall
-                                            if ((JRrrecv1.handler != null) && !(JRe instanceof java.rmi.RemoteException))
-                                                JRrrecv1.handler.JRhandler(JRe);
-                                            else {
-                                                // give preference to propagation through the call stack
-                                                JRrrecv1.retOp.send(jrvm.getTimestamp(), JRe);
-                                                JRrrecv1.retOp = null;
-                                            }
-                                        }
-                                        else if ((JRrrecv1.retOp != null) && (JRrrecv1.fretOp != null) && !(JRe instanceof java.rmi.RemoteException))
-                                        {
-                                            // for cocall exception handling in operation invocation
-                                            if (JRrrecv1.handler != null)
-                                                JRrrecv1.handler.JRhandler(JRe);
-                                                else {
-                                                    // catch all
-                                                    throw new jrRuntimeError("Unhandled exception: " + JRe.toString()+ " at " + jrRuntimeError.where(JRe));
-                                                }
-JRrrecv1.fretOp.send(jrvm.getTimestamp(), JRrrecv1.handler, (java.lang.Object []) null);
-                                            JRrrecv1.fretOp = null;
-                                        }
-                                        else if ((JRrrecv1.handler != null) && !(JRe instanceof java.rmi.RemoteException))
-                                        {
-                                            // this should only be a send
-                                            JRrrecv1.handler.JRhandler(JRe);
-                                        }
-    else {
-                                                // catch all
-                                                throw new jrRuntimeError("Unhandled exception: " + JRe.toString()+ " at " + jrRuntimeError.where(JRe));
-                                            }
-                                    }
-                                }
-                                { if (JRrrecv1.retOp != null)
-                                    JRrrecv1.retOp.send(jrvm.getTimestamp(), (java.lang.Object []) null); }
-                            }
-                            else
-                                JRInstmt1.releaseIter();
-                            // End of servicing
-                            // End InniArm
-                            break;
-                        }
-                        
-                    }
-                }
-                if (!JRInstmt1.serviced)
-                {
-                    JRInstmt1.unlock();
-                    JRInstmt1.serviced = true;
-                    {
-                    }
-                }
-            } while (!JRInstmt1.serviced);
-        }
-        // End Inni
-        
-        // Begin Expr2
-        (new Cap_ext_(d.JRget_op_leave_PersonTovoid(), "void")).call(jrvm.getTimestamp(), new java.lang.Object [] {p2});
-        // Begin Expr2
-        asserts(d.entrants.size() == 1, "Only landlord should be in!");
-        // Begin Expr2
-        asserts(d.entrants.contains(landlord), "Only landlord should be in");
         // Begin Expr2
         JR.nap(10);
         {
@@ -824,6 +707,8 @@ JRrrecv1.fretOp.send(jrvm.getTimestamp(), JRrrecv1.handler, (java.lang.Object []
                                 {
                                     try {
                                         {
+                                            // Begin Expr2
+                                            asserts(false, "The closing signal is sent too early!");
                                         }
                                     } catch (Exception JRe) {
                                         if (JRrrecv2.retOp != null && JRrrecv2.fretOp == null)
@@ -877,11 +762,126 @@ JRrrecv2.fretOp.send(jrvm.getTimestamp(), JRrrecv2.handler, (java.lang.Object []
                     JRInstmt2.unlock();
                     JRInstmt2.serviced = true;
                     {
+                    }
+                }
+            } while (!JRInstmt2.serviced);
+        }
+        // End Inni
+        
+        // Begin Expr2
+        (new Cap_ext_(d.JRget_op_leave_PersonTovoid(), "void")).call(jrvm.getTimestamp(), new java.lang.Object [] {p2});
+        // Begin Expr2
+        asserts(d.entrants.size() == 1, "Only landlord should be in!");
+        // Begin Expr2
+        asserts(d.entrants.contains(landlord), "Only landlord should be in");
+        // Begin Expr2
+        JR.nap(10);
+        {
+            // Inni Statement without quantifier
+            JRInstmt3.armArray[0] = new QuantRec(new Cap_ext_(op_returnCap_voidTovoid, "void"), 0, 0);
+            JRInstmt3.lock();
+            // Equivalence Class has been created and locked
+            JRInstmt3.serviced = false;
+            _label_JRInstmt3: do
+            {
+                Invocation JRfinalInvoc3 = null;
+                // find THE invocation and service it
+                JRInstmt3.gatherAndSortTimes();
+                for (JRInstmt3.i = 0;
+                    (JRInstmt3.i < JRInstmt3.N) && !JRInstmt3.serviced;
+                     JRInstmt3.i++)
+                {
+                    JRInstmt3.byStrt = true;
+                    JRInstmt3.releaseIter();
+                    // if the op is empty
+                    if (JRInstmt3.timesArray[JRInstmt3.i].time < 0) continue;
+                    switch (JRInstmt3.timesArray[JRInstmt3.i].opNum)
+                    {
+                        case 0:
+                        {
+                            JRInstmt3.j = 0;
+                            // Inni Arm
+                            QuantRec JRquantRec3 = (QuantRec)JRInstmt3.armArray[JRInstmt3.timesArray[JRInstmt3.i].armArrayIndex];
+                            Recv_ext JRrrecv3 = null, JRtmprecv3;
+                            for (JRInstmt3.iter = JRInstmt3.armArray[JRInstmt3.timesArray[JRInstmt3.i].armArrayIndex].theCap.elements();
+                                 JRInstmt3.iter.hasNext();)
+                            {
+                                JRtmprecv3 = (Recv_ext)JRInstmt3.iter.next();
+                                JRInstmt3.JRinit.setInvoc(JRInstmt3.j++);
+                                JRtmprecv3.setInvocation(JRInstmt3.JRinit);
+                                // extract values
+                                JRrrecv3 = JRtmprecv3;
+                                break;  // get first one
+                            }
+                            // Start of servicing
+                            if (JRrrecv3 != null)
+                            {
+                                JRInstmt3.j = (int)JRrrecv3.getInvoc();
+                                JRInstmt3.serviced = true;
+                                JRInstmt3.iter.remove(JRInstmt3.j);
+                                JRInstmt3.releaseIter();
+                                JRInstmt3.unlock();
+                                {
+                                    try {
+                                        {
+                                        }
+                                    } catch (Exception JRe) {
+                                        if (JRrrecv3.retOp != null && JRrrecv3.fretOp == null)
+                                        {
+                                            // forward of cocall
+                                            if ((JRrrecv3.handler != null) && !(JRe instanceof java.rmi.RemoteException))
+                                                JRrrecv3.handler.JRhandler(JRe);
+                                            else {
+                                                // give preference to propagation through the call stack
+                                                JRrrecv3.retOp.send(jrvm.getTimestamp(), JRe);
+                                                JRrrecv3.retOp = null;
+                                            }
+                                        }
+                                        else if ((JRrrecv3.retOp != null) && (JRrrecv3.fretOp != null) && !(JRe instanceof java.rmi.RemoteException))
+                                        {
+                                            // for cocall exception handling in operation invocation
+                                            if (JRrrecv3.handler != null)
+                                                JRrrecv3.handler.JRhandler(JRe);
+                                                else {
+                                                    // catch all
+                                                    throw new jrRuntimeError("Unhandled exception: " + JRe.toString()+ " at " + jrRuntimeError.where(JRe));
+                                                }
+JRrrecv3.fretOp.send(jrvm.getTimestamp(), JRrrecv3.handler, (java.lang.Object []) null);
+                                            JRrrecv3.fretOp = null;
+                                        }
+                                        else if ((JRrrecv3.handler != null) && !(JRe instanceof java.rmi.RemoteException))
+                                        {
+                                            // this should only be a send
+                                            JRrrecv3.handler.JRhandler(JRe);
+                                        }
+    else {
+                                                // catch all
+                                                throw new jrRuntimeError("Unhandled exception: " + JRe.toString()+ " at " + jrRuntimeError.where(JRe));
+                                            }
+                                    }
+                                }
+                                { if (JRrrecv3.retOp != null)
+                                    JRrrecv3.retOp.send(jrvm.getTimestamp(), (java.lang.Object []) null); }
+                            }
+                            else
+                                JRInstmt3.releaseIter();
+                            // End of servicing
+                            // End InniArm
+                            break;
+                        }
+                        
+                    }
+                }
+                if (!JRInstmt3.serviced)
+                {
+                    JRInstmt3.unlock();
+                    JRInstmt3.serviced = true;
+                    {
                         // Begin Expr2
                         asserts(false, "The closing signal was not sent!");
                     }
                 }
-            } while (!JRInstmt2.serviced);
+            } while (!JRInstmt3.serviced);
         }
         // End Inni
         

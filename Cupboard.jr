@@ -1,0 +1,72 @@
+import edu.ucdavis.jr.*;
+import java.util.*;
+import java.util.ArrayList;
+
+
+public class Cupboard {
+
+  private ArrayList<Item> items;  
+
+  public op void aquireItems(ArrayList<Item>);
+  public op void putBackItems(ArrayList<Item>);
+  
+ 
+  public Cupboard(ArrayList<Item> items) {
+    this.items = items;    
+  }  
+
+  private process cupBoardProcess {
+    startLoop();    
+    System.out.println("cupBoard process exits ...");
+  }
+
+
+
+  // I added this as a seperate method to be able to override stupid warnings
+  @SuppressWarnings("unchecked")   
+  private void startLoop()
+  {
+    while(true)
+      {
+        inni void aquireItems(ArrayList<Item> request) st items.containsAll(request)
+        {
+          items.removeAll(request);          
+        }
+        [] void putBackItems(ArrayList<Item> moreItems)
+          {
+            items.addAll(moreItems);            
+          }
+      }
+  }
+  
+  
+
+
+
+
+
+  /***************************************************
+     TESTING CODE BELOW
+
+  ***************************************************/
+  public static void main(String[] args) {
+    allCupboardTests();
+  }
+
+  public static void allCupboardTests()
+  {
+    System.out.println("Cupboard tests passed.");    
+  }
+
+
+  
+  public static void asserts(boolean b, String s)
+  {
+    if(!b)
+      {
+        System.out.println("CupboardAssert failed: " + s);
+        System.exit(1);
+      }
+  }
+
+}
