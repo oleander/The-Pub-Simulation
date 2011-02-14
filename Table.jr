@@ -161,7 +161,7 @@ public class Table {
     send t.addBeverageWare(Global.cup); // taken on 1
     send t.addBeverageWare(Global.glass); // taken on 2
     send t.addBeverageWare(Global.cup); // taken on 3
-    send t.addBeverageWare(Global.cup); // taken on 4
+    send t.addBeverageWare(Global.cup); JR.nap(10); // taken on 4 
     send t.addBeverageWare(Global.glass); // taken on 2 // This one gets taken already at clear 2!
     send t.addBeverageWare(Global.glass); // taken on 5
     send t.addBeverageWare(Global.cup); JR.nap(10); // taken on 6   // Now we have made a quite big queue.  
@@ -170,31 +170,31 @@ public class Table {
 
     asserts(t.unitsRemaining() == 0, "Should be full 1");
     list = t.clearTable(); JR.nap(10);    
-    asserts(list.get(0) == cup, "Clear2 1");
+    asserts(list.get(0) == Global.cup, "Clear2 1");
     
     asserts(t.unitsRemaining() == 0, "Should be full 2");
     list = t.clearTable(); JR.nap(10);   
-    asserts(list.size() == 2);    
-    asserts(list.get(0) == glass, "Clear2 2.1");
-    asserts(list.get(1) == glass, "Clear2 2.2");
+    asserts(list.size() == 2, "Queue system should't block on big cups.");    
+    asserts(list.get(0) == Global.glass, "Clear2 2.1");
+    asserts(list.get(1) == Global.glass, "Clear2 2.2");
     
     asserts(t.unitsRemaining() == 0, "Should be full 3");
     list = t.clearTable(); JR.nap(10);    
-    asserts(list.get(0) == cup, "Clear2 3");
+    asserts(list.get(0) == Global.cup, "Clear2 3");
 
     asserts(t.unitsRemaining() == 0, "Should be full 4");
     list = t.clearTable(); JR.nap(10);    
-    asserts(list.get(0) == cup, "Clear2 4");
+    asserts(list.get(0) == Global.cup, "Clear2 4");
 
 
     asserts(t.unitsRemaining() == 1, "Should not be full 5");
     list = t.clearTable(); JR.nap(10);    
-    asserts(list.get(0) == glass, "Clear2 5");
+    asserts(list.get(0) == Global.glass, "Clear2 5");
     
 
     asserts(t.unitsRemaining() == 0, "Should be full 6");
     list = t.clearTable(); JR.nap(10);    
-    asserts(list.get(0) == cup, "Clear2 6");
+    asserts(list.get(0) == Global.cup, "Clear2 6");
 
 
     asserts(t.unitsRemaining() == 2, "Should be cleared in end");    
