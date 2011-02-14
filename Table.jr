@@ -37,9 +37,17 @@ public class Table {
   //@SuppressWarnings("unchecked")   
   private void startLoop()
   {
-//     while(true)
-//       {
-//       }
+     while(true)
+       {
+         BeverageWare bw;
+         
+         inni addBeverageWare(bw)
+           {
+           }     
+         [] clearTable()
+           {
+           }         
+       }
   }
   
 
