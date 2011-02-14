@@ -11,8 +11,7 @@ public class Table {
   private int id;
   
 
-  public op void addSmall(BeverageWare bw);
-  public op void addLarge(BeverageWare bw);
+  public op void addBeverageWare(BeverageWare bw);
   public op ArrayList<BeverageWare> clearTable();
   
  
@@ -92,19 +91,19 @@ public class Table {
     t.capacity = 10;    
     asserts(t.unitsRemaining() == 10, "Table should start empty");
     
-    send t.addLarge(Global.glass); JR.nap(10);    
+    send t.addBeverageWare(Global.glass); JR.nap(10);    
     asserts(t.unitsRemaining() == 8, "8");
     
-    send t.addLarge(Global.glass); JR.nap(10);
+    send t.addBeverageWare(Global.glass); JR.nap(10);
     asserts(t.unitsRemaining() == 8, "8");
 
-    send t.addLarge(Global.glass); JR.nap(10);
+    send t.addBeverageWare(Global.glass); JR.nap(10);
     asserts(t.unitsRemaining() == 6, "6");
 
-    send t.addSmall(Global.cup); JR.nap(10);
+    send t.addBeverageWare(Global.cup); JR.nap(10);
     asserts(t.unitsRemaining() == 5, "5");
 
-    send t.addLarge(Global.glass); JR.nap(10);
+    send t.addBeverageWare(Global.glass); JR.nap(10);
     asserts(t.unitsRemaining() == 3, "3");
   }  
 
@@ -113,15 +112,15 @@ public class Table {
     Table t = new Table();
     t.capacity = 3;    
     
-    send t.addLarge(Global.glass); JR.nap(10);    
+    send t.addBeverageWare(Global.glass); JR.nap(10);    
     
-    send t.addLarge(Global.glass); JR.nap(10);
+    send t.addBeverageWare(Global.glass); JR.nap(10);
     asserts(t.unitsRemaining() == 1, "A 1-unit-remaining table should not take in another glass!");
 
-    send t.addSmall(Global.cup); JR.nap(10);
+    send t.addBeverageWare(Global.cup); JR.nap(10);
     asserts(t.unitsRemaining() == 0, "A 1-unit-remaining table should be able to take a cup!");
 
-    send t.addSmall(Global.cup); JR.nap(10);
+    send t.addBeverageWare(Global.cup); JR.nap(10);
     asserts(t.unitsRemaining() == 0, "A full table should not be able to take in cups");
 
   }  
@@ -131,10 +130,10 @@ public class Table {
     Table t = new Table();
     t.capacity = 6;    
     
-    send t.addLarge(Global.glass); JR.nap(10);    
-    send t.addSmall(Global.cup); JR.nap(10);    
-    send t.addLarge(Global.glass); JR.nap(10);  
-    send t.addLarge(Global.glass); JR.nap(10);    // Now this one should not be put in until after clearance  
+    send t.addBeverageWare(Global.glass); JR.nap(10);    
+    send t.addBeverageWare(Global.cup); JR.nap(10);    
+    send t.addBeverageWare(Global.glass); JR.nap(10);  
+    send t.addBeverageWare(Global.glass); JR.nap(10);    // Now this one should not be put in until after clearance  
     
     ArrayList<BeverageWare> list = t.clearTable(); JR.nap(10);    
     asserts(t.unitsRemaining() == 6, "A cleared table should be clear.");

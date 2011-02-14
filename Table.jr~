@@ -5,19 +5,18 @@ import java.util.ArrayList;
 
 public class Table {
 
-  private ArrayList<BeverageWare> beverages;
+  private ArrayList<BeverageWare> beveragewares;
   private int capacity;
   private static int startId = 0;  
   private int id;
   
 
-  public op void addSmall(BeverageWare bw);
-  public op void addLarge(BeverageWare bw);
+  public op void addBeverageWare(BeverageWare bw);
   public op ArrayList<BeverageWare> clearTable();
   
  
   public Table() {
-    beverages = new ArrayList<BeverageWare>();
+    beveragewares = new ArrayList<BeverageWare>();
     id = startId++;
     capacity = Global.tableCapacities;    
   }  
@@ -38,25 +37,26 @@ public class Table {
   //@SuppressWarnings("unchecked")   
   private void startLoop()
   {
-    while(true)
-      {
-      }
+//     while(true)
+//       {
+//       }
   }
   
 
   @SuppressWarnings("unchecked")   
-  private void addBeverageWare(BeverageWare bw)
+  private void addBeverage(BeverageWare bw)
   {
-    beverages.add(bw); // This darn command adds stupid warning   
+    beveragewares.add(bw); // This darn command adds stupid warning   
   }
   
   private int unitsRemaining()
   {
     int taken = 0;
-    for (BeverageWare bw: beverages) {
+    for (BeverageWare bw: beveragewares) {
       taken += bw.getSpaceUnits();
     }
 
+    asserts(capacity >= taken, "Table got overfilled!");
     return capacity - taken;
   }
 
@@ -72,33 +72,86 @@ public class Table {
 
   ***************************************************/
   public static void main(String[] args) {
-    allDoorTests();
+    allTableTests();
   }
 
-  public static void allDoorTests()
+  public static void allTableTests()
   {
-    testOnePersonEnters();
-    testOnePersonLeaving();
-    testDoor();
+    testCapacityCounting();  
+    testOverflowTable();    
+    testClear();
+    System.out.println("Table tests passed.");
+  }
+
+  // This test just tests that glasses and mugs get counted appropriately
+  // Note how we in test use send but in testing never uses call
+  public static void testCapacityCounting()
+  {
+    Table t = new Table();
+    t.capacity = 10;    
+    asserts(t.unitsRemaining() == 10, "Table should start empty");
     
-  }
+    send t.addLarge(Global.glass); JR.nap(10);    
+    asserts(t.unitsRemaining() == 8, "8");
+    
+    send t.addLarge(Global.glass); JR.nap(10);
+    asserts(t.unitsRemaining() == 8, "8");
 
-  // This test is starting other threads
-  public static void testOnePersonEnters()
-  {
+    send t.addLarge(Global.glass); JR.nap(10);
+    asserts(t.unitsRemaining() == 6, "6");
+
+    send t.addSmall(Global.cup); JR.nap(10);
+    asserts(t.unitsRemaining() == 5, "5");
+
+    send t.addLarge(Global.glass); JR.nap(10);
+    asserts(t.unitsRemaining() == 3, "3");
   }  
 
-  public static void testOnePersonLeaving()
+  public static void testOverflowTable()
   {
-  }
+    Table t = new Table();
+    t.capacity = 3;    
+    
+    send t.addLarge(Global.glass); JR.nap(10);    
+    
+    send t.addLarge(Global.glass); JR.nap(10);
+    asserts(t.unitsRemaining() == 1, "A 1-unit-remaining table should not take in another glass!");
 
+    send t.addSmall(Global.cup); JR.nap(10);
+    asserts(t.unitsRemaining() == 0, "A 1-unit-remaining table should be able to take a cup!");
 
-  public static void testDoor()
+    send t.addSmall(Global.cup); JR.nap(10);
+    asserts(t.unitsRemaining() == 0, "A full table should not be able to take in cups");
+
+  }  
+
+  public static void testClear()
   {
+    Table t = new Table();
+    t.capacity = 6;    
+    
+    send t.addLarge(Global.glass); JR.nap(10);    
+    send t.addSmall(Global.cup); JR.nap(10);    
+    send t.addLarge(Global.glass); JR.nap(10);  
+    send t.addLarge(Global.glass); JR.nap(10);    // Now this one should not be put in until after clearance  
+    
+    ArrayList<BeverageWare> list = t.clearTable(); JR.nap(10);    
+    asserts(t.unitsRemaining() == 6, "A cleared table should be clear.");
+    
+    asserts(list != t.beveragewares, "Should not return reference list on clearing.");
+    asserts(list.size() == 3, "Should retrieved all 3 beveragewares");
 
+    // The 3 asserts below are not senseful as they should test multi-setproperties, but oh well ...
+    asserts(list.get(0) == Global.glass, "should be glass AND refernce");
+    asserts(list.get(1) == Global.cup, "cup");
+    asserts(list.get(0) == Global.glass, "glass");
+
+    // Now lets check if old sent glass got recieved
+    asserts(t.unitsRemaining() == 4, "Glass probably didn't get back on table");
+    
+    
   }
-
-
+  
 
   
   public static void asserts(boolean b, String s)
