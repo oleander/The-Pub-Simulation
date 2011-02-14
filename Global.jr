@@ -24,8 +24,8 @@ public class Global {
   public final static Item cholcatePowder = new Item("Cholcate Powder");
 
   // Beveragewares
-  public final static BeverageWare glass  = new BeverageWare("Glass", 2);
-  public final static BeverageWare cup    = new BeverageWare("Cup",   1);  
+  public final static BeverageWare glass  = new BeverageWare("Glass", 1);
+  public final static BeverageWare cup    = new BeverageWare("Cup",   2);  
 
   // Required Ingredients
   private final static Item[] beerIngredients      = {};
