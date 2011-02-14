@@ -80,6 +80,7 @@ public class Table {
     testCapacityCounting();  
     testOverflowTable();    
     testClear();
+    testClear2();
     System.out.println("Table tests passed.");
   }
 
@@ -130,13 +131,12 @@ public class Table {
     Table t = new Table();
     t.capacity = 6;    
     
-    send t.addBeverageWare(Global.cup); JR.nap(10);    
-    send t.addBeverageWare(Global.glass); JR.nap(10);    
-    send t.addBeverageWare(Global.cup); JR.nap(10);  
+    send t.addBeverageWare(Global.cup);
+    send t.addBeverageWare(Global.glass);
+    send t.addBeverageWare(Global.cup); 
     send t.addBeverageWare(Global.cup); JR.nap(10);    // Now this one should not be put in until after clearance  
     
     ArrayList<BeverageWare> list = t.clearTable(); JR.nap(10);    
-    asserts(t.unitsRemaining() == 6, "A cleared table should be clear.");
     
     asserts(list != t.beveragewares, "Should not return reference list on clearing.");
     asserts(list.size() == 3, "Should retrieved all 3 beveragewares");
@@ -151,6 +151,55 @@ public class Table {
     
     
   }
+
+
+  public static void testClear2()
+  {
+    Table t = new Table();
+    t.capacity = 2;    
+    
+    send t.addBeverageWare(Global.cup); // taken on 1
+    send t.addBeverageWare(Global.glass); // taken on 2
+    send t.addBeverageWare(Global.cup); // taken on 3
+    send t.addBeverageWare(Global.cup); // taken on 4
+    send t.addBeverageWare(Global.glass); // taken on 2 // This one gets taken already at clear 2!
+    send t.addBeverageWare(Global.glass); // taken on 5
+    send t.addBeverageWare(Global.cup); JR.nap(10); // taken on 6   // Now we have made a quite big queue.  
+    
+    ArrayList<BeverageWare> list;
+
+    asserts(t.unitsRemaining() == 0, "Should be full 1");
+    list = t.clearTable(); JR.nap(10);    
+    asserts(list.get(0) == cup, "Clear2 1");
+    
+    asserts(t.unitsRemaining() == 0, "Should be full 2");
+    list = t.clearTable(); JR.nap(10);   
+    asserts(list.size() == 2);    
+    asserts(list.get(0) == glass, "Clear2 2.1");
+    asserts(list.get(1) == glass, "Clear2 2.2");
+    
+    asserts(t.unitsRemaining() == 0, "Should be full 3");
+    list = t.clearTable(); JR.nap(10);    
+    asserts(list.get(0) == cup, "Clear2 3");
+
+    asserts(t.unitsRemaining() == 0, "Should be full 4");
+    list = t.clearTable(); JR.nap(10);    
+    asserts(list.get(0) == cup, "Clear2 4");
+
+
+    asserts(t.unitsRemaining() == 1, "Should not be full 5");
+    list = t.clearTable(); JR.nap(10);    
+    asserts(list.get(0) == glass, "Clear2 5");
+    
+
+    asserts(t.unitsRemaining() == 0, "Should be full 6");
+    list = t.clearTable(); JR.nap(10);    
+    asserts(list.get(0) == cup, "Clear2 6");
+
+
+    asserts(t.unitsRemaining() == 2, "Should be cleared in end");    
+  }
+  
   
 
   
