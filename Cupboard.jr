@@ -7,12 +7,12 @@ public class Cupboard {
 
   private ArrayList<Item> items;  
 
-  public op void aquireItems(ArrayList<Item>);
-  public op void putBackItems(ArrayList<Item>);
+  public op void aquireItems(List<Item>);
+  public op void putBackItems(List<Item>);
   
  
-  public Cupboard(ArrayList<Item> items) {
-    this.items = items;    
+  public Cupboard(List<Item> items) {
+    this.items = new ArrayList(items);    
   }  
 
   private process cupBoardProcess {
@@ -28,11 +28,11 @@ public class Cupboard {
   {
     while(true)
       {
-        inni void aquireItems(ArrayList<Item> request) st items.containsAll(request)
+        inni void aquireItems(List<Item> request) st items.containsAll(request)
         {
           items.removeAll(request);          
         }
-        [] void putBackItems(ArrayList<Item> moreItems)
+        [] void putBackItems(List<Item> moreItems)
         {
           items.addAll(moreItems);            
         }
@@ -66,6 +66,9 @@ public class Cupboard {
 
   public static void testStartsWithItems()
   {
+    //ArrayList<Item> items = new ArrayList<Item>();
+    
+    //Cupboard cb = new Cupboard(Arrays.asList(Global.beerTap));    
     asserts(false, "Tests not written.");       
   }  
 
