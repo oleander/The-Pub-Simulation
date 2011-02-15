@@ -51,14 +51,22 @@ public class Cupboard {
   ***************************************************/
   public static void main(String[] args) {
     allCupboardTests();
+    
   }
 
   public static void allCupboardTests()
   {
+
+    testStartsWithItems();
     System.out.println("Cupboard tests passed.");    
   }
 
 
+
+  public static void testStartsWithItems()
+  {
+    asserts(false, "Tests not written.");       
+  }  
   
   public static void asserts(boolean b, String s)
   {
