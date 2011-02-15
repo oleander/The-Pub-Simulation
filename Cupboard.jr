@@ -33,9 +33,9 @@ public class Cupboard {
           items.removeAll(request);          
         }
         [] void putBackItems(ArrayList<Item> moreItems)
-          {
-            items.addAll(moreItems);            
-          }
+        {
+          items.addAll(moreItems);            
+        }
       }
   }
   
