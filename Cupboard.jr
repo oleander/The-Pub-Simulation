@@ -56,14 +56,25 @@ public class Cupboard {
 
   public static void allCupboardTests()
   {
-
     testStartsWithItems();
+    testAddItems();
+    testAquireItems();
     System.out.println("Cupboard tests passed.");    
   }
 
 
 
   public static void testStartsWithItems()
+  {
+    asserts(false, "Tests not written.");       
+  }  
+
+  public static void testAddItems()
+  {
+    asserts(false, "Tests not written.");       
+  }  
+
+  public static void testAquireItems()
   {
     asserts(false, "Tests not written.");       
   }  
