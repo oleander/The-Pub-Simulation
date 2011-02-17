@@ -96,7 +96,12 @@ public class Cupboard {
 
   public static void testAquireItems()
   {
-    asserts(false, "Tests not written 3.");       
+    Cupboard cb = new Cupboard(Arrays.asList(Global.beerTap, Global.coffee));
+    cb.aquireItem(Global.coffee);    
+    asserts(cb.items.contains(Global.beerTap), "BeerTap not found. 3");       
+    asserts(!cb.items.contains(Global.coffee), "Coffee still in cupboard. 3"); 
+    cb.aquireItem(Global.beerTap);
+    asserts(!cb.items.contains(Global.beerTap), "BeerTap still in cupboard. 3");           
   }  
   
   public static void asserts(boolean b, String s)
