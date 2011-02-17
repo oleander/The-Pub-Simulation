@@ -9,22 +9,18 @@ public class Assistant extends Person {
     super("Assistant");
   }  
   
-  private process AssistantProcess {
-    startLoop();    
-    System.out.println("Assistant process exits ...");
-  }
 
-
-
-  // I added this as a seperate method to be able to override stupid warnings
-  @SuppressWarnings("unchecked")   
-  private void startLoop()
+  protected boolean shouldGoHome()
   {
-    while(true)
-      {
-      }
+    return false;    
   }
   
+  
+  protected void oneIteration()
+  {
+  }
+
+ 
   
 
 
@@ -51,5 +47,6 @@ public class Assistant extends Person {
         System.exit(1);
       }
   }
+  
 
 }

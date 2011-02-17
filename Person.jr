@@ -1,13 +1,10 @@
 import edu.ucdavis.jr.*;
 import java.util.*;
 
-public class Person {
+public abstract class Person {
 
-  private static int startId = 0;  
-  private int id;
   private Door door;
   private int numCalls;  
-  private boolean alive;
   private String name;
   
   public op void tellLastCallOrClosing();
@@ -18,36 +15,30 @@ public class Person {
     return name;
   }
 
-  public Person(String name, boolean autoEnterDoor)
-  {
-    this.name = name;    
-    id = startId++;
-    if(autoEnterDoor)
-      {        
-        enterDoor();    
-      }
-    
-  }
-
-  public Person(boolean autoEnterDoor)
-  {
-    this("Person " + startId, autoEnterDoor);    
-  }
-
   public Person(String name)
   {
-    this(name, false);    
+    this.name = name; 
   }
 
-  protected void enterDoor()
+  public Person()
   {
-    alive = Global.door.add(this);    
+    this("Unnamed");    
+  }
+
+  public void say(String msg)
+  {
+    System.out.println("Person " + name + " says: " + msg);        
   }
   
-  protected void leaveBar()
+
+  private boolean enterDoor()
+  {
+    return Global.door.add(this);    
+  }
+  
+  private void leaveBar()
   {
     call Global.door.leave(this);
-    alive = false;    
   }
 
   public boolean knowsItsClosed()
@@ -59,9 +50,30 @@ public class Person {
   {
     return numCalls >= 1;    
   }    
+
+  protected abstract boolean shouldGoHome();
   
-  public static void main(String[] args) {
-     
+  protected abstract void oneIteration();
+  
+  
+  public process personProcess
+  {
+    say("I'm going in ..."); 
+    if( enterDoor())
+      {        
+        startLoop();    
+        say("I'm going home ...");    
+        leaveBar();    
+      }
+    
   }
   
+  
+  private void startLoop()
+  {    
+    while(!shouldGoHome())
+      {
+        oneIteration();        
+      }
+  } 
 }

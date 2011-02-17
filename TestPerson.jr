@@ -1,0 +1,29 @@
+import edu.ucdavis.jr.*;
+import java.util.*;
+
+// This is just a class used during testing
+public class TestPerson extends Person {
+
+  
+  private boolean goHome = false;
+
+  public synchronized void setGoHome()
+  {
+    goHome = true;
+  }
+
+  private synchronized boolean getGoHome()
+  {
+    return goHome;    
+  }
+  
+
+  protected boolean shouldGoHome()
+  {    
+    return getGoHome();    
+  }
+  
+  protected void oneIteration()
+  {    
+  }
+}

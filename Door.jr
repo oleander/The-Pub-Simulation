@@ -45,6 +45,7 @@ public class Door {
         }
         [] boolean add(Person p)
           {
+            asserts(!entrants.contains(p), "Person " + p + " has already entered door");
             if(isLocked)
               {
         	return false;
@@ -117,12 +118,15 @@ public class Door {
   {
     Door d = new Door();
     asserts(d.entrants.size() == 0, "Door should start empty");    
-    Person p = new Person(true);
+    TestPerson p = new TestPerson();
     
-    JR.nap(10);
+    JR.nap(100);
 
     asserts(d.entrants.get(0) == p, "Person p should be in list");    
     asserts(d.entrants.size() == 1, "Should only be 1 person in list");    
+    
+    p.setGoHome();
+    JR.nap(100);
     
   }  
 
@@ -130,11 +134,12 @@ public class Door {
   public static void testOnePersonLeaving()
   {
     Door d = new Door();
-    Person p = new Person(true);
+    TestPerson p = new TestPerson();
     
-    JR.nap(10);
-    p.leaveBar();
-    JR.nap(10);    
+    JR.nap(100);
+    p.setGoHome();
+    
+    JR.nap(100);    
     
     asserts(d.entrants.size() == 0, "Everyone should have exited.");
   }
@@ -146,34 +151,36 @@ public class Door {
   public static void testDoor()
   {
     Door d = new Door();    
-    Person p1 = new Person(false); //fakeperson
-    asserts(d.add(p1), "Door should start open"); // try enter door    
+    TestPerson p1 = new TestPerson(); //fakeperson
+    JR.nap(100);
     asserts(d.entrants.size() == 1, "Should only be 1 person in list");
 
-    Person p2 = new Person(false); // another entrant    
-    d.add(p2);
+    TestPerson p2 = new TestPerson(); // another entrant    
+    JR.nap(100);
     asserts(d.entrants.size() == 2, "Two should 've entered");
     asserts(d.entrants.contains(p1),  "p1 should be in list");
     asserts(d.entrants.contains(p2),  "p2 should be in list");
     
     
-    Person landlord = new Person(true); // this emulates Landlord (auto-enters)
+    TestPerson landlord = new TestPerson(); // this emulates Landlord (auto-enters)
+    JR.nap(100);
     op void returnCap(); // The landlords replyChannel    
     ArrayList<Person> list = d.lock(returnCap);
     asserts(list != d.entrants, "Should not be reference to entrants!");
     asserts(list.equals(d.entrants), "Should however be equal to entrants!");
     
-    Person p3 = new Person(false); // this one will emulate door-rejected customer
-    asserts(!d.add(p3), "Door is locked, p3 should be rejected");
+    TestPerson p3 = new TestPerson(); // this one will emulate door-rejected customer
+    JR.nap(100);
     asserts(d.entrants.size() == 3, "Nobody should've entered yet since it was locked (2persons + landlord is in)");
     
     
     // Now let p1 leave
-    d.leave(p1);
+    p1.setGoHome();
+    JR.nap(100);
     asserts(d.entrants.size() == 2, "only 1 + landlord should be left");
     asserts(d.entrants.contains(p2), "p2 should be left");
     
-    JR.nap(10);
+    JR.nap(100);
     
     // make sure we haven't got reply yet
     inni void returnCap()
@@ -185,11 +192,12 @@ public class Door {
     
     
     // Now let p2 leave
-    d.leave(p2);
+    p2.setGoHome();
+    JR.nap(100);
     asserts(d.entrants.size() == 1, "Only landlord should be in!");
     asserts(d.entrants.contains(landlord), "Only landlord should be in");
     
-    JR.nap(10);
+    JR.nap(100);
     
     // make sure we HAVE got reply now
     inni void returnCap()
@@ -198,9 +206,12 @@ public class Door {
       asserts(false, "The closing signal was not sent!");
     }
     
-    d.leave(landlord);
+    landlord.setGoHome();
+    JR.nap(100);
 
     asserts(d.entrants.isEmpty(), "Everyone should've leaved");
+
+    JR.nap(100);
   }
 
 

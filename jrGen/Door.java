@@ -238,7 +238,7 @@ return null;
     @SuppressWarnings(value = "unchecked")
     private void startLoop() {
         InStatObj JRInstmt1 = new InStatObj(3, false);
-        JRLoop10: while (true) {
+        JRLoop9: while (true) {
             {
                 // Inni Statement without quantifier
                 JRInstmt1.armArray[0] = new QuantRec(new Cap_ext_(op_lock_Cap_voidTovoidTojavadotutildotArrayList, "java.util.ArrayList<Person>"), 0, 0);
@@ -387,6 +387,8 @@ JRrrecv1.fretOp.send(jrvm.getTimestamp(), JRrrecv1.handler, (java.lang.Object []
                                     {
                                         try {
                                             {
+                                                // Begin Expr2
+                                                asserts(!entrants.contains(p), "Person " + p + " has already entered door");
                                                 if (isLocked) {
                                                     // Return
                                                     {
@@ -500,7 +502,7 @@ JRrrecv1.fretOp.send(jrvm.getTimestamp(), JRrrecv1.handler, (java.lang.Object []
                                                 if (isLocked && entrants.size() == 0) {
                                                     { if (JRrrecv1.retOp != null)
                                                         JRrrecv1.retOp.send(jrvm.getTimestamp(), (java.lang.Object []) null);
-                                                    break JRLoop10;}
+                                                    break JRLoop9;}
                                                 }
                                             }
                                         } catch (Exception JRe) {
@@ -594,24 +596,28 @@ JRrrecv1.fretOp.send(jrvm.getTimestamp(), JRrrecv1.handler, (java.lang.Object []
         Door d = new Door();
         // Begin Expr2
         asserts(d.entrants.size() == 0, "Door should start empty");
-        Person p = new Person(true);
+        TestPerson p = new TestPerson();
         // Begin Expr2
-        JR.nap(10);
+        JR.nap(100);
         // Begin Expr2
         asserts(d.entrants.get(0) == p, "Person p should be in list");
         // Begin Expr2
         asserts(d.entrants.size() == 1, "Should only be 1 person in list");
+        // Begin Expr2
+        p.setGoHome();
+        // Begin Expr2
+        JR.nap(100);
     }
     
     public static void testOnePersonLeaving() {
         Door d = new Door();
-        Person p = new Person(true);
+        TestPerson p = new TestPerson();
         // Begin Expr2
-        JR.nap(10);
+        JR.nap(100);
         // Begin Expr2
-        p.leaveBar();
+        p.setGoHome();
         // Begin Expr2
-        JR.nap(10);
+        JR.nap(100);
         // Begin Expr2
         asserts(d.entrants.size() == 0, "Everyone should have exited.");
     }
@@ -620,21 +626,23 @@ JRrrecv1.fretOp.send(jrvm.getTimestamp(), JRrrecv1.handler, (java.lang.Object []
         InStatObj JRInstmt3 = new InStatObj(1, false);
         InStatObj JRInstmt2 = new InStatObj(1, false);
         Door d = new Door();
-        Person p1 = new Person(false);
+        TestPerson p1 = new TestPerson();
         // Begin Expr2
-        asserts(((Boolean) (new Cap_ext_(d.JRget_op_add_PersonToboolean(), "boolean")).call(jrvm.getTimestamp(), new java.lang.Object [] {p1})), "Door should start open");
+        JR.nap(100);
         // Begin Expr2
         asserts(d.entrants.size() == 1, "Should only be 1 person in list");
-        Person p2 = new Person(false);
+        TestPerson p2 = new TestPerson();
         // Begin Expr2
-        (new Cap_ext_(d.JRget_op_add_PersonToboolean(), "boolean")).call(jrvm.getTimestamp(), new java.lang.Object [] {p2});
+        JR.nap(100);
         // Begin Expr2
         asserts(d.entrants.size() == 2, "Two should \'ve entered");
         // Begin Expr2
         asserts(d.entrants.contains(p1), "p1 should be in list");
         // Begin Expr2
         asserts(d.entrants.contains(p2), "p2 should be in list");
-        Person landlord = new Person(true);
+        TestPerson landlord = new TestPerson();
+        // Begin Expr2
+        JR.nap(100);
         Op_ext.JRProxyOp op_returnCap_voidTovoid = null;
         try{
             op_returnCap_voidTovoid = new Op_ext_.JRProxyOp(new InOp_ext_impl());
@@ -646,19 +654,21 @@ JRrrecv1.fretOp.send(jrvm.getTimestamp(), JRrrecv1.handler, (java.lang.Object []
         asserts(list != d.entrants, "Should not be reference to entrants!");
         // Begin Expr2
         asserts(list.equals(d.entrants), "Should however be equal to entrants!");
-        Person p3 = new Person(false);
+        TestPerson p3 = new TestPerson();
         // Begin Expr2
-        asserts(!((Boolean) (new Cap_ext_(d.JRget_op_add_PersonToboolean(), "boolean")).call(jrvm.getTimestamp(), new java.lang.Object [] {p3})), "Door is locked, p3 should be rejected");
+        JR.nap(100);
         // Begin Expr2
         asserts(d.entrants.size() == 3, "Nobody should\'ve entered yet since it was locked (2persons + landlord is in)");
         // Begin Expr2
-        (new Cap_ext_(d.JRget_op_leave_PersonTovoid(), "void")).call(jrvm.getTimestamp(), new java.lang.Object [] {p1});
+        p1.setGoHome();
+        // Begin Expr2
+        JR.nap(100);
         // Begin Expr2
         asserts(d.entrants.size() == 2, "only 1 + landlord should be left");
         // Begin Expr2
         asserts(d.entrants.contains(p2), "p2 should be left");
         // Begin Expr2
-        JR.nap(10);
+        JR.nap(100);
         {
             // Inni Statement without quantifier
             JRInstmt2.armArray[0] = new QuantRec(new Cap_ext_(op_returnCap_voidTovoid, "void"), 0, 0);
@@ -769,13 +779,15 @@ JRrrecv2.fretOp.send(jrvm.getTimestamp(), JRrrecv2.handler, (java.lang.Object []
         // End Inni
         
         // Begin Expr2
-        (new Cap_ext_(d.JRget_op_leave_PersonTovoid(), "void")).call(jrvm.getTimestamp(), new java.lang.Object [] {p2});
+        p2.setGoHome();
+        // Begin Expr2
+        JR.nap(100);
         // Begin Expr2
         asserts(d.entrants.size() == 1, "Only landlord should be in!");
         // Begin Expr2
         asserts(d.entrants.contains(landlord), "Only landlord should be in");
         // Begin Expr2
-        JR.nap(10);
+        JR.nap(100);
         {
             // Inni Statement without quantifier
             JRInstmt3.armArray[0] = new QuantRec(new Cap_ext_(op_returnCap_voidTovoid, "void"), 0, 0);
@@ -886,9 +898,13 @@ JRrrecv3.fretOp.send(jrvm.getTimestamp(), JRrrecv3.handler, (java.lang.Object []
         // End Inni
         
         // Begin Expr2
-        (new Cap_ext_(d.JRget_op_leave_PersonTovoid(), "void")).call(jrvm.getTimestamp(), new java.lang.Object [] {landlord});
+        landlord.setGoHome();
+        // Begin Expr2
+        JR.nap(100);
         // Begin Expr2
         asserts(d.entrants.isEmpty(), "Everyone should\'ve leaved");
+        // Begin Expr2
+        JR.nap(100);
     }
     
     public static void asserts(boolean b, String s) {
