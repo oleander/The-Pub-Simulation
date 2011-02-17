@@ -88,7 +88,10 @@ public class Cupboard {
 
   public static void testAddItems()
   {
-    asserts(false, "Tests not written 2.");       
+    Cupboard cb = new Cupboard(Arrays.asList(Global.beerTap));
+    cb.putBackItem(Global.coffee);    
+    asserts(cb.items.contains(Global.beerTap), "BeerTap not found. 2");       
+    asserts(cb.items.contains(Global.coffee), "Coffee not found. 2");       
   }  
 
   public static void testAquireItems()
