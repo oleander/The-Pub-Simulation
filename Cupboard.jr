@@ -16,7 +16,7 @@ public class Cupboard {
   }  
 
   public Cupboard() {
-    this(Arrays.asList(Global.beerTap), 0, 0);
+    this(Global.IngrediensList, Global.startGlassCount, Global.startCupsCount);
     
   }  
   
