@@ -19,8 +19,8 @@ public class Cupboard {
     this(Global.IngrediensList, Global.startGlassCount, Global.startCupsCount);    
   }  
   
-  public Cupboard(List<Item> items, int startNumGlasses, int startNumCups) {
-    this.items = new ArrayList(items);    
+  public Cupboard(List<Item> inItems, int startNumGlasses, int startNumCups) {
+    items = new ArrayList(inItems);    
     for(int i = 0; i < startNumGlasses; i++)
       {
         items.add(Global.glass);        
@@ -67,7 +67,6 @@ public class Cupboard {
   ***************************************************/
   public static void main(String[] args) {
     allCupboardTests();
-    
   }
 
   public static void allCupboardTests()
@@ -75,6 +74,7 @@ public class Cupboard {
     testStartsWithItems();
     testAddItems();
     testAquireItems();
+    testTakeSeveralIngredients();
     System.out.println("Cupboard tests passed.");    
   }
 
@@ -103,7 +103,57 @@ public class Cupboard {
     cb.aquireItem(Global.beerTap);
     asserts(!cb.items.contains(Global.beerTap), "BeerTap still in cupboard. 3");           
   }  
+ 
+  public static void testTakeSeveralIngredients()
+  {
+    final List<Beverage> bl = Global.beverageList;
+    for(int tries = 0; tries < 10; tries++)
+      {        
+        for(int i = 0; i < bl.size(); i++)
+          for(int j = 0; j < bl.size(); j++)
+            {  
+              Cupboard cb = new Cupboard();
+              new ItemTaker(bl.get(i).getIngredients(), cb);
+              new ItemTaker(bl.get(j).getIngredients(), cb);                              
+            }
+      }
+         
+    for(int i = 0; i < bl.size()*bl.size()*10*2; i++ )
+      {        
+        P(ItemTaker.s);   
+      }    
+  }  
   
+  // This class is ONLY used in testing
+  private static class ItemTaker
+  {
+    private List<Item> items;   
+    private Cupboard cb;    
+    static Random r = new Random();
+    public static sem s = 0;
+    
+    public ItemTaker(List<Item> items, Cupboard cb)
+    {
+      this.items = items;      
+      this.cb = cb;
+      
+    }    
+    public process p{
+      for (Iterator<Item> it = items.iterator(); it.hasNext();) {    
+        JR.nap(r.nextInt(100)); // testing randomness :)
+        Item item = it.next();        
+        call cb.aquireItem(item);    
+      }
+      for (Iterator<Item> it = items.iterator(); it.hasNext();) {
+        JR.nap(10);        
+        Item item = it.next();
+        call cb.putBackItem(item);
+      }
+      V(s);      
+    }    
+  }
+  
+
   public static void asserts(boolean b, String s)
   {
     if(!b)

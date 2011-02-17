@@ -33,16 +33,15 @@ public class Global {
   public final static BeverageWare cup    = new BeverageWare("Cup",   2);  
 
   // Required Ingredients
-  private final static Item[] beerIngredients      = {beerTap};
-  private final static Item[] cappucinoIngredients = {milk, coffee};
-  private final static Item[] choclateIngredients  = {milk, choclatePowder};
-  
-    
+  private final static List<Item> beerIngredients      = Arrays.asList(beerTap);
+  private final static List<Item> cappucinoIngredients = Arrays.asList(milk, coffee);
+  private final static List<Item> choclateIngredients  = Arrays.asList(milk, choclatePowder);
 
   // Beverages
   public final static Beverage beer      = new Beverage("Beer",      BEER_DRINKING_TIME,      glass, beerIngredients);
   public final static Beverage cappucino = new Beverage("Cappucino", CAPPUCINO_DRINKING_TIME, cup,   cappucinoIngredients);
   public final static Beverage choclate  = new Beverage("Choclate",  CHOCLATE_DRINKING_TIME,  cup,   choclateIngredients);
   
-  public final static Beverage[] beverageList = {beer, cappucino, choclate};  
+  public final static List<Beverage> beverageList = 
+    Arrays.asList(beer, cappucino, choclate);  
 }

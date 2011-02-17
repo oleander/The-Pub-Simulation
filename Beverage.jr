@@ -6,7 +6,7 @@ public class Beverage {
   private final String name;
   private final int drinkingTime;
   private final BeverageWare bw;
-  private final Item[] ingredients;
+  private final ArrayList<Item> ingredients;
   
   @Override
   public String toString()
@@ -16,11 +16,11 @@ public class Beverage {
 
 
   
-  public Beverage(String name, int drinkingTime, BeverageWare bw, Item[] ingredients) {
+  public Beverage(String name, int drinkingTime, BeverageWare bw, List<Item> ingredients) {
     this.name = name;    
     this.drinkingTime = drinkingTime;
     this.bw = bw;
-    this.ingredients = ingredients;
+    this.ingredients = new ArrayList(ingredients);
   }
   
   
@@ -32,7 +32,7 @@ public class Beverage {
     return bw;
   }
 
-  public Item[] getIngredients() {
+  public List<Item> getIngredients() {
     return ingredients;
   }    
 

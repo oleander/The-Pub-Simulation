@@ -32,12 +32,13 @@ public class Global extends java.lang.Object {
     public static final List IngrediensList = Arrays.asList(beerTap, coffee, milk, choclatePowder);
     public static final BeverageWare glass = new BeverageWare("Glass", 1);
     public static final BeverageWare cup = new BeverageWare("Cup", 2);
-    private static final Item[] beerIngredients = {beerTap};
-    private static final Item[] cappucinoIngredients = {milk, coffee};
-    private static final Item[] choclateIngredients = {milk, choclatePowder};
+    private static final List beerIngredients = Arrays.asList(beerTap);
+    private static final List cappucinoIngredients = Arrays.asList(milk, coffee);
+    private static final List choclateIngredients = Arrays.asList(milk, choclatePowder);
     public static final Beverage beer = new Beverage("Beer", BEER_DRINKING_TIME, glass, beerIngredients);
     public static final Beverage cappucino = new Beverage("Cappucino", CAPPUCINO_DRINKING_TIME, cup, cappucinoIngredients);
     public static final Beverage choclate = new Beverage("Choclate", CHOCLATE_DRINKING_TIME, cup, choclateIngredients);
+    public static final List beverageList = Arrays.asList(beer, cappucino, choclate);
     protected boolean JRcalled = false;
     protected JRGlobal jrresref;
     public Object JRgetjrresref()
