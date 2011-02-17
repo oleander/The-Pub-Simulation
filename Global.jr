@@ -44,5 +44,5 @@ public class Global {
   public final static Beverage cappucino = new Beverage("Cappucino", CAPPUCINO_DRINKING_TIME, cup,   cappucinoIngredients);
   public final static Beverage choclate  = new Beverage("Choclate",  CHOCLATE_DRINKING_TIME,  cup,   choclateIngredients);
   
-  
+  public final static Beverage[] beverageList = {beer, cappucino, choclate};  
 }
