@@ -2,3 +2,5 @@
 *.jr~
 jrGen
 *#*#
+*.class
+
