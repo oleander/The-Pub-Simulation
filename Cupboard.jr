@@ -1,0 +1,116 @@
+import edu.ucdavis.jr.*;
+import java.util.*;
+import java.util.ArrayList;
+
+
+public class Cupboard {
+
+  private ArrayList<Item> items;  
+
+  public op void aquireItem(Item);
+  public op void putBackItem(Item);
+  
+ 
+  public Cupboard(List<Item> items) {
+    this(items, 0, 0);    
+  }  
+
+  public Cupboard() {
+    this(Global.IngrediensList, Global.startGlassCount, Global.startCupsCount);    
+  }  
+  
+  public Cupboard(List<Item> items, int startNumGlasses, int startNumCups) {
+    this.items = new ArrayList(items);    
+    for(int i = 0; i < startNumGlasses; i++)
+      {
+        items.add(Global.glass);        
+      }    
+    for(int i = 0; i < startNumCups; i++)
+      {
+        items.add(Global.cup);        
+      }    
+  }  
+
+  private process cupBoardProcess {
+    startLoop();    
+    System.out.println("cupBoard process exits ...");
+  }
+
+
+
+  // I added this as a seperate method to be able to override stupid warnings
+  @SuppressWarnings("unchecked")   
+  private void startLoop()
+  {
+    while(true)
+      {
+        inni void aquireItem(Item request) st items.contains(request)
+        {
+          items.remove(request);          
+        }
+        [] void putBackItem(Item anotherItem)
+        {
+          items.add(anotherItem);            
+        }
+      }
+  }
+  
+  
+
+
+
+
+
+  /***************************************************
+     TESTING CODE BELOW
+
+  ***************************************************/
+  public static void main(String[] args) {
+    allCupboardTests();
+    
+  }
+
+  public static void allCupboardTests()
+  {
+    testStartsWithItems();
+    testAddItems();
+    testAquireItems();
+    System.out.println("Cupboard tests passed.");    
+  }
+
+
+
+  public static void testStartsWithItems()
+  {
+    Cupboard cb = new Cupboard(Arrays.asList(Global.beerTap));
+    asserts(cb.items.contains(Global.beerTap), "BeerTap not found.");       
+  }  
+
+  public static void testAddItems()
+  {
+    Cupboard cb = new Cupboard(Arrays.asList(Global.beerTap));
+    cb.putBackItem(Global.coffee);    
+    asserts(cb.items.contains(Global.beerTap), "BeerTap not found. 2");       
+    asserts(cb.items.contains(Global.coffee), "Coffee not found. 2");       
+  }  
+
+  public static void testAquireItems()
+  {
+    Cupboard cb = new Cupboard(Arrays.asList(Global.beerTap, Global.coffee));
+    cb.aquireItem(Global.coffee);    
+    asserts(cb.items.contains(Global.beerTap), "BeerTap not found. 3");       
+    asserts(!cb.items.contains(Global.coffee), "Coffee still in cupboard. 3"); 
+    cb.aquireItem(Global.beerTap);
+    asserts(!cb.items.contains(Global.beerTap), "BeerTap still in cupboard. 3");           
+  }  
+  
+  public static void asserts(boolean b, String s)
+  {
+    if(!b)
+      {
+        System.out.println("CupboardAssert failed: " + s);
+        System.exit(1);
+      }
+  }
+
+}

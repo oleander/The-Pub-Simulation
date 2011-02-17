@@ -1,0 +1,221 @@
+import edu.ucdavis.jr.*;
+import java.util.*;
+import java.util.ArrayList;
+
+
+public class Table {
+
+  private ArrayList<BeverageWare> beveragewares;
+  private int capacity;
+  private static int startId = 0;  
+  private int id;
+  
+
+  public op void addBeverageWare(BeverageWare bw);
+  public op ArrayList<BeverageWare> clearTable();
+  
+ 
+  public Table() {
+    beveragewares = new ArrayList<BeverageWare>();
+    id = startId++;
+    capacity = Global.tableCapacities;    
+  }  
+
+
+  @Override
+  public String toString() {
+    return "Table " + id;    
+  }  
+
+  public process tableProcess {
+    startLoop();    
+    System.out.println("Table process exits ...");
+  }
+
+
+
+  //@SuppressWarnings("unchecked")   
+  private void startLoop()
+  {
+     while(true)
+       {         
+         inni void addBeverageWare(BeverageWare bw) st unitsRemaining() >= bw.getSpaceUnits()
+           {       
+             addBeverage(bw);             
+           }     
+         [] ArrayList<BeverageWare> clearTable()
+           {
+             ArrayList<BeverageWare> temp = new ArrayList<BeverageWare>(beveragewares);
+             beveragewares.clear();            
+             return temp;             
+           }         
+       }
+  }
+  
+
+  @SuppressWarnings("unchecked")   
+  private void addBeverage(BeverageWare bw)
+  {
+    beveragewares.add(bw); // This darn command adds stupid warning   
+  }
+  
+  private int unitsRemaining()
+  {
+    int space = capacity;
+    for (BeverageWare bw: beveragewares) {
+      space -= bw.getSpaceUnits();
+    }
+
+    asserts(space >= 0, "Table got overfilled!");
+    return space;
+  }
+
+
+
+
+
+
+
+
+  /***************************************************
+     TESTING CODE BELOW
+
+  ***************************************************/
+  public static void main(String[] args) {
+    allTableTests();
+  }
+
+  public static void allTableTests()
+  {
+    testCapacityCounting();  
+    testOverflowTable();    
+    testClear();
+    testClear2();
+    System.out.println("Table tests passed.");
+  }
+
+  // This test just tests that cupes and mugs get counted appropriately
+  // Note how we in test use send but in testing never uses call
+  public static void testCapacityCounting()
+  {
+    Table t = new Table();
+    t.capacity = 10;    
+    asserts(t.unitsRemaining() == 10, "Table should start empty");
+    
+    send t.addBeverageWare(Global.cup); JR.nap(100);    
+    asserts(t.unitsRemaining() == 8, "8");
+
+    send t.addBeverageWare(Global.cup); JR.nap(100);
+    asserts(t.unitsRemaining() == 6, "6");
+
+    send t.addBeverageWare(Global.glass); JR.nap(100);
+    asserts(t.unitsRemaining() == 5, "5");
+
+    send t.addBeverageWare(Global.cup); JR.nap(100);
+    asserts(t.unitsRemaining() == 3, "3");
+  }  
+
+  public static void testOverflowTable()
+  {
+    Table t = new Table();
+    t.capacity = 3;    
+    
+    send t.addBeverageWare(Global.cup); JR.nap(100);    
+    
+    send t.addBeverageWare(Global.cup); JR.nap(100);
+    asserts(t.unitsRemaining() == 1, "A 1-unit-remaining table should not take in another cup!");
+
+    send t.addBeverageWare(Global.glass); JR.nap(100);
+    asserts(t.unitsRemaining() == 0, "A 1-unit-remaining table should be able to take a glass!");
+
+    send t.addBeverageWare(Global.glass); JR.nap(100);
+    asserts(t.unitsRemaining() == 0, "A full table should not be able to take in glasss");
+
+  }  
+
+  public static void testClear()
+  {
+    Table t = new Table();
+    t.capacity = 6;    
+    
+    send t.addBeverageWare(Global.cup);
+    send t.addBeverageWare(Global.glass);
+    send t.addBeverageWare(Global.cup); 
+    send t.addBeverageWare(Global.cup); JR.nap(100);    // Now this one should not be put in until after clearance  
+    
+    ArrayList<BeverageWare> list = t.clearTable(); JR.nap(100);    
+    
+    asserts(list != t.beveragewares, "Should not return reference list on clearing.");
+    asserts(list.size() == 3, "Should retrieved all 3 beveragewares");
+
+    // The 3 asserts below are not senseful as they should test multi-setproperties, but oh well ...
+    asserts(list.get(0) == Global.cup, "should be cup AND refernce");
+    asserts(list.get(1) == Global.glass, "glass");
+    asserts(list.get(0) == Global.cup, "cup");
+
+    // Now lets check if old sent cup got recieved
+    asserts(t.unitsRemaining() == 4, "cup probably didn't get back on table");
+    
+    
+  }
+
+
+  public static void testClear2()
+  {
+    Table t = new Table();
+    t.capacity = 2;    
+    
+    send t.addBeverageWare(Global.cup); // taken on 1
+    send t.addBeverageWare(Global.glass); // taken on 2
+    send t.addBeverageWare(Global.cup); // taken on 3
+    send t.addBeverageWare(Global.cup); JR.nap(100); // taken on 4 
+    send t.addBeverageWare(Global.glass); // taken on 2 // This one gets taken already at clear 2!
+    send t.addBeverageWare(Global.glass); // taken on 5
+    send t.addBeverageWare(Global.cup); JR.nap(100); // taken on 6   // Now we have made a quite big queue.  
+    
+    ArrayList<BeverageWare> list;
+
+    asserts(t.unitsRemaining() == 0, "Should be full 1");
+    list = t.clearTable(); JR.nap(100);    
+    asserts(list.get(0) == Global.cup, "Clear2 1");
+    
+    asserts(t.unitsRemaining() == 0, "Should be full 2");
+    list = t.clearTable(); JR.nap(100);   
+    asserts(list.size() == 2, "Queue system should't block on big cups.");    
+    asserts(list.get(0) == Global.glass, "Clear2 2.1");
+    asserts(list.get(1) == Global.glass, "Clear2 2.2");
+    
+    asserts(t.unitsRemaining() == 0, "Should be full 3");
+    list = t.clearTable(); JR.nap(100);    
+    asserts(list.get(0) == Global.cup, "Clear2 3");
+
+    asserts(t.unitsRemaining() == 0, "Should be full 4");
+    list = t.clearTable(); JR.nap(100);    
+    asserts(list.get(0) == Global.cup, "Clear2 4");
+
+
+    asserts(t.unitsRemaining() == 1, "Should not be full 5");
+    list = t.clearTable(); JR.nap(100);    
+    asserts(list.get(0) == Global.glass, "Clear2 5");
+    
+
+    asserts(t.unitsRemaining() == 0, "Should be full 6");
+    list = t.clearTable(); JR.nap(100);    
+    asserts(list.get(0) == Global.cup, "Clear2 6");
+
+
+    asserts(t.unitsRemaining() == 2, "Should be cleared in end");    
+  }
+  
+  
+
+  
+  public static void asserts(boolean b, String s)
+  {
+    if(!b)
+      {
+        System.out.println("TableAssert failed: " + s);
+        System.exit(1);
+      }
+  }
+}

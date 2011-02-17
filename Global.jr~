@@ -1,0 +1,43 @@
+import edu.ucdavis.jr.*;
+import java.util.*;
+
+public class Global {
+
+  // Global objects in the bar
+  public static Door door;
+
+
+  // Constants
+  public static int tableCapacities = 10;
+
+  // Private constants
+  private static int BEER_DRINKING_TIME      = 100;
+  private static int CAPPUCINO_DRINKING_TIME = 100;
+  private static int CHOCLATE_DRINKING_TIME  = 100;
+  
+
+  
+  // Ingredients
+  public static Item beerTap        = new Item("Beer tap");
+  public static Item coffee         = new Item("Coffee");
+  public static Item milk           = new Item("Milk");
+  public static Item cholcatePowder = new Item("Cholcate Powder");
+
+  // Beveragewares
+  public static BeverageWare glass  = new BeverageWare("Glass", 2);
+  public static BeverageWare cup    = new BeverageWare("Cup",   1);  
+
+  // Required Ingredients
+  private static Item[] beerIngredients      = {};
+  private static Item[] cappucinoIngredients = {};
+  private static Item[] choclateIngredients  = {};
+  
+    
+
+  // Beverages
+  public static Beverage beer      = new Beverage("Beer",      BEER_DRINKING_TIME,      glass, beerIngredients);
+  public static Beverage cappucino = new Beverage("Cappucino", CAPPUCINO_DRINKING_TIME, cup,   cappucinoIngredients);
+  public static Beverage choclate  = new Beverage("Choclate",  CHOCLATE_DRINKING_TIME,  cup,   choclateIngredients);
+  
+  
+}

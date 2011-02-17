@@ -2,53 +2,217 @@ import edu.ucdavis.jr.*;
 import java.util.*;
 import java.util.ArrayList;
 
+
 public class Door {
 
   private ArrayList<Person> entrants;
   private boolean isLocked;
-  private cap void() returnOkCap:
+  private cap void() returnOkCap;
   
 
   public op boolean add(Person p);
   public op ArrayList<Person> lock(cap void() returnOkCap);
   public op void leave(Person p);
   
-
-  public Door(List<Integer> list) {
+ 
+  public Door() {
     entrants = new ArrayList<Person>();
-    isLocked = false;    
+    isLocked = false;
+    Global.door = this;
+    
   }  
 
   private process doorProcess {
-    while(true)
-      {
-	inni ArrayList<Person> lock(cap void() returnOkCap)
-	{
-	  isLocked = true;
-	  this.returnOkCap = returnOkCap;
-	  return entrants.clone();
-      
-	}
-	[] boolean add(Person p)
-	  {
-	    if(isLocked)
-	      {
-		return false;
-	      }
-	    entrants.add(p);
-	    return true;
-	
-	  }
-	[] void leave(Person p)
-	  {
-	    entrants.remove(p);
-	    if(isLocked && entrants.size() == 1)
-	      {
-		send returnOkCap();
-		break;
-	      }
-	  }
-      }
+    startLoop();    
     System.out.println("Door process exits ...");
   }
+
+
+
+  // I added this as a seperate method to be able to override stupid warnings
+  @SuppressWarnings("unchecked")   
+  private void startLoop()
+  {
+    while(true)
+      {
+        inni ArrayList<Person> lock(cap void() returnOkCap)
+        {
+          isLocked = true;
+          this.returnOkCap = returnOkCap;
+          
+          return new ArrayList<Person>(entrants); // This adds stupid warning
+          
+        }
+        [] boolean add(Person p)
+          {
+            if(isLocked)
+              {
+        	return false;
+              }
+            addPersonToList(p);            
+            return true;
+        
+          }
+        [] void leave(Person p)
+          {
+            removePersonFromList(p);            
+            if(isLocked && entrants.size() == 1)
+              {
+                // Ok, only landlord should be left, lets notift him
+                send returnOkCap();
+              }
+            if(isLocked && entrants.size() == 0)
+              {
+                // Ok, now even landlord left, lets exit gracfully
+                break;                
+              }            
+          }
+      }
+  }
+  
+
+  @SuppressWarnings("unchecked")   
+  private void addPersonToList(Person p)
+  {
+    entrants.add(p); // This darn command adds stupid warning   
+  }
+  
+
+  @SuppressWarnings("unchecked")   
+  private void removePersonFromList(Person p)
+  {
+    entrants.remove(p); // This darn command adds stupid warning   
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /***************************************************
+     TESTING CODE BELOW
+
+  ***************************************************/
+  public static void main(String[] args) {
+    allDoorTests();
+  }
+
+  public static void allDoorTests()
+  {
+    testOnePersonEnters();
+    testOnePersonLeaving();
+    testDoor();
+    System.out.println("Door tests passed.");    
+  }
+
+  // This test is starting other threads
+  public static void testOnePersonEnters()
+  {
+    Door d = new Door();
+    asserts(d.entrants.size() == 0, "Door should start empty");    
+    Person p = new Person(true);
+    
+    JR.nap(10);
+
+    asserts(d.entrants.get(0) == p, "Person p should be in list");    
+    asserts(d.entrants.size() == 1, "Should only be 1 person in list");    
+    
+  }  
+
+  // This test is starting other threads
+  public static void testOnePersonLeaving()
+  {
+    Door d = new Door();
+    Person p = new Person(true);
+    
+    JR.nap(10);
+    p.leaveBar();
+    JR.nap(10);    
+    
+    asserts(d.entrants.size() == 0, "Everyone should have exited.");
+  }
+
+
+  // This test runs in a two threads (test+Doorprocess) and only emulates a person
+  // What is good with this test is that it doesn't depend on Person
+  // This test tests most behavior
+  public static void testDoor()
+  {
+    Door d = new Door();    
+    Person p1 = new Person(false); //fakeperson
+    asserts(d.add(p1), "Door should start open"); // try enter door    
+    asserts(d.entrants.size() == 1, "Should only be 1 person in list");
+
+    Person p2 = new Person(false); // another entrant    
+    d.add(p2);
+    asserts(d.entrants.size() == 2, "Two should 've entered");
+    asserts(d.entrants.contains(p1),  "p1 should be in list");
+    asserts(d.entrants.contains(p2),  "p2 should be in list");
+    
+    
+    Person landlord = new Person(true); // this emulates Landlord (auto-enters)
+    op void returnCap(); // The landlords replyChannel    
+    ArrayList<Person> list = d.lock(returnCap);
+    asserts(list != d.entrants, "Should not be reference to entrants!");
+    asserts(list.equals(d.entrants), "Should however be equal to entrants!");
+    
+    Person p3 = new Person(false); // this one will emulate door-rejected customer
+    asserts(!d.add(p3), "Door is locked, p3 should be rejected");
+    asserts(d.entrants.size() == 3, "Nobody should've entered yet since it was locked (2persons + landlord is in)");
+    
+    
+    // Now let p1 leave
+    d.leave(p1);
+    asserts(d.entrants.size() == 2, "only 1 + landlord should be left");
+    asserts(d.entrants.contains(p2), "p2 should be left");
+    
+    JR.nap(10);
+    
+    // make sure we haven't got reply yet
+    inni void returnCap()
+    {
+      asserts(false, "The closing signal is sent too early!");
+    }
+    [] else { /* landing here is good :) */ }
+    
+    
+    
+    // Now let p2 leave
+    d.leave(p2);
+    asserts(d.entrants.size() == 1, "Only landlord should be in!");
+    asserts(d.entrants.contains(landlord), "Only landlord should be in");
+    
+    JR.nap(10);
+    
+    // make sure we HAVE got reply now
+    inni void returnCap()
+    { /* landing here is good :) */  }
+    [] else {
+      asserts(false, "The closing signal was not sent!");
+    }
+    
+    d.leave(landlord);
+
+    asserts(d.entrants.isEmpty(), "Everyone should've leaved");
+  }
+
+
+
+  
+  public static void asserts(boolean b, String s)
+  {
+    if(!b)
+      {
+        System.out.println("DoorAssert failed: " + s);
+        System.exit(1);
+      }
+  }
+
 }

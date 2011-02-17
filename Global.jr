@@ -1,0 +1,48 @@
+import edu.ucdavis.jr.*;
+import java.util.*;
+
+public class Global {
+
+  // Global objects in the bar
+  public static Door door;
+
+
+  // Constants
+  public static int tableCapacities = 10;
+  public static int startGlassCount = 10;
+  public static int startCupsCount = 10;
+
+  // Private constants
+  private final static int BEER_DRINKING_TIME      = 100;
+  private final static int CAPPUCINO_DRINKING_TIME = 100;
+  private final static int CHOCLATE_DRINKING_TIME  = 100;
+  
+
+  
+  // Ingredients
+  public final static Item beerTap        = new Item("Beer tap");
+  public final static Item coffee         = new Item("Coffee");
+  public final static Item milk           = new Item("Milk");
+  public final static Item choclatePowder = new Item("Choclate Powder");
+
+  public final static List<Item> IngrediensList = 
+    Arrays.asList(beerTap, coffee, milk, choclatePowder);  
+
+  // Beveragewares
+  public final static BeverageWare glass  = new BeverageWare("Glass", 1);
+  public final static BeverageWare cup    = new BeverageWare("Cup",   2);  
+
+  // Required Ingredients
+  private final static Item[] beerIngredients      = {beerTap};
+  private final static Item[] cappucinoIngredients = {milk, coffee};
+  private final static Item[] choclateIngredients  = {milk, choclatePowder};
+  
+    
+
+  // Beverages
+  public final static Beverage beer      = new Beverage("Beer",      BEER_DRINKING_TIME,      glass, beerIngredients);
+  public final static Beverage cappucino = new Beverage("Cappucino", CAPPUCINO_DRINKING_TIME, cup,   cappucinoIngredients);
+  public final static Beverage choclate  = new Beverage("Choclate",  CHOCLATE_DRINKING_TIME,  cup,   choclateIngredients);
+  
+  public final static Beverage[] beverageList = {beer, cappucino, choclate};  
+}
