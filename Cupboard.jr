@@ -7,8 +7,8 @@ public class Cupboard {
 
   private ArrayList<Item> items;  
 
-  public op void aquireItems(Item);
-  public op void putBackItems(Item);
+  public op void aquireItem(Item);
+  public op void putBackItem(Item);
   
  
   public Cupboard(List<Item> items) {
@@ -28,11 +28,11 @@ public class Cupboard {
   {
     while(true)
       {
-        inni void aquireItems(Item request) st items.contains(request)
+        inni void aquireItem(Item request) st items.contains(request)
         {
           items.remove(request);          
         }
-        [] void putBackItems(Item anotherItem)
+        [] void putBackItem(Item anotherItem)
         {
           items.add(anotherItem);            
         }
