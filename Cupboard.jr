@@ -12,7 +12,7 @@ public class Cupboard {
   
  
   public Cupboard(List<Item> items) {
-    this.items = new ArrayList(items);    
+    this(items, 0, 0);    
   }  
 
   public Cupboard() {
