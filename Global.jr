@@ -23,19 +23,19 @@ public class Global {
   public final static Item beerTap        = new Item("Beer tap");
   public final static Item coffee         = new Item("Coffee");
   public final static Item milk           = new Item("Milk");
-  public final static Item cholcatePowder = new Item("Cholcate Powder");
+  public final static Item choclatePowder = new Item("Choclate Powder");
 
   public final static List<Item> IngrediensList = 
-    Arrays.asList(beerTap, coffee, milk, cholcatePowder);  
+    Arrays.asList(beerTap, coffee, milk, choclatePowder);  
 
   // Beveragewares
   public final static BeverageWare glass  = new BeverageWare("Glass", 1);
   public final static BeverageWare cup    = new BeverageWare("Cup",   2);  
 
   // Required Ingredients
-  private final static Item[] beerIngredients      = {};
-  private final static Item[] cappucinoIngredients = {};
-  private final static Item[] choclateIngredients  = {};
+  private final static Item[] beerIngredients      = {beerTap};
+  private final static Item[] cappucinoIngredients = {milk, coffee};
+  private final static Item[] choclateIngredients  = {milk, choclatePowder};
   
     
 

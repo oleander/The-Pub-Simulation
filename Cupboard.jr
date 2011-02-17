@@ -16,8 +16,7 @@ public class Cupboard {
   }  
 
   public Cupboard() {
-    this(Global.IngrediensList, Global.startGlassCount, Global.startCupsCount);
-    
+    this(Global.IngrediensList, Global.startGlassCount, Global.startCupsCount);    
   }  
   
   public Cupboard(List<Item> items, int startNumGlasses, int startNumCups) {
