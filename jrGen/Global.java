@@ -29,6 +29,7 @@ public class Global extends java.lang.Object {
     public static final Item coffee = new Item("Coffee");
     public static final Item milk = new Item("Milk");
     public static final Item cholcatePowder = new Item("Cholcate Powder");
+    public static final List IngrediensList = Arrays.asList(beerTap, coffee, milk, cholcatePowder);
     public static final BeverageWare glass = new BeverageWare("Glass", 1);
     public static final BeverageWare cup = new BeverageWare("Cup", 2);
     private static final Item[] beerIngredients = {};

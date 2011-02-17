@@ -25,6 +25,9 @@ public class Global {
   public final static Item milk           = new Item("Milk");
   public final static Item cholcatePowder = new Item("Cholcate Powder");
 
+  public final static List<Item> IngrediensList = 
+    Arrays.asList(beerTap, coffee, milk, cholcatePowder);  
+
   // Beveragewares
   public final static BeverageWare glass  = new BeverageWare("Glass", 1);
   public final static BeverageWare cup    = new BeverageWare("Cup",   2);  
