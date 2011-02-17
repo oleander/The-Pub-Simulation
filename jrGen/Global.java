@@ -20,6 +20,8 @@ public class Global extends java.lang.Object {
     }
     public static Door door;
     public static int tableCapacities = 10;
+    public static int startGlassCount = 10;
+    public static int startCupsCount = 10;
     private static final int BEER_DRINKING_TIME = 100;
     private static final int CAPPUCINO_DRINKING_TIME = 100;
     private static final int CHOCLATE_DRINKING_TIME = 100;

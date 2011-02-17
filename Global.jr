@@ -9,6 +9,8 @@ public class Global {
 
   // Constants
   public static int tableCapacities = 10;
+  public static int startGlassCount = 10;
+  public static int startCupsCount = 10;
 
   // Private constants
   private final static int BEER_DRINKING_TIME      = 100;
