@@ -82,20 +82,18 @@ public class Cupboard {
 
   public static void testStartsWithItems()
   {
-    //ArrayList<Item> items = new ArrayList<Item>();
-    
-    //Cupboard cb = new Cupboard(Arrays.asList(Global.beerTap));    
-    asserts(false, "Tests not written.");       
+    Cupboard cb = new Cupboard(Arrays.asList(Global.beerTap));
+    asserts(cb.items.contains(Global.beerTap), "BeerTap not found.");       
   }  
 
   public static void testAddItems()
   {
-    asserts(false, "Tests not written.");       
+    asserts(false, "Tests not written 2.");       
   }  
 
   public static void testAquireItems()
   {
-    asserts(false, "Tests not written.");       
+    asserts(false, "Tests not written 3.");       
   }  
   
   public static void asserts(boolean b, String s)
