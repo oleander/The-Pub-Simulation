@@ -18,64 +18,8 @@ public class SimpleClock {
 
   private process ticker {
     long next = System.nanoTime();
-    long w;
+    long w;                                              
     boolean shouldContinue; 
     do {
       next += (delay*1000000);
       w = Math.max(0,(next-System.nanoTime())/1000000);
-      edu.ucdavis.jr.JR.nap(w);
-      shouldContinue = tick(); 
-      System.out.println("Tickresult: " + shouldContinue);       
-    } while (shouldContinue);
-    System.out.println("tickerprocessen avslutas ..."); 
-
-  }
-
-  public op void timer(cap void() alarm, int ms) {
-    edu.ucdavis.jr.JR.nap(ms);
-    alarm();
-  }
-
-  //Nedan är kod för som är ekvivalent med ovanstående timer
-  /*
-  public op void timer(cap void() alarm, int ms);
-  
-  public process abc
-  {
-    cap void() alarm;
-    int ms;
-    while(true) 
-      {
-	receive timer(alarm, ms);
-	edu.ucdavis.jr.JR.nap(ms);
-	alarm();
-	
-      }    
-  }
-  */  
-
-  public process listener 
-  {
-
-    while(true)
-      {	
-	inni boolean tick()
-	{
-	  System.out.println("Tick");
-	  return true;	  
-	}
-	[] void alarmCap()
-	  {
-	    break;	    
-	  }    
-      }
-    System.out.println("Nu har alarmet gått");
-    
-  }
-  
-
-  public static void main(String[] args) {
-    new SimpleClock(1000);
-    System.out.println("Done.");    
-  }
-}
