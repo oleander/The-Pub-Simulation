@@ -58,9 +58,6 @@ public class Cupboard {
   
 
 
-
-
-
   /***************************************************
      TESTING CODE BELOW
 
@@ -104,6 +101,8 @@ public class Cupboard {
     asserts(!cb.items.contains(Global.beerTap), "BeerTap still in cupboard. 3");           
   }  
  
+  //It's really noteworthy that this testcase fails when different ingredients
+  //Are taken in some order 
   public static void testTakeSeveralIngredients()
   {
     final List<Beverage> bl = Global.beverageList;
@@ -129,7 +128,7 @@ public class Cupboard {
   {
     private List<Item> items;   
     private Cupboard cb;    
-    static Random r = new Random();
+    private static Random r = new Random();
     public static sem s = 0;
     
     public ItemTaker(List<Item> items, Cupboard cb)

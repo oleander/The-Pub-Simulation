@@ -1,0 +1,56 @@
+import edu.ucdavis.jr.*;
+import java.util.*;
+
+
+public class Assistant extends Person {
+
+
+  public Assistant() {
+    super("Assistant");    
+    
+  }  
+  
+  private process AssistantProcess {
+    startLoop();    
+    System.out.println("Assistant process exits ...");
+  }
+
+
+
+  // I added this as a seperate method to be able to override stupid warnings
+  @SuppressWarnings("unchecked")   
+  private void startLoop()
+  {
+    while(true)
+      {
+      }
+  }
+  
+  
+
+
+  /***************************************************
+     TESTING CODE BELOW
+
+  ***************************************************/
+  public static void main(String[] args) {
+    allAssistantTests();
+  }
+
+  public static void allAssistantTests()
+  {
+    System.out.println("Assistant tests passed.");    
+  }
+
+
+
+  public static void asserts(boolean b, String s)
+  {
+    if(!b)
+      {
+        System.out.println("AssistantAssert failed: " + s);
+        System.exit(1);
+      }
+  }
+
+}

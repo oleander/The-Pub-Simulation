@@ -17,8 +17,6 @@ public class Global {
   private final static int CAPPUCINO_DRINKING_TIME = 100;
   private final static int CHOCLATE_DRINKING_TIME  = 100;
   
-
-  
   // Ingredients
   public final static Item beerTap        = new Item("Beer tap");
   public final static Item coffee         = new Item("Coffee");
