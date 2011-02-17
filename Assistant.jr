@@ -6,8 +6,7 @@ public class Assistant extends Person {
 
 
   public Assistant() {
-    super("Assistant");    
-    
+    super("Assistant");
   }  
   
   private process AssistantProcess {
