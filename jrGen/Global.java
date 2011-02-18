@@ -24,6 +24,8 @@ public class Global extends java.lang.Object {
     public static Door door;
     public static Cupboard cupboard;
     public static List tables = new ArrayList();
+    public static // NUMBER 8
+    Cap_ext_ orderingChannel;
     public static int tableCapacities = 10;
     public static int startGlassCount = 10;
     public static int startCupsCount = 10;

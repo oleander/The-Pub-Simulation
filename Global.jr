@@ -14,7 +14,9 @@ public class Global {
   public static Cupboard cupboard;
   public static List<Table> tables = new ArrayList<Table>();
   
-
+  // Orderingchannel
+  public static cap boolean(Beverage) orderingChannel;
+  // Global objects in the bar
 
   // Constants
   public static int tableCapacities = 10;
