@@ -18,7 +18,10 @@ public class Table {
   public Table() {
     beveragewares = new ArrayList<BeverageWare>();
     id = startId++;
-    capacity = Global.tableCapacities;    
+    capacity = Global.tableCapacities;  
+    asserts(Global.tables != null, "Global table list is null!");
+    Global.tables.add(this);
+    
   }  
 
 
