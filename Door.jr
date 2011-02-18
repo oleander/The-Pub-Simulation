@@ -58,9 +58,9 @@ public class Door {
         [] void leave(Person p)
           {
             removePersonFromList(p);            
-            if(isLocked && entrants.size() == 1)
+            if(isLocked && entrants.size() <= 2)
               {
-                // Ok, only landlord should be left, lets notift him
+                // Ok, only landlord (or ll+assistant) should be left, lets notift him
                 send returnOkCap();
               }
             if(isLocked && entrants.size() == 0)
@@ -187,12 +187,12 @@ public class Door {
     
     JR.nap(100);
     
-    // make sure we haven't got reply yet
+    // make sure we have got reply yet
     inni void returnCap()
-    {
-      asserts(false, "The closing signal is sent too early!");
+    { /* landing here is good :) */  }
+    [] else {
+      asserts(false, "The closing signal is not sent even though assistant left!");
     }
-    [] else { /* landing here is good :) */ }
     
     
     
@@ -217,6 +217,7 @@ public class Door {
     asserts(d.entrants.isEmpty(), "Everyone should've leaved");
 
     JR.nap(100);
+    
   }
 
 

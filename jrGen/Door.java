@@ -504,7 +504,7 @@ JRrrecv6.fretOp.send(jrvm.getTimestamp(), JRrrecv6.handler, (java.lang.Object []
                                             {
                                                 // Begin Expr2
                                                 removePersonFromList(p);
-                                                if (isLocked && entrants.size() == 1) {
+                                                if (isLocked && entrants.size() <= 2) {
                                                     returnOkCap.send(jrvm.getTimestamp(), (edu.ucdavis.jr.RemoteHandler) null, (java.lang.Object[]) null);
                                                 }
                                                 if (isLocked && entrants.size() == 0) {
@@ -809,8 +809,6 @@ JRrrecv6.fretOp.send(jrvm.getTimestamp(), JRrrecv6.handler, (java.lang.Object []
                                 {
                                     try {
                                         {
-                                            // Begin Expr2
-                                            asserts(false, "The closing signal is sent too early!");
                                         }
                                     } catch (Exception JRe) {
                                         if (JRrrecv7.retOp != null && JRrrecv7.fretOp == null)
@@ -864,6 +862,8 @@ JRrrecv7.fretOp.send(jrvm.getTimestamp(), JRrrecv7.handler, (java.lang.Object []
                     JRInstmt7.unlock();
                     JRInstmt7.serviced = true;
                     {
+                        // Begin Expr2
+                        asserts(false, "The closing signal is not sent even though assistant left!");
                     }
                 }
             } while (!JRInstmt7.serviced);

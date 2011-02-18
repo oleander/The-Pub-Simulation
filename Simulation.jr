@@ -12,6 +12,10 @@ public class Simulation {
       {
         new Table();        
       }    
+    Global.orderingChannel = new op boolean();    
+    Global.clock = new Clock(Global.timeFactor, new MyTime(0, 15, 0));
+    
+
     new Assistant();
     new Barmaid();
     new Landlord();

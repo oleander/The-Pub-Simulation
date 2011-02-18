@@ -24,11 +24,13 @@ public class Global extends java.lang.Object {
     public static Door door;
     public static Cupboard cupboard;
     public static List tables = new ArrayList();
+    public static Clock clock;
     public static // NUMBER 8
     Cap_ext_ orderingChannel;
     public static int tableCapacities = 10;
     public static int startGlassCount = 10;
     public static int startCupsCount = 10;
+    public static int numTables = 10;
     public static int assistantNappingTime = 100;
     public static int drinkMixingTime = 10;
     public static int timeItTakesToCleanGlass = 2;
@@ -37,7 +39,7 @@ public class Global extends java.lang.Object {
     private static final int BEER_DRINKING_TIME = 10;
     private static final int CAPPUCINO_DRINKING_TIME = 10;
     private static final int CHOCLATE_DRINKING_TIME = 10;
-    public static int timeFactor = 10;
+    public static int timeFactor = 1;
     public static final Item beerTap = new Item("Beer tap");
     public static final Item coffee = new Item("Coffee");
     public static final Item milk = new Item("Milk");

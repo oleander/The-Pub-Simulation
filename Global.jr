@@ -13,6 +13,7 @@ public class Global {
   public static Door door;
   public static Cupboard cupboard;
   public static List<Table> tables = new ArrayList<Table>();
+  public static Clock clock;
   
   // Orderingchannel
   public static cap boolean(Beverage) orderingChannel;
@@ -38,7 +39,7 @@ public class Global {
   
   // Simulation time
   // One second (1000ms) takes timeFactor ms in simulation.
-  public static int timeFactor = 10;
+  public static int timeFactor = 1;
   
 
   // Ingredients

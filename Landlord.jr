@@ -6,12 +6,14 @@ import java.util.ArrayList;
 public class Landlord extends Mixologist {
 
   private op void doorsReplyChannel();
+  private op void alarm();
   
   private int numDoorCalls = 0;
 
   public Landlord()
   {
     super("Landlord");    
+    Global.clock.setAlarmEndTime(alarm);    
   }
   
 
@@ -22,11 +24,18 @@ public class Landlord extends Mixologist {
   
   protected void oneIteration()
   {
-    inni void tellLastCallOrClosing()
+    inni void alarm()
     {
       if(numCalls++ == 0)
         {
           // Is last call
+          
+          List<Person> entrants = Global.door.lock(doorsReplyChannel);
+          for(Person p : entrants)
+            {
+              send p.tellLastCallOrClosing();      
+              send p.tellLastCallOrClosing();            
+            }
         }
       else
         {
@@ -42,7 +51,8 @@ public class Landlord extends Mixologist {
           }
         else
           {
-            gatherStatistics();      
+            gatherStatistics();   
+            Global.clock.shutdown();            
           }          
       }  
     [] boolean Global.orderingChannel(Beverage beverage)    
