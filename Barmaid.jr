@@ -5,6 +5,12 @@ import java.util.ArrayList;
 
 public class Barmaid extends Mixologist {
 
+  public Barmaid()
+  {
+    super("Barmaid");
+    Global.barmaid = this;    
+  }
+
   protected boolean shouldGoHome()
   {
     return knowsItsClosed();    

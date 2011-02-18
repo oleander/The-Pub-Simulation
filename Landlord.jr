@@ -3,6 +3,53 @@ import java.util.*;
 import java.util.ArrayList;
 
 
-public class Landlord {
+public class Landlord extends Mixologist {
+
+  private op void doorsReplyChannel();
+  
+  private int numDoorCalls = 0;
+  
+
+  protected boolean shouldGoHome()
+  {
+    return numDoorCalls >= 2;    
+  }  
+  
+  protected void oneIteration()
+  {
+    inni void tellLastCallOrClosing()
+    {
+      if(numCalls++ == 0)
+        {
+          // Is last call
+        }
+      else
+        {
+          // Is closing time
+        }      
+    }
+    [] void doorsReplyChannel()
+      { 
+        if(numDoorCalls++ == 0)
+          {
+            // tell assistant to do last round
+            send Global.assistant.onlyTwoLeft();         
+          }
+        else
+          {
+            gatherStatistics();      
+          }          
+      }  
+    [] boolean Global.orderingChannel(Beverage beverage)    
+      {
+        return mixDrink(beverage);        
+      }    
+  }
+
+  private void gatherStatistics()
+  {  
+    //Gather statistics here!
+  }
+  
 
 }
