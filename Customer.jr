@@ -6,11 +6,12 @@ import java.util.ArrayList;
 public class Customer extends Person {
 
 
-  public Customer(int id)
+  public Customer(int id, Beverage fd, Table ft)
   {
     super("Customer " + id);
     drinksLeft = Global.startNumberOfOrders;
-    
+    favoriteDrink = fd;
+    favoriteTable = ft;    
   }
 
   private int drinksLeft;
@@ -32,6 +33,7 @@ public class Customer extends Person {
          {
            if(Global.orderingChannel(favoriteDrink))
              {
+               drinksLeft--;               
                startDrinking();               
              }
          }    
