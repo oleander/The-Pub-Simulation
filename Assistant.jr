@@ -19,9 +19,15 @@ public class Assistant extends Person {
   
   protected void oneIteration()
   {
+    clearAllTables();
+    JR.nap(Global.assistantNappingTime);    
   }
 
  
+  private void clearAllTables()
+  {
+    
+  }
   
 
 
