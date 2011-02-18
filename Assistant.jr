@@ -41,7 +41,7 @@ public class Assistant extends Person {
       {
         glasses.addAll(t.clearTable());        
       }    
-    JR.nap(100); // clean glasses
+    JR.nap(glasses.size()*Global.timeItTakesToCleanGlass); // clean glasses
 
     Cupboard cb = Global.cupboard;
     for(BeverageWare bw : glasses)
