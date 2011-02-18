@@ -6,6 +6,7 @@ public class Global {
   // Global objects in the bar
   public static Assistant assistant;
   public static Door door;
+  public static Cupboard cupboard;
   public static List<Table> tables = new ArrayList<Table>();
   
 
