@@ -6,19 +6,21 @@ import java.util.ArrayList;
 public class Door {
 
   private ArrayList<Person> entrants;
-  private boolean isLocked;
+  private int landlordCalls;
   private cap void() returnOkCap;
+
   
 
-  public op boolean add(Person p);
+  public op int add(Person p);
   public op boolean isClosed();
-  public op ArrayList<Person> lock(cap void() returnOkCap);
+  public op List<Person> lock(cap void() returnOkCap);
+  public cap List<Person>(cap void() returnOkCap) lastCall = lock;
   public op void leave(Person p);
   
  
   public Door() {
     entrants = new ArrayList<Person>();
-    isLocked = false;
+    landlordCalls = 0;
     Global.door = this;
     
   }  
@@ -38,32 +40,31 @@ public class Door {
       {
         inni ArrayList<Person> lock(cap void() returnOkCap)
         {
-          isLocked = true;
-          this.returnOkCap = returnOkCap;
-          
+          landlordCalls++;          
+          this.returnOkCap = returnOkCap;          
           return new ArrayList<Person>(entrants); // This adds stupid warning
           
         }
-        [] boolean add(Person p)
+        [] int add(Person p)
           {
             asserts(!entrants.contains(p), "Person " + p + " has already entered door");
-            if(isLocked)
+            if(landlordCalls < 2)
               {
-        	return false;
+                addPersonToList(p);
+                
               }
-            addPersonToList(p);            
-            return true;
+            return landlordCalls;
         
           }
         [] void leave(Person p)
           {
             removePersonFromList(p);            
-            if(isLocked && entrants.size() <= 2)
+            if(entrants.size() <= 2 && returnOkCap != null)
               {
-                // Ok, only landlord (or ll+assistant) should be left, lets notift him
+                // Ok, only landlord (or ll+assistant) should be left, lets notify him
                 send returnOkCap();
               }
-            if(isLocked && entrants.size() == 0)
+            if(entrants.size() == 0)
               {
                 // Ok, now even landlord left, lets exit gracfully
                 break;                
@@ -71,7 +72,7 @@ public class Door {
           }
         [] boolean isClosed()
           {
-            return isLocked;            
+            return landlordCalls >= 2;            
           }        
       }
   }
@@ -108,6 +109,7 @@ public class Door {
   ***************************************************/
   public static void main(String[] args) {
     allDoorTests();
+    
   }
 
   public static void allDoorTests()
@@ -170,7 +172,8 @@ public class Door {
     TestPerson landlord = new TestPerson(); // this emulates Landlord (auto-enters)
     JR.nap(100);
     op void returnCap(); // The landlords replyChannel    
-    ArrayList<Person> list = d.lock(returnCap);
+    List<Person> list = d.lastCall(returnCap);
+    list = d.lock(returnCap); // Now we must close 
     asserts(list != d.entrants, "Should not be reference to entrants!");
     asserts(list.equals(d.entrants), "Should however be equal to entrants!");
     

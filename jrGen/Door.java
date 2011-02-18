@@ -14,15 +14,15 @@ import java.util.ArrayList;
 public class Door extends java.lang.Object {
     { JRinit(); }
     private ArrayList entrants;
-    private boolean isLocked;
+    private int landlordCalls;
     private // NUMBER 8
     Cap_ext_ returnOkCap;
-    public Op_ext.JRProxyOp JRget_op_add_PersonToboolean()
+    public Op_ext.JRProxyOp JRget_op_add_PersonToint()
     {
-        return op_add_PersonToboolean;
+        return op_add_PersonToint;
     }
     
-    public Op_ext.JRProxyOp op_add_PersonToboolean;
+    public Op_ext.JRProxyOp op_add_PersonToint;
     
     public Op_ext.JRProxyOp JRget_op_isClosed_voidToboolean()
     {
@@ -31,13 +31,15 @@ public class Door extends java.lang.Object {
     
     public Op_ext.JRProxyOp op_isClosed_voidToboolean;
     
-    public Op_ext.JRProxyOp JRget_op_lock_Cap_voidTovoidTojavadotutildotArrayList()
+    public Op_ext.JRProxyOp JRget_op_lock_Cap_voidTovoidTojavadotutildotList()
     {
-        return op_lock_Cap_voidTovoidTojavadotutildotArrayList;
+        return op_lock_Cap_voidTovoidTojavadotutildotList;
     }
     
-    public Op_ext.JRProxyOp op_lock_Cap_voidTovoidTojavadotutildotArrayList;
+    public Op_ext.JRProxyOp op_lock_Cap_voidTovoidTojavadotutildotList;
     
+    public // NUMBER 8
+    Cap_ext_ lastCall = new Cap_ext_(JRget_op_lock_Cap_voidTovoidTojavadotutildotList());
     public Op_ext.JRProxyOp JRget_op_leave_PersonTovoid()
     {
         return op_leave_PersonTovoid;
@@ -52,7 +54,7 @@ public class Door extends java.lang.Object {
         // Begin Expr2
         entrants = new ArrayList();
         // Begin Expr2
-        isLocked = false;
+        landlordCalls = 0;
         // Begin Expr2
         Global.door = this;
         JRprocess();
@@ -248,8 +250,8 @@ return null;
         JRLoop14: while (true) {
             {
                 // Inni Statement without quantifier
-                JRInstmt6.armArray[0] = new QuantRec(new Cap_ext_(op_lock_Cap_voidTovoidTojavadotutildotArrayList, "java.util.ArrayList<Person>"), 0, 0);
-                JRInstmt6.armArray[1] = new QuantRec(new Cap_ext_(op_add_PersonToboolean, "boolean"), 1, 1);
+                JRInstmt6.armArray[0] = new QuantRec(new Cap_ext_(op_lock_Cap_voidTovoidTojavadotutildotList, "java.util.List<Person>"), 0, 0);
+                JRInstmt6.armArray[1] = new QuantRec(new Cap_ext_(op_add_PersonToint, "int"), 1, 1);
                 JRInstmt6.armArray[2] = new QuantRec(new Cap_ext_(op_leave_PersonTovoid, "void"), 2, 2);
                 JRInstmt6.armArray[3] = new QuantRec(new Cap_ext_(op_isClosed_voidToboolean, "boolean"), 3, 3);
                 JRInstmt6.lock();
@@ -304,7 +306,7 @@ return null;
                                         try {
                                             {
                                                 // Begin Expr2
-                                                isLocked = true;
+                                                landlordCalls++;
                                                 // Begin Expr2
                                                 this.returnOkCap = returnOkCap;
                                                 // Return
@@ -313,7 +315,7 @@ return null;
                                                         { if (JRrrecv6.retOp != null)
                                                             JRrrecv6.retOp.send(jrvm.getTimestamp(), (edu.ucdavis.jr.RemoteHandler) null, new java.lang.Object [] {(new ArrayList(entrants))});
                                                         else {
-                                                            java.util.ArrayList JRevaltmp = new ArrayList(entrants);
+                                                            java.util.List JRevaltmp = new ArrayList(entrants);
                                                             
                                                         }
                                                         break _label_JRInstmt6; }}
@@ -397,30 +399,17 @@ JRrrecv6.fretOp.send(jrvm.getTimestamp(), JRrrecv6.handler, (java.lang.Object []
                                             {
                                                 // Begin Expr2
                                                 asserts(!entrants.contains(p), "Person " + p + " has already entered door");
-                                                if (isLocked) {
-                                                    // Return
-                                                    {
-                                                        if (true)
-                                                            { if (JRrrecv6.retOp != null)
-                                                                JRrrecv6.retOp.send(jrvm.getTimestamp(), (edu.ucdavis.jr.RemoteHandler) null, new java.lang.Object [] {(boolean)(false)});
-                                                            else {
-                                                                boolean JRevaltmp = false;
-                                                                
-                                                            }
-                                                            break _label_JRInstmt6; }}
-                                                    
-                                                    // End Return
-
+                                                if (landlordCalls < 2) {
+                                                    // Begin Expr2
+                                                    addPersonToList(p);
                                                 }
-                                                // Begin Expr2
-                                                addPersonToList(p);
                                                 // Return
                                                 {
                                                     if (true)
                                                         { if (JRrrecv6.retOp != null)
-                                                            JRrrecv6.retOp.send(jrvm.getTimestamp(), (edu.ucdavis.jr.RemoteHandler) null, new java.lang.Object [] {(boolean)(true)});
+                                                            JRrrecv6.retOp.send(jrvm.getTimestamp(), (edu.ucdavis.jr.RemoteHandler) null, new java.lang.Object [] {(int)(landlordCalls)});
                                                         else {
-                                                            boolean JRevaltmp = true;
+                                                            int JRevaltmp = landlordCalls;
                                                             
                                                         }
                                                         break _label_JRInstmt6; }}
@@ -504,10 +493,10 @@ JRrrecv6.fretOp.send(jrvm.getTimestamp(), JRrrecv6.handler, (java.lang.Object []
                                             {
                                                 // Begin Expr2
                                                 removePersonFromList(p);
-                                                if (isLocked && entrants.size() <= 2) {
+                                                if (entrants.size() <= 2 && returnOkCap != null) {
                                                     returnOkCap.send(jrvm.getTimestamp(), (edu.ucdavis.jr.RemoteHandler) null, (java.lang.Object[]) null);
                                                 }
-                                                if (isLocked && entrants.size() == 0) {
+                                                if (entrants.size() == 0) {
                                                     { if (JRrrecv6.retOp != null)
                                                         JRrrecv6.retOp.send(jrvm.getTimestamp(), (java.lang.Object []) null);
                                                     break JRLoop14;}
@@ -588,9 +577,9 @@ JRrrecv6.fretOp.send(jrvm.getTimestamp(), JRrrecv6.handler, (java.lang.Object []
                                                 {
                                                     if (true)
                                                         { if (JRrrecv6.retOp != null)
-                                                            JRrrecv6.retOp.send(jrvm.getTimestamp(), (edu.ucdavis.jr.RemoteHandler) null, new java.lang.Object [] {(boolean)(isLocked)});
+                                                            JRrrecv6.retOp.send(jrvm.getTimestamp(), (edu.ucdavis.jr.RemoteHandler) null, new java.lang.Object [] {(boolean)(landlordCalls >= 2)});
                                                         else {
-                                                            boolean JRevaltmp = isLocked;
+                                                            boolean JRevaltmp = landlordCalls >= 2;
                                                             
                                                         }
                                                         break _label_JRInstmt6; }}
@@ -741,7 +730,9 @@ JRrrecv6.fretOp.send(jrvm.getTimestamp(), JRrrecv6.handler, (java.lang.Object []
         } catch (Exception e) { throw new jrRuntimeError("Cannot initialize op"); }
         
         
-        ArrayList list = ((java.util.ArrayList) (new Cap_ext_(d.JRget_op_lock_Cap_voidTovoidTojavadotutildotArrayList(), "java.util.ArrayList")).call(jrvm.getTimestamp(), new java.lang.Object [] {new Cap_ext_(op_returnCap_voidTovoid)}));
+        List list = ((java.util.List) (new Cap_ext_(d.lastCall, "java.util.List")).call(jrvm.getTimestamp(), new java.lang.Object [] {new Cap_ext_(op_returnCap_voidTovoid)}));
+        // Begin Expr2
+        list = ((java.util.List) (new Cap_ext_(d.JRget_op_lock_Cap_voidTovoidTojavadotutildotList(), "java.util.List")).call(jrvm.getTimestamp(), new java.lang.Object [] {new Cap_ext_(op_returnCap_voidTovoid)}));
         // Begin Expr2
         asserts(list != d.entrants, "Should not be reference to entrants!");
         // Begin Expr2
@@ -1017,15 +1008,15 @@ JRrrecv8.fretOp.send(jrvm.getTimestamp(), JRrrecv8.handler, (java.lang.Object []
     	op_doorProcess_voidTovoid = new Op_ext_.JRProxyOp(new ProcOp_voidTovoid_impldoorProcess(this));
     	op_leave_PersonTovoid = 
     	  new Op_ext_.JRProxyOp(new InOp_ext_impl());
-    	op_lock_Cap_voidTovoidTojavadotutildotArrayList = 
+    	op_lock_Cap_voidTovoidTojavadotutildotList = 
     	  new Op_ext_.JRProxyOp(new InOp_ext_impl());
     	op_isClosed_voidToboolean = 
     	  new Op_ext_.JRProxyOp(new InOp_ext_impl());
-    	op_add_PersonToboolean = 
+    	op_add_PersonToint = 
     	  new Op_ext_.JRProxyOp(new InOp_ext_impl());
     	} catch (Exception JRe)
     	{ throw new jrRuntimeError(JRe.toString()); }
-    	jrresref = new JRDoor(op_doorProcess_voidTovoid, op_leave_PersonTovoid, op_lock_Cap_voidTovoidTojavadotutildotArrayList, op_isClosed_voidToboolean, op_add_PersonToboolean);
+    	jrresref = new JRDoor(op_doorProcess_voidTovoid, op_leave_PersonTovoid, op_lock_Cap_voidTovoidTojavadotutildotList, op_isClosed_voidToboolean, op_add_PersonToint);
     	this.JRcalled = true;
     }
     private boolean JRproc = false;

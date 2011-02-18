@@ -33,7 +33,8 @@ public abstract class Person {
 
   private boolean enterDoor()
   {
-    return Global.door.add(this);    
+    numCalls = Global.door.add(this);    
+    return numCalls < 2;    
   }
   
   private void leaveBar()

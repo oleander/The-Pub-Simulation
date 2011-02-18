@@ -51,8 +51,10 @@ public abstract class Person extends java.lang.Object {
     }
     
     private boolean enterDoor() {
+        // Begin Expr2
+        numCalls = ((Integer) (new Cap_ext_(Global.door.JRget_op_add_PersonToint(), "int")).call(jrvm.getTimestamp(), new java.lang.Object [] {this}));
         // Return
-        return (((Boolean) (new Cap_ext_(Global.door.JRget_op_add_PersonToboolean(), "boolean")).call(jrvm.getTimestamp(), new java.lang.Object [] {this})));
+        return (numCalls < 2);
         // End Return
 
     }
