@@ -20,6 +20,7 @@ public class Global extends java.lang.Object {
     }
     public static Assistant assistant;
     public static Door door;
+    public static Cupboard cupboard;
     public static List tables = new ArrayList();
     public static int tableCapacities = 10;
     public static int startGlassCount = 10;

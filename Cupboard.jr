@@ -29,6 +29,7 @@ public class Cupboard {
       {
         items.add(Global.cup);        
       }    
+    Global.cupboard = this;    
   }  
 
   private process cupBoardProcess {
