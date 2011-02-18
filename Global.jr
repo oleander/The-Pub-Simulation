@@ -4,6 +4,7 @@ import java.util.*;
 public class Global {
 
   // Global objects in the bar
+  public static Assistant assistant;
   public static Door door;
 
 
