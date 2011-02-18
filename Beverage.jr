@@ -33,7 +33,7 @@ public class Beverage {
   }
 
   public List<Item> getIngredients() {
-    return ingredients;
+    return new ArrayList(ingredients);
   }    
 
   public static void main(String[] args) {

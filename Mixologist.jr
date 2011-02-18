@@ -3,6 +3,26 @@ import java.util.*;
 import java.util.ArrayList;
 
 
-public class Mixologist {
-
+public abstract class Mixologist extends Person {
+  protected boolean mixDrink(Beverage drink)
+  {
+    if(knowsItsClosed())
+      {
+        return false;
+      }
+    List<Item> items = new ArrayList<Item>(drink.getIngredients());
+    items.add(drink.getBeverageWare()); // The beverageware should be included
+    for(Item item : items)
+      {
+        call Global.cupboard.aquireItem(item);        
+      }
+    JR.nap(Global.drinkMixingTime);    
+   
+    for(Item item : drink.getIngredients())
+      {
+        call Global.cupboard.putBackItem(item);        
+      }  
+    return true;    
+  }
+  
 }
