@@ -22,7 +22,7 @@ public abstract class Mixologist extends Person {
       {
         call Global.cupboard.aquireItem(item);        
       }
-    JR.nap(Global.drinkMixingTime);    
+    Sleep.now(Global.drinkMixingTime);    
    
     for(Item item : drink.getIngredients())
       {

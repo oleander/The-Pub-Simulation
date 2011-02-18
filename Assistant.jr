@@ -29,7 +29,7 @@ public class Assistant extends Person {
     [] else
       {
         clearAllTables();
-        JR.nap(Global.assistantNappingTime);            
+        Sleep.now(Global.assistantNappingTime);            
       }    
   }
 
@@ -41,7 +41,7 @@ public class Assistant extends Person {
       {
         glasses.addAll(t.clearTable());        
       }    
-    JR.nap(glasses.size()*Global.timeItTakesToCleanGlass); // clean glasses
+    Sleep.now(glasses.size()*Global.timeItTakesToCleanGlass); // clean glasses
 
     Cupboard cb = Global.cupboard;
     for(BeverageWare bw : glasses)
