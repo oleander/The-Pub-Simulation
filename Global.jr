@@ -6,6 +6,8 @@ public class Global {
   // Global objects in the bar
   // Persons
   public static Assistant assistant;
+  public static Barmaid barmaid;
+  public static Landlord landlord;
 
   // Stuffs
   public static Door door;

@@ -19,6 +19,8 @@ public class Global extends java.lang.Object {
         JRprocess();
     }
     public static Assistant assistant;
+    public static Barmaid barmaid;
+    public static Landlord landlord;
     public static Door door;
     public static Cupboard cupboard;
     public static List tables = new ArrayList();
