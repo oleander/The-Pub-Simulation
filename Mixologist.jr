@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 
 public abstract class Mixologist extends Person {
+  public Mixologist(String name)
+  {
+    super(name);    
+  }
+  
+
   protected boolean mixDrink(Beverage drink)
   {
     if(knowsItsClosed())

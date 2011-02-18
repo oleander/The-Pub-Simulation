@@ -1,0 +1,32 @@
+import edu.ucdavis.jr.*;
+import java.util.*;
+
+public class Simulation {
+ 
+  static Random r = new Random();
+
+  public static void main(String[] args) {
+    new Door();
+    new Cupboard();
+    for(int i = 0; i < Global.numTables; i++)
+      {
+        new Table();        
+      }    
+    new Assistant();
+    new Barmaid();
+    new Landlord();
+  }
+
+  public static void addCustomers()
+  {
+    int id = 0;    
+    while(!Global.door.isClosed())
+      {
+        new Customer(id, 
+                     Global.beverageList.get(r.nextInt(Global.beverageList.size())), 
+                     Global.tables.get(r.nextInt(Global.numTables)));
+        Sleep.now(60);        
+      }    
+  }
+  
+}

@@ -11,6 +11,7 @@ public class Door {
   
 
   public op boolean add(Person p);
+  public op boolean isClosed();
   public op ArrayList<Person> lock(cap void() returnOkCap);
   public op void leave(Person p);
   
@@ -26,7 +27,7 @@ public class Door {
     startLoop();    
     System.out.println("Door process exits ...");
   }
-
+  
 
 
   // I added this as a seperate method to be able to override stupid warnings
@@ -68,6 +69,10 @@ public class Door {
                 break;                
               }            
           }
+        [] boolean isClosed()
+          {
+            return isLocked;            
+          }        
       }
   }
   

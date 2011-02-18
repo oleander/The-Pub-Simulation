@@ -8,6 +8,11 @@ public class Landlord extends Mixologist {
   private op void doorsReplyChannel();
   
   private int numDoorCalls = 0;
+
+  public Landlord()
+  {
+    super("Landlord");    
+  }
   
 
   protected boolean shouldGoHome()
