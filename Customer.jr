@@ -1,0 +1,44 @@
+import edu.ucdavis.jr.*;
+import java.util.*;
+import java.util.ArrayList;
+
+
+public class Customer extends Person {
+
+
+  public Customer(int id)
+  {
+    super("Customer " + id);
+    drinksLeft = Global.startNumberOfOrders;
+    
+  }
+
+  private int drinksLeft;
+  private Beverage favoriteDrink;
+  private Table favoriteTable;
+  
+  protected boolean shouldGoHome()
+  {
+    return knowsItsClosed() || drinksLeft <= 0;    
+  }  
+  
+  protected void oneIteration()
+  {
+    inni void tellLastCallOrClosing()
+    {
+      numCalls++;      
+    }
+    [] else
+         {
+           if(Global.orderingChannel(favoriteDrink))
+             {
+               startDrinking();               
+             }
+         }    
+  }
+
+  private void startDrinking()
+  {
+    // unimplemented
+  }    
+}

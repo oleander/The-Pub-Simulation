@@ -25,7 +25,9 @@ public class Global {
   public static int assistantNappingTime = 100;
   public static int drinkMixingTime = 10;
   public static int timeItTakesToCleanGlass = 2;  
-
+  public static int startNumberOfOrders = 5;
+  public static int timeToDrinkBeverage = 100;
+  
   // Private constants
   private final static int BEER_DRINKING_TIME      = 100;
   private final static int CAPPUCINO_DRINKING_TIME = 100;
