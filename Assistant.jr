@@ -31,8 +31,7 @@ public class Assistant extends Person {
       {
         clearAllTable();
         JR.nap(Global.assistantNappingTime);            
-      }
-    
+      }    
   }
 
  
