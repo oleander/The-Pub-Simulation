@@ -4,7 +4,10 @@ import java.util.*;
 public class Global {
 
   // Global objects in the bar
+  // Persons
   public static Assistant assistant;
+
+  // Stuffs
   public static Door door;
   public static Cupboard cupboard;
   public static List<Table> tables = new ArrayList<Table>();

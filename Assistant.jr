@@ -17,8 +17,7 @@ public class Assistant extends Person {
   protected boolean shouldGoHome()
   {
     return knowsOnlyTwoLeft;    
-  }
-  
+  }  
   
   protected void oneIteration()
   {
