@@ -34,10 +34,22 @@ public class Assistant extends Person {
       }    
   }
 
- 
+  // This includes cleaning the glasses etc.
   private void clearAllTables()
   {
-    
+    List<BeverageWare> glasses = new ArrayList<BeverageWare>();    
+    for(Table t : Global.tables)
+      {
+        glasses.addAll(t.clearTable());        
+      }    
+    JR.nap(100); // clean glasses
+
+    // ADD CODE FOR GLOBAL CUPBOARD HERE
+    Cupboard cb = null;
+    for(BeverageWare bw : glasses)
+      {
+        cb.putBackItem(bw);        
+      }    
   }
   
 

@@ -238,7 +238,7 @@ return null;
     @SuppressWarnings(value = "unchecked")
     private void startLoop() {
         InStatObj JRInstmt2 = new InStatObj(3, false);
-        JRLoop9: while (true) {
+        JRLoop11: while (true) {
             {
                 // Inni Statement without quantifier
                 JRInstmt2.armArray[0] = new QuantRec(new Cap_ext_(op_lock_Cap_voidTovoidTojavadotutildotArrayList, "java.util.ArrayList<Person>"), 0, 0);
@@ -502,7 +502,7 @@ JRrrecv2.fretOp.send(jrvm.getTimestamp(), JRrrecv2.handler, (java.lang.Object []
                                                 if (isLocked && entrants.size() == 0) {
                                                     { if (JRrrecv2.retOp != null)
                                                         JRrrecv2.retOp.send(jrvm.getTimestamp(), (java.lang.Object []) null);
-                                                    break JRLoop9;}
+                                                    break JRLoop11;}
                                                 }
                                             }
                                         } catch (Exception JRe) {
