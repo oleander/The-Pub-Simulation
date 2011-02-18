@@ -1,0 +1,89 @@
+import java.util.*;
+import edu.ucdavis.jr.*;
+
+public class Clock {
+
+  public op MyTime getTime();
+  public op void setAlarm(cap void() ch, MyTime t);
+  public op void setAlarmEndTime(cap void() ch);
+  public op void shutdown();
+
+  private op void tick();
+
+  private MyTime currentTime;
+  private int ms;
+  private Map<MyTime, Set<cap void()>> alarms = new HashMap<MyTime, Set<cap void()>>();
+  private MyTime endTime;
+
+  private op void stopTicker();
+
+  public Clock(int ms, MyTime endTime) {
+    currentTime = new MyTime(0, 0 ,0);
+    this.ms = ms;
+    this.endTime = endTime;
+    alarms.put(endTime, new HashSet<cap void()>());
+  }
+
+  private process loop {
+    boolean run = true;
+    while (run) {
+      inni void tick() {
+        // Send current alarms
+	Set<cap void()> chs = alarms.remove(currentTime);
+	if (chs!=null)
+	  for(Object ch : chs)
+	    send ((cap void())ch)();
+	// Increment time
+	currentTime.increment();
+      }
+      // Nick's fix to the bug
+      [] MyTime getTime() { 
+          return (MyTime)currentTime.clone(); 
+      }
+      // [] MyTime getTime() {
+      // return currentTime;
+      // }
+      [] void setAlarm(cap void() ch, MyTime t) {
+	MyTime at = ((MyTime)currentTime.clone()).add(t);
+	Set<cap void()> chs = alarms.remove(at);
+	if (chs == null)
+	  chs = new HashSet<cap void()>();
+	chs.add(ch);
+	alarms.put(at, chs);
+      }
+      [] void setAlarmEndTime(cap void() ch) {
+	Set<cap void()> chs = alarms.remove(endTime);
+	if (chs == null)
+	  send ch();
+	else {
+	  chs.add(ch);
+	  alarms.put(endTime, chs);
+	}
+      }
+      [] void shutdown() {
+	run = false;
+      }
+    }
+    send stopTicker();
+    if (alarms.size() > 0)
+      System.err.println("Some alarms left: "+alarms);
+  }
+
+  private process ticker {
+    boolean run = true;
+    long next = System.currentTimeMillis();
+    long w;
+    do {
+      inni void stopTicker() {
+	run = false;
+      }
+      else {
+	next += ms;
+	w = Math.max(0,next-System.currentTimeMillis());
+	edu.ucdavis.jr.JR.nap(w);
+	send tick();
+      }
+    } while (run);
+  }
+
+}
