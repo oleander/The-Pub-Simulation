@@ -4,15 +4,16 @@ import java.util.*;
 
 public class Assistant extends Person {
 
-
   public Assistant() {
     super("Assistant");
   }  
+
+  private boolean knowsOnlyTwoLeft;
   
 
   protected boolean shouldGoHome()
   {
-    return false;    
+    return knowsOnlyTwoLeft;    
   }
   
   
