@@ -13,8 +13,7 @@ public class Simulation {
         new Table();        
       }    
     Global.orderingChannel = new op boolean();    
-    Global.clock = new Clock(Global.timeFactor, new MyTime(0, 15, 0));
-    
+    Global.clock = new Clock(Global.timeFactor, new MyTime(Global.simulationTimeInSeconds));
 
     new Assistant();
     new Barmaid();

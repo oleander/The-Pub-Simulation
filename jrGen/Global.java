@@ -36,6 +36,7 @@ public class Global extends java.lang.Object {
     public static int timeItTakesToCleanGlass = 2;
     public static int startNumberOfOrders = 5;
     public static int timeToDrinkBeverage = 100;
+    public static int simulationTimeInSeconds = 1500;
     private static final int BEER_DRINKING_TIME = 10;
     private static final int CAPPUCINO_DRINKING_TIME = 10;
     private static final int CHOCLATE_DRINKING_TIME = 10;

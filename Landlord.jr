@@ -14,6 +14,7 @@ public class Landlord extends Mixologist {
   {
     super("Landlord");    
     Global.clock.setAlarmEndTime(alarm);    
+    Global.clock.setAlarm(alarm, new MyTime(Global.simulationTimeInSeconds-600)); 
   }
   
 
@@ -26,21 +27,34 @@ public class Landlord extends Mixologist {
   {
     inni void alarm()
     {
-      if(numCalls++ == 0)
+      numCalls++;
+      List<Person> entrants = Global.door.lock(doorsReplyChannel); // first call actually isnt lock
+      for(Person p : entrants)
         {
-          // Is last call
-          
-          List<Person> entrants = Global.door.lock(doorsReplyChannel);
-          for(Person p : entrants)
-            {
-              send p.tellLastCallOrClosing();      
-              send p.tellLastCallOrClosing();            
-            }
+          send p.tellLastCallOrClosing();      
         }
-      else
-        {
-          // Is closing time
-        }      
+
+//      if(numCalls++ == 0)
+//         {
+//           // Is last call
+          
+//           List<Person> entrants = Global.door.lock(doorsReplyChannel);
+//           for(Person p : entrants)
+//             {
+//               send p.tellLastCallOrClosing();      
+//               send p.tellLastCallOrClosing();            
+//             }
+//         }
+//       else
+//         {
+//           List<Person> entrants = Global.door.lock(doorsReplyChannel);
+//           for(Person p : entrants)
+//             {
+//               send p.tellLastCallOrClosing();      
+//               send p.tellLastCallOrClosing();            
+//             }
+//           // Is closing time
+//         }      
     }
     [] void doorsReplyChannel()
       { 
