@@ -4,7 +4,7 @@ import java.util.*;
 public abstract class Person {
 
   private Door door;
-  private int numCalls;  
+  protected int numCalls;  
   private String name;
   
   public op void tellLastCallOrClosing();

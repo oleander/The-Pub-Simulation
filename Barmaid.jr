@@ -3,6 +3,23 @@ import java.util.*;
 import java.util.ArrayList;
 
 
-public class Barmaid {
+public class Barmaid extends Mixologist {
+
+  protected boolean shouldGoHome()
+  {
+    return knowsItsClosed();    
+  }  
+  
+  protected void oneIteration()
+  {
+    inni void tellLastCallOrClosing()
+    {
+      numCalls++;      
+    }
+    [] boolean Global.orderingChannel(Beverage beverage)
+      {
+        return mixDrink(beverage);        
+      }    
+  }
 
 }

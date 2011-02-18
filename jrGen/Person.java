@@ -13,7 +13,7 @@ import java.util.*;
 public abstract class Person extends java.lang.Object {
     { JRinit(); }
     private Door door;
-    private int numCalls;
+    protected int numCalls;
     private String name;
     public Op_ext.JRProxyOp JRget_op_tellLastCallOrClosing_voidTovoid()
     {
