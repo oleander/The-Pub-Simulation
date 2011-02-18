@@ -6,7 +6,9 @@ public class Assistant extends Person {
 
   public Assistant() {
     super("Assistant");
-    Global.assistant = self;    
+    Global.assistant = self;  
+    knowsOnlyTwoLeft = false;
+    
   }  
   public op void onlyTwoLeft();
 
@@ -20,8 +22,17 @@ public class Assistant extends Person {
   
   protected void oneIteration()
   {
-    clearAllTables();
-    JR.nap(Global.assistantNappingTime);    
+    inni void onlyTwoLeft()
+    {
+      clearAllTables();
+      knowsOnlyTwoLeft = true;      
+    }
+    [] else
+      {
+        clearAllTable();
+        JR.nap(Global.assistantNappingTime);            
+      }
+    
   }
 
  
