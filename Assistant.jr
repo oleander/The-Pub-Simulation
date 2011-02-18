@@ -44,8 +44,7 @@ public class Assistant extends Person {
       }    
     JR.nap(100); // clean glasses
 
-    // ADD CODE FOR GLOBAL CUPBOARD HERE
-    Cupboard cb = null;
+    Cupboard cb = Global.cupboard;
     for(BeverageWare bw : glasses)
       {
         cb.putBackItem(bw);        
