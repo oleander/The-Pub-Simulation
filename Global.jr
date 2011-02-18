@@ -22,6 +22,8 @@ public class Global {
   public static int tableCapacities = 10;
   public static int startGlassCount = 10;
   public static int startCupsCount = 10;
+
+  // Time-Constants
   public static int assistantNappingTime = 100;
   public static int drinkMixingTime = 10;
   public static int timeItTakesToCleanGlass = 2;  
@@ -29,10 +31,15 @@ public class Global {
   public static int timeToDrinkBeverage = 100;
   
   // Private constants
-  private final static int BEER_DRINKING_TIME      = 100;
-  private final static int CAPPUCINO_DRINKING_TIME = 100;
-  private final static int CHOCLATE_DRINKING_TIME  = 100;
+  private final static int BEER_DRINKING_TIME      = 10;
+  private final static int CAPPUCINO_DRINKING_TIME = 10;
+  private final static int CHOCLATE_DRINKING_TIME  = 10;
   
+  // Simulation time
+  // One second (1000ms) takes timeFactor ms in simulation.
+  public static int timeFactor = 10;
+  
+
   // Ingredients
   public final static Item beerTap        = new Item("Beer tap");
   public final static Item coffee         = new Item("Coffee");
