@@ -27,21 +27,38 @@ public class Customer extends Person {
   {
     inni void tellLastCallOrClosing()
     {
-      numCalls++;      
+      numCalls++;     
     }
     [] else
          {
            if(Global.orderingChannel(favoriteDrink))
              {
                drinksLeft--;               
-               startDrinking();               
+               startDrinking();            
+               call favoriteTable.addBeverageWare(favoriteDrink.getBeverageWare());               
              }
          }    
   }
 
   private void startDrinking()
   {
-    Sleep.now(Global.timeToDrinkBeverage);
-    
+    op void drinkFinished();    
+    Global.clock.setAlarm(drinkFinished,  new MyTime(Global.timeToDrinkBeverage));    
+
+    while(true)
+      {        
+        inni void drinkFinished()
+        {
+          return;      
+        }
+        [] void tellLastCallOrClosing()
+          {
+            numCalls++;
+            if(favoriteDrink == Global.beer && numCalls == 1 && drinksLeft > 0)
+              {
+                return;            
+              }        
+          }    
+      }    
   }    
 }
