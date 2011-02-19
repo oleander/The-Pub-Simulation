@@ -20,6 +20,7 @@ public class Landlord extends Mixologist {
 
   protected boolean shouldGoHome()
   {
+    say("" + numDoorCalls);    
     return numDoorCalls >= 2;    
   }  
   
@@ -48,12 +49,15 @@ public class Landlord extends Mixologist {
         if(numDoorCalls++ == 0)
           {
             // tell assistant to do last round
+            say("Telling assistant to do last round");            
             send Global.assistant.onlyTwoLeft();         
           }
         else
           {
             gatherStatistics();   
-            Global.clock.shutdown();            
+            say("About to shutdown clock");            
+            send Global.clock.shutdown();            
+            say("Shutdowned clock");
           }          
       }  
     [] boolean Global.orderingChannel(Beverage beverage)    
@@ -65,6 +69,7 @@ public class Landlord extends Mixologist {
   private void gatherStatistics()
   {  
     //Gather statistics here!
+    say("Gathering statistics");
   }
   
 
