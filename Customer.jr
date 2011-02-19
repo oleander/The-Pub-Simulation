@@ -41,6 +41,7 @@ public class Customer extends Person {
 
   private void startDrinking()
   {
-    // unimplemented
+    Sleep.now(Global.timeToDrinkBeverage);
+    
   }    
 }
