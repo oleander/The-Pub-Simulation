@@ -47,7 +47,7 @@ public abstract class Person extends java.lang.Object {
     
     public void say(String msg) {
         // Begin Expr2
-        System.out.println("Person " + name + " says: " + msg);
+        System.out.println(((MyTime) (new Cap_ext_(Global.clock.JRget_op_getTime_voidToMyTime(), "MyTime")).call(jrvm.getTimestamp(), (java.lang.Object[]) null)) + ": " + name + " says: " + msg);
     }
     
     private boolean enterDoor() {

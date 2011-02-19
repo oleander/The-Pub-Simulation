@@ -31,10 +31,12 @@ public class Customer extends Person {
     }
     [] else
          {
+           say("Ordering drink " + favoriteDrink);           
            if(Global.orderingChannel(favoriteDrink))
              {
                drinksLeft--;               
-               startDrinking();            
+               startDrinking();    
+               say("Putting down " + favoriteDrink.getBeverageWare() + " on table " + favoriteTable);               
                call favoriteTable.addBeverageWare(favoriteDrink.getBeverageWare());               
              }
          }    
@@ -43,20 +45,23 @@ public class Customer extends Person {
   private void startDrinking()
   {
     op void drinkFinished();    
-    Global.clock.setAlarm(drinkFinished,  new MyTime(Global.timeToDrinkBeverage));    
+    MyTime mt = new MyTime(Global.timeToDrinkBeverage);
+    say("Will finnish in " + mt);
+    
+    Global.clock.setAlarm(drinkFinished,  mt);    
 
     while(true)
       {        
         inni void drinkFinished()
         {
-          return;      
+          break;      
         }
         [] void tellLastCallOrClosing()
           {
             numCalls++;
             if(favoriteDrink == Global.beer && numCalls == 1 && drinksLeft > 0)
               {
-                return;            
+                break;            
               }        
           }    
       }    

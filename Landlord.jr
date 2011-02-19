@@ -27,34 +27,21 @@ public class Landlord extends Mixologist {
   {
     inni void alarm()
     {
-      numCalls++;
+
+      if(numCalls++ == 0)
+        {
+          say("Last call!");
+          
+        }
+      else
+        {
+          say("Closing time!");
+        }      
       List<Person> entrants = Global.door.lock(doorsReplyChannel); // first call actually isnt lock
       for(Person p : entrants)
         {
           send p.tellLastCallOrClosing();      
         }
-
-//      if(numCalls++ == 0)
-//         {
-//           // Is last call
-          
-//           List<Person> entrants = Global.door.lock(doorsReplyChannel);
-//           for(Person p : entrants)
-//             {
-//               send p.tellLastCallOrClosing();      
-//               send p.tellLastCallOrClosing();            
-//             }
-//         }
-//       else
-//         {
-//           List<Person> entrants = Global.door.lock(doorsReplyChannel);
-//           for(Person p : entrants)
-//             {
-//               send p.tellLastCallOrClosing();      
-//               send p.tellLastCallOrClosing();            
-//             }
-//           // Is closing time
-//         }      
     }
     [] void doorsReplyChannel()
       { 

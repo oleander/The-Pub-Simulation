@@ -27,7 +27,7 @@ public abstract class Person {
 
   public void say(String msg)
   {
-    System.out.println("Person " + name + " says: " + msg);        
+    System.out.println(Global.clock.getTime() + ": " + name + " says: " + msg);        
   }
   
 

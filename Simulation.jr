@@ -30,7 +30,7 @@ public class Simulation {
         new Customer(id++, 
                      Global.beverageList.get(r.nextInt(Global.beverageList.size())), 
                      Global.tables.get(r.nextInt(Global.numTables)));
-        Sleep.now(600);        
+        Sleep.now(60000);        
       }    
   }
   
