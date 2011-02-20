@@ -1,0 +1,15 @@
+import edu.ucdavis.jr.*;
+import java.util.*;
+import java.util.ArrayList;
+
+
+public class TestAll {
+
+  public static void main(String[] args) {
+    Door.allDoorTests();
+    Cupboard.allCupboardTests();
+    Table.allTableTests();
+    System.out.println("All tests passed!!!");
+  }
+
+}
