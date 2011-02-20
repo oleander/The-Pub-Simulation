@@ -24,7 +24,7 @@ public class Beverage {
   }
   
   
-  public int getDrinkingTime() {
+  public  int getDrinkingTime() {
     return drinkingTime;
   }
 
@@ -32,8 +32,9 @@ public class Beverage {
     return bw;
   }
 
+  // We make it a shallow copy so nobody can edit the ingredients
   public List<Item> getIngredients() {
-    return ingredients;
+    return new ArrayList<Item>(ingredients);
   }    
 
   public static void main(String[] args) {

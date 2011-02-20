@@ -6,7 +6,7 @@ public class Item {
   private final String name;
   
   @Override
-  public String toString()
+  public synchronized String toString()
   {
     return name;
   }
