@@ -1,4 +1,4 @@
-import edu.ucdavis.jr.*;
+valimport edu.ucdavis.jr.*;
 import java.util.*;
 
 public class Global {
@@ -30,7 +30,7 @@ public class Global {
   public static int drinkMixingTime = 10;
   public static int timeItTakesToCleanGlass = 2;  
   public static int startNumberOfOrders = 5;
-  public static int simulationTimeInSeconds = 1*60*60;
+  public static int simulationTimeInSeconds = 30*60;
   
   // Private constants
   private final static int BEER_DRINKING_TIME      = 30;

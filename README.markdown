@@ -46,6 +46,9 @@ The assistant is having it's own cycle and is always cleaning the tables, therfo
 
 The Cupboard has only one inni, so it really cant get stuck without being able to listen. That means it will always appreciate putbacks of glasses and cups, therfor the Mixologists won't ever get deadlocked waiting for beverageware.
 
+## How to start the simulation
+
+Sensible constants are already into `Global.jr`. So the simulation should start by simply running the main of `Simulation.jr`. The predefined values are so the closing time should be in 18 irl seconds, that is a half hour in the simulation.
 
 ## Implementation
 
