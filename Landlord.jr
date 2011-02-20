@@ -95,6 +95,7 @@ public class Landlord extends Mixologist {
     
     if(l.size() > 0)
       { 
+        say(" Number of served customers: " + numServings + "\n");
         say(" Maximum waiting time:    " + Collections.max(l)*f + " seconds.");
         say(" Minimum waiting time:    " + Collections.min(l)*f + " seconds.");
         say(" Average waiting time:    " + (sum*f/l.size()) + " seconds.");

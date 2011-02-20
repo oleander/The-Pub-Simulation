@@ -9,6 +9,14 @@ public abstract class Mixologist extends Person {
     super(name);    
   }
   
+  protected static int numServings = 0;
+  
+  protected static synchronized void addServing()
+  {
+    numServings++;
+  }
+  
+  
 
   protected boolean mixDrink(Beverage drink)
   {
@@ -16,6 +24,7 @@ public abstract class Mixologist extends Person {
       {
         return false;
       }
+    addServing();   
     List<Item> items = new ArrayList<Item>(drink.getIngredients());
     items.add(drink.getBeverageWare()); // The beverageware should be included
     for(Item item : items)
