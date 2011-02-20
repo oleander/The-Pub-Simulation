@@ -31,7 +31,7 @@ public class Customer extends Person {
     }
     [] else
          {
-           say("Ordering drink " + favoriteDrink);           
+           say("Ordering " + favoriteDrink);           
            MyTime t0 = Global.clock.getTime();           
            boolean succesful = Global.orderingChannel(favoriteDrink);
            addOrderingWaitingTime(Global.clock.getTime().compareTo(t0));           
@@ -39,7 +39,7 @@ public class Customer extends Person {
              {
                drinksLeft--;               
                startDrinking();    
-               say("Putting down " + favoriteDrink.getBeverageWare() + " on table " + favoriteTable);               
+               say("Putting down " + favoriteDrink.getBeverageWare() + " on " + favoriteTable);               
                call favoriteTable.addBeverageWare(favoriteDrink.getBeverageWare());               
              }
          }    
