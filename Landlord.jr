@@ -105,13 +105,20 @@ public class Landlord extends Mixologist {
         say("Nobody ordered anything tonight :(");
       }
     
+    boolean ok = true;
     for(Table t: Global.tables)
       {
         if(!t.clearTable().isEmpty())
           {
             say("Table " + t + " isnt empty!");            
+            ok = false;
           }        
       }
+    if(ok)
+      {
+        say("All tables are empty, wohoo!");
+      }
+    
     
 
     for(Item it : Global.allItemsList)
