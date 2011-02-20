@@ -32,7 +32,10 @@ public class Customer extends Person {
     [] else
          {
            say("Ordering drink " + favoriteDrink);           
-           if(Global.orderingChannel(favoriteDrink))
+           MyTime t0 = Global.clock.getTime();           
+           boolean succesful = Global.orderingChannel(favoriteDrink);
+           addOrderingWaitingTime(Global.clock.getTime().compareTo(t0));           
+           if(succesful)
              {
                drinksLeft--;               
                startDrinking();    
