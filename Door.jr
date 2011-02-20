@@ -7,7 +7,7 @@ public class Door {
 
   private ArrayList<Person> entrants;
   private int landlordCalls;
-  private cap void() returnOkCap;
+  private cap void() returnOkCap = null;
 
   
 

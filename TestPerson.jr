@@ -4,6 +4,12 @@ import java.util.*;
 // This is just a class used during testing
 public class TestPerson extends Person {
 
+  public TestPerson()
+  {
+    super("Testperson");
+    
+  }
+  
   
   private boolean goHome = false;
 
