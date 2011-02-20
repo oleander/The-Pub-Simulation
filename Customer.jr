@@ -48,9 +48,9 @@ public class Customer extends Person {
   private void startDrinking()
   {
     op void drinkFinished();    
-    MyTime mt = new MyTime(Global.timeToDrinkBeverage);
+    MyTime mt = new MyTime(favoriteDrink.getDrinkingTime());
     say("Will finnish in " + mt);
-    
+ 
     Global.clock.setAlarm(drinkFinished,  mt);    
 
     while(true)
