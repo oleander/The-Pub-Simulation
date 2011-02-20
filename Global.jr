@@ -40,7 +40,7 @@ public class Global {
   
   // Simulation time
   // One second (1000ms) takes timeFactor ms in simulation.
-  public static int timeFactor = 1;
+  public static int timeFactor = 10;
   
 
   // Ingredients

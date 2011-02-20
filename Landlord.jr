@@ -81,7 +81,29 @@ public class Landlord extends Mixologist {
   private void gatherStatistics()
   {  
     //Gather statistics here!
-    say("Gathering statistics");
+    say("=>\tGathering statistics\n");
+    List<Integer> l = Customer.getWaitTimes();
+    // int maxx = 0;
+    //    int minn = Integer.MAX_VALUE ;
+    int sum = 0;
+      
+    for(Integer a : l)
+      {
+        sum += a;
+      }
+    int f = 1;
+    
+    if(l.size() > 0)
+      { 
+        say(" Maximum waiting time:    " + Collections.max(l)*f + " seconds.");
+        say(" Minimum waiting time:    " + Collections.min(l)*f + " seconds.");
+        say(" Average waiting time:    " + (sum*f/l.size()) + " seconds.");
+      }
+    else
+      {
+        say("Nobody ordered anything tonight :(");
+      }
+    
   }
   
 
