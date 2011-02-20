@@ -2,13 +2,25 @@
 
 ## The plaing
 
-### Door
-
-![Door](https://github.com/oleander/The-Pub-Simulation/raw/master/img/door.jpg)
-
 ### Overview
 
 ![Overview](https://github.com/oleander/The-Pub-Simulation/raw/master/img/overview.jpg)
+
+### Landlord
+
+![Landlord](https://github.com/oleander/The-Pub-Simulation/raw/master/img/landlord.jpg)
+
+### Barmaid
+
+![Barmaid](https://github.com/oleander/The-Pub-Simulation/raw/master/img/barmaid.jpg)
+
+### Assistant
+
+![Assistant](https://github.com/oleander/The-Pub-Simulation/raw/master/img/assistant.jpg)
+
+### Customer
+
+![Customer](https://github.com/oleander/The-Pub-Simulation/raw/master/img/customer.jpg)
 
 ### Orderdrink 1
 
@@ -26,18 +38,6 @@
 
 ![Objects](https://github.com/oleander/The-Pub-Simulation/raw/master/img/objects.jpg)
 
-### Landlord
+### Door
 
-![Landlord](https://github.com/oleander/The-Pub-Simulation/raw/master/img/landlord.jpg)
-
-### Barmaid
-
-![Barmaid](https://github.com/oleander/The-Pub-Simulation/raw/master/img/barmaid.jpg)
-
-### Assistant
-
-![Assistant](https://github.com/oleander/The-Pub-Simulation/raw/master/img/assistant.jpg)
-
-### Customer
-
-![Customer](https://github.com/oleander/The-Pub-Simulation/raw/master/img/customer.jpg)
+![Door](https://github.com/oleander/The-Pub-Simulation/raw/master/img/door.jpg)
