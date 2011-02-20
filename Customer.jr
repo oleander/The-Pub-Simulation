@@ -66,5 +66,18 @@ public class Customer extends Person {
               }        
           }    
       }    
-  }    
+  }
+
+  
+  private static List<Integer> waitTimes = new ArrayList<Integer>();
+  private static synchronized void addOrderingWaitingTime(Integer time)
+  {
+    waitTimes.add(time);    
+  }
+  
+  public static List<Integer> getWaitTimes()
+  {
+    return waitTimes;    
+  }
+  
 }
