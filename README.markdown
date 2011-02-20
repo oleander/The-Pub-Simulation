@@ -53,7 +53,9 @@ The Cupboard has only one inni, so it really cant get stuck without being able t
 
 By now you have a pretty good understanding of our intentions. However we will now dig into some details.
 
-Here follow the classes
+We only use one process for each thing, we dont share any memory except for the read-only variables in Item/Beverage/BeverageWare. One exception is that the persons write down their waiting time into a commong list which the LL later reads.
+
+Below is a list of all classes and a short summary.
 
 ### Assistant
 
