@@ -95,17 +95,40 @@ public class Landlord extends Mixologist {
     
     if(l.size() > 0)
       { 
-        say(" Number of served customers: " + (numServings+Global.barmaid.numServings) + "\n");
-        say(" Maximum waiting time:    " + Collections.max(l)*f + " seconds.");
-        say(" Minimum waiting time:    " + Collections.min(l)*f + " seconds.");
-        say(" Average waiting time:    " + (sum*f/l.size()) + " seconds.");
+        say("Number of served customers: " + (numServings+Global.barmaid.numServings) + "\n");
+        say("Maximum waiting time:    " + Collections.max(l)*f + " seconds.");
+        say("Minimum waiting time:    " + Collections.min(l)*f + " seconds.");
+        say("Average waiting time:    " + (sum*f/l.size()) + " seconds.");
       }
     else
       {
         say("Nobody ordered anything tonight :(");
       }
     
-  }
-  
+    for(Table t: Global.tables)
+      {
+        if(!t.clearTable().isEmpty())
+          {
+            say("Table " + t + " isnt empty!");            
+          }        
+      }
+    
 
+    for(Item it : Global.allItemsList)
+      {
+        int count = 0;
+        for(Item it2 : Global.cupboard.getItems())
+          {
+            if(it == it2) count++;
+            
+          }
+        int diff = count;
+        
+        for(Item it2 : Global.cupboard.getOriginalItems())
+          {
+            if(it == it2) diff--;            
+          }
+        say("Item " + it + " was found " + count + " times in the cupboard. The difference is " + diff);
+      }    
+  }
 }

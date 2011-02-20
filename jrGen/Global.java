@@ -48,6 +48,7 @@ public class Global extends java.lang.Object {
     public static final List IngrediensList = Arrays.asList(beerTap, coffee, milk, choclatePowder);
     public static final BeverageWare glass = new BeverageWare("Glass", 1);
     public static final BeverageWare cup = new BeverageWare("Cup", 2);
+    public static final List allItemsList = Arrays.asList(beerTap, coffee, milk, choclatePowder, glass, cup);
     private static final List beerIngredients = Arrays.asList(beerTap);
     private static final List cappucinoIngredients = Arrays.asList(milk, coffee);
     private static final List choclateIngredients = Arrays.asList(milk, choclatePowder);

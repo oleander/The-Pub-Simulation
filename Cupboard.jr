@@ -6,6 +6,17 @@ import java.util.ArrayList;
 public class Cupboard {
 
   private ArrayList<Item> items;  
+  private ArrayList<Item> orig;  
+
+  // THIS IS ONLY USED IN GATHERING OF STATISTICS
+  public ArrayList<Item> getItems() {
+    return items;
+  }
+
+  // THIS IS ONLY USED IN GATHERING OF STATISTICS
+  public ArrayList<Item> getOriginalItems() {
+    return orig;
+  }
 
   public op void aquireItem(Item);
   public op void putBackItem(Item);
@@ -29,6 +40,7 @@ public class Cupboard {
       {
         items.add(Global.cup);        
       }    
+    orig = new ArrayList<Item>(items);
     Global.cupboard = this;    
   }  
 

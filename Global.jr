@@ -52,9 +52,14 @@ public class Global {
   public final static List<Item> IngrediensList = 
     Arrays.asList(beerTap, coffee, milk, choclatePowder);  
 
+
   // Beveragewares
   public final static BeverageWare glass  = new BeverageWare("Glass", 1);
   public final static BeverageWare cup    = new BeverageWare("Cup",   2);  
+
+  public final static List<Item> allItemsList = 
+    Arrays.asList(beerTap, coffee, milk, choclatePowder, glass, cup);  
+
 
   // Required Ingredients
   private final static List<Item> beerIngredients      = Arrays.asList(beerTap);
