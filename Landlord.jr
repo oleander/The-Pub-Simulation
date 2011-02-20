@@ -20,7 +20,6 @@ public class Landlord extends Mixologist {
 
   protected boolean shouldGoHome()
   {
-    say("" + numDoorCalls);    
     return numDoorCalls >= 2;    
   }  
   
@@ -54,9 +53,22 @@ public class Landlord extends Mixologist {
           }
         else
           {
+
             gatherStatistics();   
-            say("About to shutdown clock");            
-            send Global.clock.shutdown();            
+
+            /*
+             * We have some problems here:
+             *
+             * For some reason the landlord will stop execution after shutdown()
+             * of the clock, even though the call is ASYNCHRONUS!
+             *
+             * We assume this is a JR bug and ignores this for now because
+             * we have no clue for the cause of it, and it's not so relevant
+             * for message passing etc.
+             *
+             */
+            say("About to shutdown clock"); 
+            send Global.clock.shutdown();
             say("Shutdowned clock");
           }          
       }  

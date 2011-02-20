@@ -61,6 +61,7 @@ public class Customer extends Person {
             numCalls++;
             if(favoriteDrink == Global.beer && numCalls == 1 && drinksLeft > 0)
               {
+                say("I drank up fast due to last call!");                
                 break;            
               }        
           }    
