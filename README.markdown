@@ -56,7 +56,7 @@ Sensible constants are already into `Global.jr`. So the simulation should start 
 
 By now you have a pretty good understanding of our intentions. However we will now dig into some details.
 
-We only use one process for each thing, we dont share any memory except for the read-only variables in Item/Beverage/BeverageWare. One exception is that the persons write down their waiting time into a commong list which the LL later reads.
+We only use one process for each thing, we don't share any memory except for the read-only variables in Item/Beverage/BeverageWare. One exception is that the persons write down their waiting time into a commong list which the LL later reads.
 
 Below is a list of all classes and a short summary.
 
@@ -84,7 +84,7 @@ Unchanged
 
 ### Cupboard
 
-One can aquire one item and put back one item. It will only recieve aquitre-messages if it already contains that item. It contains methods to access its start and end contents, it's used by the landlord to gather statistics.
+One can aquire one item and put back one item. It will only receive aquitre-messages if it already contains that item. It contains methods to access its start and end contents, it's used by the landlord to gather statistics.
 
 ### Customer
 
@@ -104,7 +104,7 @@ Either an ingredient or a beverageware.
 
 ### Landlord
 
-This quite similiar to our flowchart, only that the landlord tells the assistant to do his final round when everybody else have left the bar. The door kindly informs the landlord of both when two persons are left (LL + assistant) and when only LL is left.
+This quite similar  to our flowchart, only that the landlord tells the assistant to do his final round when everybody else have left the bar. The door kindly informs the landlord of both when two persons are left (LL + assistant) and when only LL is left.
 
 The landlord does not put the tables and cupboard to sleep, the deadlock detection kills them.
 
